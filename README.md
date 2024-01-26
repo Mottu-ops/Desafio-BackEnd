@@ -8,7 +8,7 @@ Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em faz
 - Após finalização envie um e-mail para o recrutador informando o repositório para análise.
   
 ## Requisitos não funcionais 
-- A aplicação deverá ser construida com .Net na versão 7 ou superior utilizando C#.
+- A aplicação deverá ser construida com .Net utilizando C#.
 - Utilizar apenas os seguintes bancos de dados ( Postgress, MongoDB)
 - Escolha o sistema de mensageria de sua preferencia( RabbitMq, Sqs/Sns , Kafka, Gooogle Pub/Sub ou qualquer outro)
 
@@ -59,7 +59,7 @@ Seu objetivo é criar uma aplicação para gerenciar aluguel de motos e entregad
 - Eu como entregador quero efetuar a entrega do pedido.
       
 
-## Diferencias 🚀
+## Diferenciais 🚀
 - Testes unitários
 - Testes de integração
 - EntityFramework e/ou Dapper
