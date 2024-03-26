@@ -5,21 +5,17 @@ namespace MottuRentalApp.Domain
 	public class User
 	{
     public User(
-      string documentNumber,
-      string documentType,
       string name,
       string birthDate,
-      UserType type
+      UserType type,
+      IList<Document> documents
     )
     {
       Identifier = Guid.NewGuid().ToString();
       Name = name;
       BirthDate = birthDate;
       UserType = type;
-      Documents =
-      [
-        new Document() { Number = documentNumber, Type = (DocumentType) Enum.Parse(typeof(DocumentType), documentType) },
-      ];
+      Documents = documents;
     }
 
     public string Identifier { get; }
