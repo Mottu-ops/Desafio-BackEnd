@@ -20,9 +20,9 @@ namespace MottuRentalApp.Tests.Application.UseCases
     {
       PatchVehicleDto expectedDto = new PatchVehicleDto(Guid.NewGuid().ToString(), "RFH2G09", null, null);
       Vehicle expectedVehicle = new Vehicle(expectedDto.LicensePlate ?? "", expectedDto.Year ?? 2023, expectedDto.Model ?? "");
-      this._vehiclePort.Setup((port) => port.patchVehicle(expectedDto)).Returns(expectedVehicle);
+      this._vehiclePort.Setup((port) => port.PatchVehicle(expectedDto)).Returns(expectedVehicle);
 
-      var result = this._underTest.execute(expectedDto);
+      var result = this._underTest.Execute(expectedDto);
 
       Assert.NotNull(result);
     }
@@ -31,9 +31,9 @@ namespace MottuRentalApp.Tests.Application.UseCases
     public void ShouldThrowWhenINvalidDto()
     {
       PatchVehicleDto expectedDto = new PatchVehicleDto(Guid.NewGuid().ToString(), " ", null, null);
-      this._vehiclePort.Setup((port) => port.patchVehicle(expectedDto)).Returns(It.IsAny<Vehicle>());
+      this._vehiclePort.Setup((port) => port.PatchVehicle(expectedDto)).Returns(It.IsAny<Vehicle>());
 
-      Assert.Throws<InvalidVehicleException>(() => this._underTest.execute(expectedDto));
+      Assert.Throws<InvalidVehicleException>(() => this._underTest.Execute(expectedDto));
     }
   }
 }

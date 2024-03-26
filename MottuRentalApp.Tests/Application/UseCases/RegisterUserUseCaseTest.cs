@@ -23,7 +23,7 @@ namespace MottuRentalApp.Tests
       User expectedUser = new User(userDto.DocumentNumber, userDto.DocumentType, userDto.Name, userDto.BirthDate, (UserType) userDto.Type);
       this._usersPort.Setup(port => port.saveUser(It.IsAny<User>())).Returns(expectedUser);
 
-      User result = this._underTest.execute(userDto);
+      User result = this._underTest.Execute(userDto);
 
       Assert.NotNull(result);
     }
@@ -34,7 +34,7 @@ namespace MottuRentalApp.Tests
       RegisterUserDto userDto = new RegisterUserDto("", "29/11/1992", 2, " ", "");
       this._usersPort.Setup(port => port.saveUser(It.IsAny<User>())).Returns(It.IsAny<User>());
 
-      Assert.Throws<ArgumentException>(() => this._underTest.execute(userDto));
+      Assert.Throws<ArgumentException>(() => this._underTest.Execute(userDto));
     }
   }
 }

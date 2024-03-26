@@ -16,10 +16,10 @@ namespace MottuRentalApp.Application.Facades
 
     public bool IsVehicleAvailable(string licensePlate)
     {
-      var vehicle = this._vehiclesPort.findVehicleByPlate(licensePlate);
+      var vehicle = this._vehiclesPort.FindVehicleByPlate(licensePlate);
 
       if (vehicle != null) {
-        var rental = this._rentalsPort.findByVehicleId(vehicle.Identifier);
+        var rental = this._rentalsPort.FindByVehicleId(vehicle.Identifier);
 
         return rental == null || rental.Status == RentalStatus.DONE;
       } else {

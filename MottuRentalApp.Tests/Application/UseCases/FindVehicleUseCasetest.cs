@@ -21,7 +21,7 @@ namespace MottuRentalApp.Tests.Application.UseCases
     {
       string validPlate = "RHZ2G39";
       Vehicle expectedVehicle = new Vehicle(validPlate, 2023, String.Empty);
-      this._vehiuclesPort.Setup((port) => port.findVehicleByPlate(validPlate)).Returns(expectedVehicle);
+      this._vehiuclesPort.Setup((port) => port.FindVehicleByPlate(validPlate)).Returns(expectedVehicle);
 
       var result = this._underTest.Execute(validPlate);
 
@@ -32,7 +32,7 @@ namespace MottuRentalApp.Tests.Application.UseCases
     public void ShouldThrowWhenInvalidPlate()
     {
       string invalidPlate = " ";
-      this._vehiuclesPort.Setup((port) => port.findVehicleByPlate(invalidPlate)).Returns(It.IsAny<Vehicle>());
+      this._vehiuclesPort.Setup((port) => port.FindVehicleByPlate(invalidPlate)).Returns(It.IsAny<Vehicle>());
 
       Assert.Throws<InvalidVehicleException>(() => this._underTest.Execute(invalidPlate));
     }

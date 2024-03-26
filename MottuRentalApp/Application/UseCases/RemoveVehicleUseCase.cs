@@ -21,7 +21,7 @@ namespace MottuRentalApp.Application.UseCases
       try
       {
         if (this._rentalVehiclesFacade.IsVehicleAvailable(licensePlate)) {
-          this._vehiclesPort.removeVehicle(licensePlate);
+          this._vehiclesPort.RemoveVehicle(licensePlate);
         } else {
           throw new UnavailableVehicleException("VEHICLE_NOT_AVAILABLE", FEATURE_NAME);
         }

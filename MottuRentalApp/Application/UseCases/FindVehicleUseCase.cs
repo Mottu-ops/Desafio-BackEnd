@@ -20,7 +20,7 @@ namespace MottuRentalApp.Application.UseCases
         throw new InvalidVehicleException("Invalid plate", FEATURE_NAME);
       }
 
-      return this._vehiclesPort.findVehicleByPlate(plate);
+      return this._vehiclesPort.FindVehicleByPlate(plate);
     }
   }
 }

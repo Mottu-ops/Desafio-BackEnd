@@ -8,7 +8,7 @@ namespace MottuRentalApp.Application.UseCases
   {
     private readonly IUsersPort _usersPort = usersPort;
 
-    public User execute(RegisterUserDto dto)
+    public User Execute(RegisterUserDto dto)
     {
       checkDto(dto);
 

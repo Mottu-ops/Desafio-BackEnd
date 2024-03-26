@@ -14,13 +14,13 @@ namespace MottuRentalApp.Application.UseCases
       this._vehiclesPort = vehiclesPort;
     }
 
-    public Vehicle execute(PatchVehicleDto dto)
+    public Vehicle Execute(PatchVehicleDto dto)
     {
       try
       {
         this.validateData(dto);
 
-        return this._vehiclesPort.patchVehicle(dto);
+        return this._vehiclesPort.PatchVehicle(dto);
       }
       catch (Exception exc)
       {

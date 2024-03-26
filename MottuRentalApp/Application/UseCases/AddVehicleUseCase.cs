@@ -14,16 +14,16 @@ namespace MottuRentalApp.Application.UseCases
       this._vehiclesPort = vehiclesPort;
     }
 
-    public Vehicle execute(Vehicle vehicle)
+    public Vehicle Execute(Vehicle vehicle)
     {
       try
       {
-        var found = this._vehiclesPort.findVehicleByPlate(licensePlate: vehicle.LicensePlate);
+        var found = this._vehiclesPort.FindVehicleByPlate(licensePlate: vehicle.LicensePlate);
         if (found != null) {
           throw new InvalidVehicleException($"{found.LicensePlate} already exists.", FEATURE_NAME);
         }
 
-        return this._vehiclesPort.saveVehicle(vehicle);
+        return this._vehiclesPort.SaveVehicle(vehicle);
       }
       catch (Exception)
       {

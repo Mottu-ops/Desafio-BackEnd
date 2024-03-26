@@ -4,8 +4,8 @@ namespace MottuRentalApp.Application.Ports
 {
   public interface IRentalsPort
   {
-    public Rental startRental(Rental rental);
-    public Rental? findByUser(string userId);
-    public Rental? findByVehicleId(string vehicleId);
+    public Rental StartRental(Rental rental);
+    public Rental? FindByUser(string userId);
+    public Rental? FindByVehicleId(string vehicleId);
   }
 }

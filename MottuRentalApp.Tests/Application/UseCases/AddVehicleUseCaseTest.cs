@@ -23,10 +23,10 @@ namespace MottuRentalApp.Tests.Application.UseCases
     public void ShouldExecuteSuccessfully()
     {
       Vehicle expectedVehicle = new Vehicle(VALID_PLATE, VALID_YEAR, VALID_MODEL);
-      this._vehiclesPort.Setup(port => port.findVehicleByPlate(expectedVehicle.LicensePlate)).Returns(() => null);
-      this._vehiclesPort.Setup(port => port.saveVehicle(expectedVehicle)).Returns(expectedVehicle);
+      this._vehiclesPort.Setup(port => port.FindVehicleByPlate(expectedVehicle.LicensePlate)).Returns(() => null);
+      this._vehiclesPort.Setup(port => port.SaveVehicle(expectedVehicle)).Returns(expectedVehicle);
 
-      var result = this._underTest.execute(expectedVehicle);
+      var result = this._underTest.Execute(expectedVehicle);
 
       Assert.NotNull(result);
     }
@@ -35,11 +35,11 @@ namespace MottuRentalApp.Tests.Application.UseCases
     public void ShouldThrowWhenLicensePlateAlreadyExists()
     {
       Vehicle expectedVehicle = new Vehicle(VALID_PLATE, VALID_YEAR, VALID_MODEL);
-      this._vehiclesPort.Setup(port => port.findVehicleByPlate(expectedVehicle.LicensePlate))
+      this._vehiclesPort.Setup(port => port.FindVehicleByPlate(expectedVehicle.LicensePlate))
         .Returns(() => expectedVehicle);
-      this._vehiclesPort.Setup(port => port.saveVehicle(expectedVehicle));
+      this._vehiclesPort.Setup(port => port.SaveVehicle(expectedVehicle));
 
-      Assert.Throws<InvalidVehicleException>(() => this._underTest.execute(expectedVehicle));
+      Assert.Throws<InvalidVehicleException>(() => this._underTest.Execute(expectedVehicle));
     }
   }
 }
