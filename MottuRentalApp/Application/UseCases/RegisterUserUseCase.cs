@@ -10,20 +10,19 @@ namespace MottuRentalApp.Application.UseCases
 
     public User Execute(RegisterUserDto dto)
     {
-      checkDto(dto);
+      CheckDto(dto);
 
-      return this._usersPort.saveUser(
-        new User(dto.DocumentNumber, dto.DocumentType, dto.Name, dto.BirthDate, (UserType) dto.Type)
-      );      
+      return this._usersPort.SaveUser(
+        new User(dto.Name, dto.BirthDate, (UserType) dto.Type, dto.Documents)
+      );
     }
 
-    private void checkDto(RegisterUserDto dto)
+    private void CheckDto(RegisterUserDto dto)
     {
       if (
           String.IsNullOrEmpty(dto.Name) ||
             String.IsNullOrEmpty(dto.BirthDate) ||
-              String.IsNullOrEmpty(dto.DocumentNumber) ||
-                String.IsNullOrEmpty(dto.DocumentType)
+              dto.Documents.Count < 1
         )
       {
         throw new ArgumentException("BAD_PARAMS");
