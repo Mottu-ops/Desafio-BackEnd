@@ -13,7 +13,7 @@ namespace MottuRentalApp.Domain
       Model = model;
     }
 
-    public string Identifier { get; }
+    public string Identifier { get; } = Guid.NewGuid().ToString();
     public string LicensePlate { get; }
     public int Year { get; }
     public string Model { get; }
