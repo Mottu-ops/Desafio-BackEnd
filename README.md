@@ -1,7 +1,6 @@
 # Desafio backend Mottu.
 Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em fazer parte do nosso time e ajudar a melhorar a vida de milhares de pessoas.
 ## Instruções
-- A vaga é presencial em São Paulo no bairro do Butantã.
 - O desafio é válido para diversos níveis, portanto não se preocupe se não conseguir resolver por completo.
 - A aplicação só será avaliada se estiver rodando, se necessário crie um passo a passo para isso.
 - Faça um clone do repositório em seu git pessoal para iniciar o desenvolvimento e não cite nada relacionado a Mottu.
