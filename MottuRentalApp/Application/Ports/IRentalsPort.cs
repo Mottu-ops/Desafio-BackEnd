@@ -6,6 +6,6 @@ namespace MottuRentalApp.Application.Ports
   {
     public Rental StartRental(Rental rental);
     public Rental? FindByUser(string userId);
-    public Rental? FindByVehicleId(string vehicleId);
+    public Rental? FindByVehiclePlate(string licensePlate);
   }
 }

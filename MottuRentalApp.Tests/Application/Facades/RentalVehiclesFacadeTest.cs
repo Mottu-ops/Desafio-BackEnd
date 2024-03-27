@@ -23,7 +23,7 @@ namespace MottuRentalApp.Tests.Application.Facades
       string validPlate = "RHZ2G39";
       var expectedVehicle = new Vehicle(validPlate, 2023, "");
       this._vehiclesPort.Setup((port) => port.FindVehicleByPlate(validPlate)).Returns(expectedVehicle);
-      this._rentalsPort.Setup((port) => port.FindByVehicleId(expectedVehicle.Identifier)).Returns(() => null);
+      this._rentalsPort.Setup((port) => port.FindByVehiclePlate(expectedVehicle.LicensePlate)).Returns(() => null);
 
       var result = this._underTest.IsVehicleAvailable(validPlate);
 
@@ -36,8 +36,8 @@ namespace MottuRentalApp.Tests.Application.Facades
       string validPlate = "RHZ2G39";
       var expectedVehicle = new Vehicle(validPlate, 2023, "");
       this._vehiclesPort.Setup((port) => port.FindVehicleByPlate(validPlate)).Returns(expectedVehicle);
-      var expectedRental = new Rental(Guid.NewGuid().ToString(), expectedVehicle.Identifier, "2024-03-30");
-      this._rentalsPort.Setup((port) => port.FindByVehicleId(expectedVehicle.Identifier)).Returns(expectedRental);
+      var expectedRental = new Rental(Guid.NewGuid().ToString(), expectedVehicle.LicensePlate, "2024-03-30");
+      this._rentalsPort.Setup((port) => port.FindByVehiclePlate(expectedVehicle.LicensePlate)).Returns(expectedRental);
 
       var result = this._underTest.IsVehicleAvailable(validPlate);
 

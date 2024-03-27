@@ -19,7 +19,7 @@ namespace MottuRentalApp.Application.Facades
       var vehicle = this._vehiclesPort.FindVehicleByPlate(licensePlate);
 
       if (vehicle != null) {
-        var rental = this._rentalsPort.FindByVehicleId(vehicle.Identifier);
+        var rental = this._rentalsPort.FindByVehiclePlate(vehicle.LicensePlate);
 
         return rental == null || rental.Status == RentalStatus.DONE;
       } else {

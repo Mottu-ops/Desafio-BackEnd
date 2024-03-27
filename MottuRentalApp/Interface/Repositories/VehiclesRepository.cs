@@ -1,4 +1,5 @@
 using MongoDB.Driver;
+using MottuRentalApp.Application.Exceptions;
 using MottuRentalApp.Application.Ports;
 using MottuRentalApp.Domain;
 using MottuRentalApp.Interface.Gateways.Interfaces;
@@ -20,25 +21,45 @@ namespace MottuRentalApp.Interface.Repositories
 
     public Vehicle SaveVehicle(Vehicle vehicle) {
       this._vehicles.InsertOne(
-        new Vehicles() { Identifier = vehicle.Identifier, LicensePlate = vehicle.LicensePlate, Year = vehicle.Year, Model = vehicle.Model }
+        new Vehicles() { LicensePlate = vehicle.LicensePlate, Year = vehicle.Year, Model = vehicle.Model }
       );
 
       return vehicle;
     }
     public Vehicle? FindVehicleByPlate(string licensePlate) {
-      // var filter = Builders<Vehicles>.Filter.Eq(v => v.LicensePlate, licensePlate);
+      var filter = Builders<Vehicles>.Filter.Eq(v => v.LicensePlate, licensePlate);
       
-      // var doc = this._vehicles.Find(filter).FirstOrDefault();
+      var doc = this._vehicles.Find(filter).FirstOrDefault();
+      if (doc == null) {
+        return null;
+      } else {
+        var vehicle = new Vehicle(doc.LicensePlate, doc.Year, doc.Model);
 
-      // return doc is not null ? new Vehicle() : null;
-
-      throw new NotImplementedException();
+        return vehicle;
+      }
     }
     public void RemoveVehicle(string licensePlate) {
-      throw new NotImplementedException();
+      var filter = Builders<Vehicles>.Filter.Eq(v => v.LicensePlate, licensePlate);
+
+      this._vehicles.DeleteOne(filter);
     }
     public Vehicle PatchVehicle(PatchVehicleDto dto) {
-      throw new NotImplementedException();
+      var filter = Builders<Vehicles>.Filter.Eq(v => v.LicensePlate, dto.Identifier);
+
+      if (dto.LicensePlate != null) {
+        var vehicle = FindVehicleByPlate(dto.Identifier);
+        RemoveVehicle(dto.Identifier);
+        vehicle.LicensePlate = dto.LicensePlate;
+
+        return SaveVehicle(vehicle);
+      } else {
+        this._vehicles.UpdateOne(
+          filter,
+          Builders<Vehicles>.Update.Set(v => v.Year, dto.Year).Set(v => v.Model, dto.Model)
+        );
+
+        return FindVehicleByPlate(dto.Identifier);
+      }
     }
   }
 }

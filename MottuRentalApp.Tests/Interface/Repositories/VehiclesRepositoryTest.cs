@@ -4,7 +4,6 @@ using MottuRentalApp.Interface.Gateways.Interfaces;
 using MottuRentalApp.Interface.Repositories;
 using MottuRentalApp.Interface.Repositories.Collections;
 using MongoDB.Driver;
-using Microsoft.Extensions.Configuration;
 
 namespace MottuRentalApp.Tests.Interface.Repositories
 {
@@ -33,6 +32,35 @@ namespace MottuRentalApp.Tests.Interface.Repositories
       Assert.NotNull(result);
     }
 
+    [Fact]
+    public void ShouldFindVehicleSuccessfully()
+    {
+      // Vehicle expectedVehicle = BuildValidVehicle();
+      // var expectedDocument = BuildDocument(expectedVehicle);
+      // var mockIFindCollection = new Mock<IFindFluent<Vehicles, Vehicles>>();
+      // // mockIFindCollection
+      // //   .Setup((coll) => coll.FirstOrDefault(It.IsAny<IAsyncCursorSource<Vehicles>>(), default(CancellationToken)))
+      // //     .Returns();
+      // this._collection.Setup((coll) => coll.Find(It.IsAny<FilterDefinition<Vehicles>>(), null))
+      //   .Returns(mockIFindCollection.Object);
+
+      //   var result = this._underTest.FindVehicleByPlate(expectedDocument.LicensePlate);
+
+      //   Assert.Null(result);
+    }
+
+    [Fact]
+    public void ShouldRemoveVehicleSuccessfully()
+    {
+
+    }
+
+    [Fact]
+    public void ShouldPatchLicensePlateSuccessfully()
+    {
+      
+    }
+
     private Vehicle BuildValidVehicle()
     {
       return new Vehicle("RHZ2G59", 2024, "");
@@ -40,7 +68,7 @@ namespace MottuRentalApp.Tests.Interface.Repositories
 
     private Vehicles BuildDocument(Vehicle vehicle)
     {
-      return new Vehicles() { Identifier = vehicle.Identifier, LicensePlate = vehicle.LicensePlate, Year = vehicle.Year, Model = vehicle.Model };
+      return new Vehicles() { LicensePlate = vehicle.LicensePlate, Year = vehicle.Year, Model = vehicle.Model };
     }
   }
 }
