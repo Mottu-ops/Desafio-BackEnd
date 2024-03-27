@@ -8,5 +8,6 @@ namespace MottuRentalApp.Application.Ports
     public Vehicle? FindVehicleByPlate(string licensePlate);
     public void RemoveVehicle(string licensePlate);
     public Vehicle PatchVehicle(PatchVehicleDto dto);
+    public IList<Vehicle> FetchVehiclesExcept(IList<string> vehicleIds);
   }
 }

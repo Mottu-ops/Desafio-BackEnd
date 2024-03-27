@@ -1,9 +1,11 @@
+using MongoDB.Driver.Linq;
+using MottuRentalApp.Application.Exceptions;
 using MottuRentalApp.Application.Ports;
 using MottuRentalApp.Domain;
 
 namespace MottuRentalApp.Application.Facades
 {
-  public class RentalVehiclesFacade
+  public class RentalVehiclesFacade : IRentalVehiclesFacade
   {
     private readonly IVehiclesPort _vehiclesPort;
     private readonly IRentalsPort _rentalsPort;
@@ -25,6 +27,17 @@ namespace MottuRentalApp.Application.Facades
       } else {
         return false;
       }
+    }
+
+    public Rental RentAvailableVehicle(string userId, string endTerm)
+    {
+      var ongoingRentals = this._rentalsPort.FetchOngoing();
+      var vehicles = this._vehiclesPort.FetchVehiclesExcept(ongoingRentals.Select((o) => o.VehicleId).ToList());
+      if (vehicles.Count < 1) {
+        throw new Exception("NO_VEHICLES_AVAILABLE");
+      }
+
+      return new Rental(userId, vehicles.FirstOrDefault()?.LicensePlate, endTerm);
     }
   }
 }

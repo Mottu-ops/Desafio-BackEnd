@@ -14,7 +14,7 @@ namespace MottuRentalApp.Domain
     public string Identifier { get; }
     public string UserId { get; }
     public string VehicleId { get; set; }
-    public DateTime StartTerm { get; }
+    public DateTime StartTerm { get; set; }
     public DateTime EndTerm { get; set; }
     public RentalStatus Status { get => GetCurrentStatus(); }   
     public decimal TotalFare { get; set; }

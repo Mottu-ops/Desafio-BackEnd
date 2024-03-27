@@ -61,5 +61,10 @@ namespace MottuRentalApp.Interface.Repositories
         return FindVehicleByPlate(dto.Identifier);
       }
     }
+
+    public IList<Vehicle> FetchVehiclesExcept(IList<string> vehicleIds)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
