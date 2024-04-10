@@ -15,9 +15,13 @@ Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em faz
 ## Aplicação a ser desenvolvida
 Seu objetivo é criar uma aplicação para gerenciar aluguel de motos e entregadores. Quando um entregador estiver registrado e com uma locação ativa poderá também efetuar entregas de pedidos disponíveis na plataforma.
 ### Casos de uso
-- Eu como usuário admin quero cadastrar uma nova moto.
-    - Os dados obrigatórios da moto são Identificador, Ano, Modelo e Placa
-    - A placa é um dado único e não pode se repetir.
+Eu como usuário admin quero cadastrar uma nova moto.
+- Os dados obrigatórios da moto são Identificador, Ano, Modelo e Placa
+- A placa é um dado único e não pode se repetir.
+- Quando a moto for cadastrada a aplicação deverá gerar um evento de moto cadastrada
+  - A notificação deverá ser publicada por mensageria.
+  - Criar um consumidor para notificar quando o ano da moto for "2024"
+  - Assim que a mensagem for recebida, deverá ser armazenada no banco de dados para consulta futura.
 - Eu como usuário admin quero consultar as motos existentes na plataforma e conseguir filtrar pela placa.
 - Eu como usuário admin quero modificar uma moto alterando apenas sua placa que foi cadastrado indevidamente
 - Eu como usuário admin quero remover uma moto que foi cadastrado incorretamente, desde que não tenha registro de locações.
