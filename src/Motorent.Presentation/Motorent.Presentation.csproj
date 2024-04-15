@@ -10,4 +10,8 @@
     <ItemGroup>
         <ProjectReference Include="..\Motorent.Application\Motorent.Application.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ResultExtensions.AspNetCore" Version="3.1.0" />
+    </ItemGroup>
 </Project>
