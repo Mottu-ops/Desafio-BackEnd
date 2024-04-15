@@ -5,7 +5,7 @@ using Motorent.Presentation;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddApplication()
-    .AddInfrastructure()
+    .AddInfrastructure(builder.Configuration)
     .AddPresentation();
 
 var app = builder.Build();
