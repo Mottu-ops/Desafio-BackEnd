@@ -1,0 +1,42 @@
+﻿name: motorent
+
+services:
+  api:
+    image: app
+    build:
+      context: .
+      dockerfile: src/Motorent.Api/Dockerfile
+    container_name: motorent-api
+    ports:
+      - 8000:8080
+      - 8001:8081
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    environment:
+      - ASPNETCORE_URLS=http://+:8080;https://+:8081
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/motorent.pfx
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=motorent;Username=root;Password=password
+    volumes:
+      - ~/.aspnet/https:/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+  
+  postgres:
+    image: postgres
+    container_name: motorent-db
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+    ports:
+      - "8003:5432"
+    environment:
+      - POSTGRES_DB=motorent
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - .data:/var/lib/postgresql/data
