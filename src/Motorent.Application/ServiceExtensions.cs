@@ -10,18 +10,18 @@ namespace Motorent.Application;
 public static class ServiceExtensions
 {
     private static readonly Assembly ApplicationAssembly = typeof(ServiceExtensions).Assembly;
-    
+
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddMapper();
-        
+
         services.AddMediator();
 
         services.AddValidator();
-        
+
         return services;
     }
-    
+
     private static void AddMapper(this IServiceCollection services)
     {
         var config = TypeAdapterConfig.GlobalSettings;
@@ -34,14 +34,15 @@ public static class ServiceExtensions
 
         services.AddSingleton(config);
     }
-    
+
     private static void AddMediator(this IServiceCollection services) => services.AddMediatR(config =>
     {
         config.RegisterServicesFromAssembly(ApplicationAssembly);
 
-        config.AddOpenBehavior(typeof(LoggingBehavior<,>));
+        config.AddOpenBehavior(typeof(LoggingBehavior<,>))
+            .AddOpenBehavior(typeof(ExceptionBehavior<,>));
     });
-    
+
     private static void AddValidator(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(ApplicationAssembly, includeInternalTypes: true);
