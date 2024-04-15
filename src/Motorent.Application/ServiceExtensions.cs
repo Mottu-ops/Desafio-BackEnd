@@ -1,6 +1,7 @@
 using System.Reflection;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Motorent.Application.Common.Behaviors;
 using Motorent.Application.Common.Mappings;
 using Motorent.Application.Common.Validations;
 
@@ -37,6 +38,8 @@ public static class ServiceExtensions
     private static void AddMediator(this IServiceCollection services) => services.AddMediatR(config =>
     {
         config.RegisterServicesFromAssembly(ApplicationAssembly);
+
+        config.AddOpenBehavior(typeof(LoggingBehavior<,>));
     });
     
     private static void AddValidator(this IServiceCollection services)
