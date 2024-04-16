@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Motorent.Domain.Common.Entities;
 using Motorent.Domain.Common.Repository;
 
-namespace Motorent.Infrastructure.Common.Persistence.Repositories;
+namespace Motorent.Infrastructure.Common.Persistence;
 
 internal abstract class Repository<TEntity, TId>(DataContext context) : IRepository<TEntity, TId>
     where TEntity : class, IEntity<TId>
