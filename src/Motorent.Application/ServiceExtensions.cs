@@ -40,7 +40,8 @@ public static class ServiceExtensions
         config.RegisterServicesFromAssembly(ApplicationAssembly);
 
         config.AddOpenBehavior(typeof(LoggingBehavior<,>))
-            .AddOpenBehavior(typeof(ExceptionBehavior<,>));
+            .AddOpenBehavior(typeof(ExceptionBehavior<,>))
+            .AddOpenBehavior(typeof(TransactionBehavior<,>));
     });
 
     private static void AddValidator(this IServiceCollection services)
