@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Persistence;
+using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Infrastructure.Common.Persistence;
 using Motorent.Infrastructure.Common.Persistence.Services;
 using Motorent.Infrastructure.Common.Security;
@@ -24,6 +25,9 @@ public static class ServiceExtensions
         services.AddAuthorization();
 
         services.AddPersistence(configuration);
+
+        services.AddTransient<TimeProvider>(_ => TimeProvider.System);
+        services.AddTransient<ISecurityTokenService, SecurityTokenService>();
         
         return services;
     }
