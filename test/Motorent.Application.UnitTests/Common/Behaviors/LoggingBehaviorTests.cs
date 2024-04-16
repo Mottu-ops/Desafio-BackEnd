@@ -7,21 +7,21 @@ namespace Motorent.Application.UnitTests.Common.Behaviors;
 [TestSubject(typeof(LoggingBehavior<,>))]
 public sealed class LoggingBehaviorTests
 {
-    private readonly ILogger<LoggingBehavior<IRequest, object>> logger =
-        A.Fake<ILogger<LoggingBehavior<IRequest, object>>>();
+    private readonly ILogger<LoggingBehavior<IRequest<object>, object>> logger =
+        A.Fake<ILogger<LoggingBehavior<IRequest<object>, object>>>();
 
     private readonly RequestHandlerDelegate<object> next = A.Fake<RequestHandlerDelegate<object>>();
 
-    private readonly IRequest request = A.Fake<IRequest>();
+    private readonly IRequest<object> request = A.Fake<IRequest<object>>();
     private readonly object response = A.Dummy<object>();
 
     private readonly CancellationToken cancellationToken = A.Dummy<CancellationToken>();
 
-    private readonly LoggingBehavior<IRequest, object> sut;
+    private readonly LoggingBehavior<IRequest<object>, object> sut;
 
     public LoggingBehaviorTests()
     {
-        sut = new LoggingBehavior<IRequest, object>(logger);
+        sut = new LoggingBehavior<IRequest<object>, object>(logger);
 
         A.CallTo(() => next())
             .Returns(response);

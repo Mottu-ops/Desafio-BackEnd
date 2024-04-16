@@ -6,22 +6,22 @@ namespace Motorent.Application.UnitTests.Common.Behaviors;
 [TestSubject(typeof(ExceptionBehavior<,>))]
 public sealed class ExceptionBehaviorTests
 {
-    private readonly ILogger<ExceptionBehavior<IRequest, Result<object>>> logger =
-        A.Fake<ILogger<ExceptionBehavior<IRequest, Result<object>>>>();
+    private readonly ILogger<ExceptionBehavior<IRequest<Result<object>>, Result<object>>> logger =
+        A.Fake<ILogger<ExceptionBehavior<IRequest<Result<object>>, Result<object>>>>();
 
     private readonly RequestHandlerDelegate<Result<object>> next =
         A.Fake<RequestHandlerDelegate<Result<object>>>();
 
-    private readonly IRequest request = A.Fake<IRequest>();
+    private readonly IRequest<Result<object>> request = A.Fake<IRequest<Result<object>>>();
     private readonly object response = A.Dummy<object>();
 
     private readonly CancellationToken cancellationToken = A.Dummy<CancellationToken>();
 
-    private readonly ExceptionBehavior<IRequest, Result<object>> sut;
+    private readonly ExceptionBehavior<IRequest<Result<object>>, Result<object>> sut;
 
     public ExceptionBehaviorTests()
     {
-        sut = new ExceptionBehavior<IRequest, Result<object>>(logger);
+        sut = new ExceptionBehavior<IRequest<Result<object>>, Result<object>>(logger);
 
         A.CallTo(() => next())
             .Returns(response);
@@ -37,7 +37,7 @@ public sealed class ExceptionBehaviorTests
         // Assert
         result.Should().BeSuccess(response);
     }
-    
+
     [Fact]
     public async Task ExceptionBehavior_WhenExceptionOccurs_ShouldNotCallNextAgain()
     {
@@ -66,7 +66,7 @@ public sealed class ExceptionBehaviorTests
         // Assert
         result.Should().BeFailure();
     }
-    
+
     [Fact(Skip = "Not implemented yet")]
     public async Task ExceptionBehavior_WhenExceptionOccurs_ShouldLogError()
     {
