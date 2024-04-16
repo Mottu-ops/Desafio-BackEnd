@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Persistence;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Infrastructure.Common.Persistence;
-using Motorent.Infrastructure.Common.Persistence.Services;
 using Motorent.Infrastructure.Common.Security;
 using Serilog;
 

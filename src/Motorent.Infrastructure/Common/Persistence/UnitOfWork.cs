@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Motorent.Application.Common.Abstractions.Persistence;
 
-namespace Motorent.Infrastructure.Common.Persistence.Services;
+namespace Motorent.Infrastructure.Common.Persistence;
 
 internal sealed class UnitOfWork(DataContext dataContext) : IUnitOfWork
 {
