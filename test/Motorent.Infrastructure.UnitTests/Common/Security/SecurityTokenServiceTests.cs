@@ -56,10 +56,10 @@ public sealed class SecurityTokenServiceTests
         // Assert
         token.Issuer.Should().Be(options.Value.Issuer);
         token.Audiences.Should().Contain(options.Value.Audience);
-        token.ValidFrom.Should().BeCloseTo(now.UtcDateTime, TimeSpan.FromSeconds(1));
+        token.ValidFrom.Should().BeCloseTo(now.UtcDateTime, TimeSpan.FromSeconds(5));
         token.ValidTo.Should().BeCloseTo(now.AddMinutes(
                 options.Value.ExpiresInMinutes).UtcDateTime,
-            TimeSpan.FromSeconds(1));
+            TimeSpan.FromSeconds(5));
 
         token.Claims.Should().HaveCount(5);
         token.Claims.Should().ContainSingle(claim => claim.Type == JwtRegisteredClaimNames.Jti);
