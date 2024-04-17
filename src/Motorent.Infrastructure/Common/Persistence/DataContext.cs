@@ -3,8 +3,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Motorent.Infrastructure.Common.Persistence;
 
-internal sealed class DataContext(DbContextOptions options) : DbContext(options)
+internal class DataContext : DbContext
 {
+    public DataContext()
+    {
+    }
+    
+    public DataContext(DbContextOptions options) : base(options)
+    {
+    }
+
     protected override void ConfigureConventions(ModelConfigurationBuilder builder)
     {
         base.ConfigureConventions(builder);

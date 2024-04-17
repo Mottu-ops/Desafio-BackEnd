@@ -11,5 +11,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\Motorent.Infrastructure\Motorent.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Motorent.TestUtils\Motorent.TestUtils.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MockQueryable.FakeItEasy" Version="7.0.1" />
     </ItemGroup>
 </Project>
