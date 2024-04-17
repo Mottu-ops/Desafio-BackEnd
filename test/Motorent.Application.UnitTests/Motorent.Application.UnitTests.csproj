@@ -11,5 +11,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\Motorent.Application\Motorent.Application.csproj"/>
+        <ProjectReference Include="..\Motorent.TestUtils\Motorent.TestUtils.csproj" />
     </ItemGroup>
 </Project>

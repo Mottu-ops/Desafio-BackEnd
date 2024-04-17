@@ -1,0 +1,10 @@
+POST {{base_url}}/users/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@doe.com",
+  "password": "JohnDoe123",
+  "birthdate": "2000-01-01"
+}
