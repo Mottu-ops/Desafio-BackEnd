@@ -12,7 +12,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.HasKey(u => u.Id);
 
-        builder.HasKey(u => u.Email);
+        builder.HasIndex(u => u.Email);
 
         builder.Property(u => u.Id)
             .HasConversion(v => v.Value, v => new UserId(v));
