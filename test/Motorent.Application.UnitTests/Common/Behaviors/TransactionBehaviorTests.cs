@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Motorent.Application.Common.Abstractions.Persistence;
 using Motorent.Application.Common.Behaviors;
-using Motorent.Application.UnitTests.TestUtils.Dummy;
+using Motorent.TestUtils.Dummies;
 
 namespace Motorent.Application.UnitTests.Common.Behaviors;
 

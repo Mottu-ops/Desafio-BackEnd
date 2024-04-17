@@ -4,6 +4,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\Motorent.Application\Motorent.Application.csproj" />
       <ProjectReference Include="..\..\src\Motorent.Domain\Motorent.Domain.csproj" />
     </ItemGroup>
 
