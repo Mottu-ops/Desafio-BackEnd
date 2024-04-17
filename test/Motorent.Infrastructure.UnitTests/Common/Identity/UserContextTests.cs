@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Motorent.Infrastructure.Common.Identity;
-using Motorent.Infrastructure.Common.Security;
 
 namespace Motorent.Infrastructure.UnitTests.Common.Identity;
 
@@ -14,7 +13,7 @@ public sealed class UserContextTests
     private readonly ClaimsPrincipal authenticatedUser = new(new ClaimsIdentity(
     [
         new Claim(ClaimTypes.NameIdentifier, UserId),
-        new Claim(SecurityTokenService.RoleClaimType, Role)
+        new Claim(ClaimTypes.Role, Role)
     ], "authenticated"));
 
     private readonly ClaimsPrincipal unauthorizedUser = new(new ClaimsIdentity());

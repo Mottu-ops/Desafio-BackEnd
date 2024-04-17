@@ -76,7 +76,7 @@ public sealed class SecurityTokenServiceTests
             claim.Value == user.Id.ToString());
         
         token.Claims.Should().ContainSingle(claim =>
-            claim.Type == SecurityTokenService.RoleClaimType &&
+            claim.Type == ClaimTypes.Role &&
             claim.ValueType == ClaimValueTypes.String &&
             claim.Value == user.Role.Name);
         
