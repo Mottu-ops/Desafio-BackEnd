@@ -5,9 +5,10 @@ internal static class UserValidations
     public static IRuleBuilderOptions<T, string> Role<T>(this IRuleBuilder<T, string> builder)
     {
         return builder
-            .Must(name => Domain.Users.Enums.Role.IsDefined(name))
+            .Must(name => Domain.Users.Enums.Role.TryFromName(name, out var role) &&
+                          Domain.Users.Enums.Role.Valid.Contains(role))
             .WithMessage($"Must be one of the following: " +
-                         $"{string.Join(", ", Domain.Users.Enums.Role.List.Select(r => r.Name))}.");
+                         $"{string.Join(", ", Domain.Users.Enums.Role.Valid.Select(r => r.Name))}.");
     }
 
     public static IRuleBuilderOptions<T, string> Name<T>(this IRuleBuilder<T, string> builder)

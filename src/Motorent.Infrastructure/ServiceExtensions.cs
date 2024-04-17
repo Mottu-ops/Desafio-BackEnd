@@ -1,13 +1,16 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Motorent.Application.Common.Abstractions.Identity;
 using Motorent.Application.Common.Abstractions.Persistence;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Domain.Users.Repository;
 using Motorent.Domain.Users.Services;
+using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
 using Motorent.Infrastructure.Common.Security;
 using Motorent.Infrastructure.Users;
@@ -29,11 +32,15 @@ public static class ServiceExtensions
 
         services.AddPersistence(configuration);
 
+        services.AddHttpContextAccessor();
+
         services.AddTransient<IEncryptionService, EncryptionService>();
         services.AddTransient<IEmailUniquenessChecker, EmailUniquenessChecker>();
-
+        
         services.AddTransient<TimeProvider>(_ => TimeProvider.System);
         services.AddTransient<ISecurityTokenService, SecurityTokenService>();
+        
+        services.AddScoped<IUserContext, UserContext>();
 
         return services;
     }
@@ -53,6 +60,8 @@ public static class ServiceExtensions
 
     private static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
+        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        
         var securityTokenOptionsSection = configuration.GetSection(SecurityTokenOptions.SectionName);
         services.AddOptions<SecurityTokenOptions>()
             .Bind(securityTokenOptionsSection)
