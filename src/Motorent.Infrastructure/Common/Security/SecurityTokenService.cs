@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Security;
+using Motorent.Domain.Users;
 using SecurityToken = Motorent.Application.Common.Abstractions.Security.SecurityToken;
 
 namespace Motorent.Infrastructure.Common.Security;
@@ -15,21 +16,24 @@ internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<S
 
     private readonly SecurityTokenOptions options = options.Value;
 
-    public Task<SecurityToken> GenerateTokenAsync()
+    public Task<SecurityToken> GenerateTokenAsync(User user)
     {
         var accessTokenId = Guid.NewGuid().ToString();
-        var accessToken = GenerateAccessToken(accessTokenId);
+        var accessToken = GenerateAccessToken(user, accessTokenId);
 
         return Task.FromResult(new SecurityToken(
             AccessToken: accessToken,
             ExpiresIn: options.ExpiresInMinutes));
     }
 
-    private string GenerateAccessToken(string accessTokenId)
+    private string GenerateAccessToken(User user, string accessTokenId)
     {
         Claim[] claims =
         [
-            new Claim(JwtRegisteredClaimNames.Jti, accessTokenId)
+            new Claim(JwtRegisteredClaimNames.Jti, accessTokenId),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Name, user.Name),
+            new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd"))
         ];
 
         var credentials = new SigningCredentials(
