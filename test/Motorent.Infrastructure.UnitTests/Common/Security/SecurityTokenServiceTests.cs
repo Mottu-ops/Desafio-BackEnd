@@ -1,9 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using FakeItEasy;
 using FluentAssertions;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
+using Motorent.Domain.Users;
 using Motorent.Infrastructure.Common.Security;
+using Motorent.TestUtils.Factories;
 
 namespace Motorent.Infrastructure.UnitTests.Common.Security;
 
@@ -21,6 +24,10 @@ public sealed class SecurityTokenServiceTests
         ExpiresInMinutes = 5
     });
 
+    private readonly User user = Factories.User.CreateUserAsync()
+        .Result
+        .Value;
+
     private readonly SecurityTokenService sut;
 
     public SecurityTokenServiceTests()
@@ -32,7 +39,7 @@ public sealed class SecurityTokenServiceTests
     public async Task SecurityTokenService_WhenCalled_ShouldGenerateToken()
     {
         // Act
-        var result = await sut.GenerateTokenAsync();
+        var result = await sut.GenerateTokenAsync(user);
 
         // Assert
         result.Should().NotBeNull();
@@ -44,7 +51,7 @@ public sealed class SecurityTokenServiceTests
     public async Task SecurityTokenService_WhenCalled_ShouldGenerateTokenWithCorrectInformation()
     {
         // Act
-        var result = await sut.GenerateTokenAsync();
+        var result = await sut.GenerateTokenAsync(user);
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(result.AccessToken);
 
@@ -60,10 +67,26 @@ public sealed class SecurityTokenServiceTests
         token.ValidTo.Should().BeCloseTo(now.AddMinutes(
                 options.Value.ExpiresInMinutes).UtcDateTime,
             TimeSpan.FromSeconds(5));
-
-        token.Claims.Should().HaveCount(5);
-        token.Claims.Should().ContainSingle(claim => claim.Type == JwtRegisteredClaimNames.Jti);
-        token.Claims.Single(claim => claim.Type == JwtRegisteredClaimNames.Jti).Value.Should()
-            .NotBeNullOrWhiteSpace();
+        
+        token.Claims.Should().HaveCount(8);
+        token.Claims.Should().ContainSingle(claim =>
+            claim.Type == JwtRegisteredClaimNames.Jti &&
+            claim.ValueType == ClaimValueTypes.String &&
+            claim.Value.Length == 36);
+        
+        token.Claims.Should().ContainSingle(claim =>
+            claim.Type == JwtRegisteredClaimNames.Sub &&
+            claim.ValueType == ClaimValueTypes.String &&
+            claim.Value == user.Id.ToString());
+        
+        token.Claims.Should().ContainSingle(claim =>
+            claim.Type == JwtRegisteredClaimNames.Name &&
+            claim.ValueType == ClaimValueTypes.String &&
+            claim.Value == user.Name);
+        
+        token.Claims.Should().ContainSingle(claim =>
+            claim.Type == JwtRegisteredClaimNames.Birthdate &&
+            claim.ValueType == ClaimValueTypes.String &&
+            claim.Value == user.Birthdate.ToString("yyyy-MM-dd"));
     }
 }
