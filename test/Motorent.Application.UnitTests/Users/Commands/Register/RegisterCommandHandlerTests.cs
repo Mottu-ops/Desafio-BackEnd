@@ -2,6 +2,7 @@ using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Application.Users.Commands.Register;
 using Motorent.Contracts.Users.Responses;
 using Motorent.Domain.Users;
+using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.Repository;
 using Motorent.Domain.Users.Services;
 
@@ -19,6 +20,7 @@ public sealed class RegisterCommandHandlerTests
 
     private readonly RegisterCommand command = new()
     {
+        Role = Constants.User.Role.Name,
         Name = Constants.User.Name,
         Email = Constants.User.Email,
         Password = Constants.User.Password,
@@ -51,7 +53,8 @@ public sealed class RegisterCommandHandlerTests
 
         // Assert
         A.CallTo(() => userRepository.AddAsync(
-                A<User>.That.Matches(u => u.Name == command.Name
+                A<User>.That.Matches(u => u.Role == Role.FromName(command.Role, false)
+                                          && u.Name == command.Name
                                           && u.Email == command.Email
                                           && u.PasswordHash == "hashed-password"
                                           && u.Birthdate == command.Birthdate),

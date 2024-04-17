@@ -6,6 +6,9 @@ internal sealed class RegisterCommandValidator : AbstractValidator<RegisterComma
 {
     public RegisterCommandValidator()
     {
+        RuleFor(x => x.Role)
+            .Role();
+        
         RuleFor(x => x.Name)
             .Name();
 

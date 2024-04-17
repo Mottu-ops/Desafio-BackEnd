@@ -1,4 +1,5 @@
 using Motorent.Domain.Common.Entities;
+using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.Errors;
 using Motorent.Domain.Users.Services;
 using Motorent.Domain.Users.ValueObjects;
@@ -11,6 +12,13 @@ public sealed class User : Entity<UserId>, IAggregateRoot
     {
     }
 
+    // Essa é uma maneira bem simples de tratar usuários com diferentes papéis. A idéia é que a entidade User seja como
+    // uma entidade generalizada, representando todos os usuários (admin e locatário). Os usuários cujo papel seja
+    // locatário terão a entidade Renter relacionada a esta entidade. O papel do usuário é definido no momento da
+    // criação do usuário. Talvez, no futuro, eu delegue a responsabilidade de gerenciar usuários para algum serviço
+    // externo, como Amazon Cognito, Auth0, Firebase Auth ou outro.
+    public required Role Role { get; init; }
+    
     public string Name { get; private set; } = null!;
     
     public string Email { get; private set; } = null!;
@@ -20,6 +28,7 @@ public sealed class User : Entity<UserId>, IAggregateRoot
     public string PasswordHash { get; private set; } = null!;
     
     public static async Task<Result<User>> CreateAsync(
+        Role role,
         UserId id,
         string name,
         string email,
@@ -37,6 +46,7 @@ public sealed class User : Entity<UserId>, IAggregateRoot
         var passwordHash = encryptionService.Encrypt(password);
         return new User(id)
         {
+            Role = role,
             Name = name,
             Email = email,
             Birthdate = birthdate,

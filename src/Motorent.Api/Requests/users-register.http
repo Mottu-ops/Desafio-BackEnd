@@ -3,6 +3,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "role": "renter",
   "name": "John Doe",
   "email": "john@doe.com",
   "password": "JohnDoe123",

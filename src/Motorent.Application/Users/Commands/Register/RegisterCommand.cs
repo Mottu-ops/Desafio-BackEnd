@@ -5,6 +5,8 @@ namespace Motorent.Application.Users.Commands.Register;
 
 public sealed record RegisterCommand : ICommand<TokenResponse>, ITransactional
 {
+    public required string Role { get; init; }
+    
     public required string Name { get; init; }
 
     public required string Email { get; init; }

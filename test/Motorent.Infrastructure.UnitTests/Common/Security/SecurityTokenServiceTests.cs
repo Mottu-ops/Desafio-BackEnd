@@ -64,7 +64,7 @@ public sealed class SecurityTokenServiceTests
                 options.Value.ExpiresInMinutes).UtcDateTime,
             TimeSpan.FromSeconds(5));
         
-        token.Claims.Should().HaveCount(8);
+        token.Claims.Should().HaveCount(9);
         token.Claims.Should().ContainSingle(claim =>
             claim.Type == JwtRegisteredClaimNames.Jti &&
             claim.ValueType == ClaimValueTypes.String &&
@@ -74,6 +74,11 @@ public sealed class SecurityTokenServiceTests
             claim.Type == JwtRegisteredClaimNames.Sub &&
             claim.ValueType == ClaimValueTypes.String &&
             claim.Value == user.Id.ToString());
+        
+        token.Claims.Should().ContainSingle(claim =>
+            claim.Type == SecurityTokenService.RoleClaimType &&
+            claim.ValueType == ClaimValueTypes.String &&
+            claim.Value == user.Role.Name);
         
         token.Claims.Should().ContainSingle(claim =>
             claim.Type == JwtRegisteredClaimNames.Name &&

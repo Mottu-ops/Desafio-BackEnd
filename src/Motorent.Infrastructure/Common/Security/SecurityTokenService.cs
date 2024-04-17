@@ -12,6 +12,8 @@ namespace Motorent.Infrastructure.Common.Security;
 internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<SecurityTokenOptions> options)
     : ISecurityTokenService
 {
+    internal const string RoleClaimType = "role";
+    
     private const string Algorithm = SecurityAlgorithms.HmacSha256;
 
     private readonly SecurityTokenOptions options = options.Value;
@@ -32,6 +34,7 @@ internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<S
         [
             new Claim(JwtRegisteredClaimNames.Jti, accessTokenId),
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(RoleClaimType, user.Role.Name),
             new Claim(JwtRegisteredClaimNames.Name, user.Name),
             new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd"))
         ];

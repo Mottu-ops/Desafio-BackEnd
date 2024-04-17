@@ -1,3 +1,4 @@
+using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.ValueObjects;
 
 namespace Motorent.TestUtils.Constants;
@@ -7,6 +8,8 @@ public static partial class Constants
     public static class User
     {
         public static readonly UserId Id = UserId.New();
+        
+        public static readonly Role Role = Role.Renter;
         
         public const string Name = "John Doe";
         
