@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
       <PackageReference Include="ResultExtensions.AspNetCore" Version="3.1.0" />
     </ItemGroup>
 </Project>

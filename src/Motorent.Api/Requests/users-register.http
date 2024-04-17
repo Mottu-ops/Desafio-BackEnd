@@ -1,4 +1,4 @@
-POST {{base_url}}/users/register
+POST {{base_url}}/v1/users/register
 Accept: application/json
 Content-Type: application/json
 
