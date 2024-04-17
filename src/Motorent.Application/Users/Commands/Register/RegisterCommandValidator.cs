@@ -1,4 +1,3 @@
-using FluentValidation;
 using Motorent.Application.Users.Common.Validations;
 
 namespace Motorent.Application.Users.Commands.Register;

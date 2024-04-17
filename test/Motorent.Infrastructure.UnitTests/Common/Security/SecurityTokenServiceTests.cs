@@ -1,12 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using FakeItEasy;
-using FluentAssertions;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
 using Motorent.Domain.Users;
 using Motorent.Infrastructure.Common.Security;
-using Motorent.TestUtils.Factories;
 
 namespace Motorent.Infrastructure.UnitTests.Common.Security;
 

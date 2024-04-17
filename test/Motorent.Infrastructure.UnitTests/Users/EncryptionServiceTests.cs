@@ -1,5 +1,3 @@
-using FluentAssertions;
-using JetBrains.Annotations;
 using Motorent.Infrastructure.Users;
 
 namespace Motorent.Infrastructure.UnitTests.Users;

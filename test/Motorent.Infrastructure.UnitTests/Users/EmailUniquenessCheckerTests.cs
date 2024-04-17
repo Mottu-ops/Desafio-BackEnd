@@ -1,12 +1,7 @@
-using FakeItEasy;
-using FluentAssertions;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
-using MockQueryable.FakeItEasy;
 using Motorent.Domain.Users;
 using Motorent.Infrastructure.Common.Persistence;
 using Motorent.Infrastructure.Users;
-using Motorent.TestUtils.Factories;
 
 namespace Motorent.Infrastructure.UnitTests.Users;
 

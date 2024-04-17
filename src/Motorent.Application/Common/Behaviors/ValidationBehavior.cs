@@ -1,4 +1,3 @@
-using FluentValidation;
 using FluentValidation.Results;
 
 namespace Motorent.Application.Common.Behaviors;

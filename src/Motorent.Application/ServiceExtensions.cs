@@ -1,5 +1,4 @@
 using System.Reflection;
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Motorent.Application.Common.Behaviors;
 using Motorent.Application.Common.Mappings;

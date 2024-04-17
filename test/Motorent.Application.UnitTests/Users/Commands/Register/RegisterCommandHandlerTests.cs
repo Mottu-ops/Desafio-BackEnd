@@ -1,11 +1,9 @@
-using FluentAssertions;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Application.Users.Commands.Register;
 using Motorent.Contracts.Users.Responses;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.Repository;
 using Motorent.Domain.Users.Services;
-using Motorent.TestUtils.Constants;
 
 namespace Motorent.Application.UnitTests.Users.Commands.Register;
 

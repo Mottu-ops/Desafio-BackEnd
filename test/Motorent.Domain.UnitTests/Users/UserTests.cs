@@ -1,13 +1,7 @@
-using FakeItEasy;
-using FluentAssertions;
-using JetBrains.Annotations;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.Errors;
 using Motorent.Domain.Users.Services;
 using Motorent.Domain.Users.ValueObjects;
-using Motorent.TestUtils.Constants;
-using Motorent.TestUtils.Factories;
-using ResultExtensions.FluentAssertions;
 
 namespace Motorent.Domain.UnitTests.Users;
 

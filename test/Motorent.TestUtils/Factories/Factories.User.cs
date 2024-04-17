@@ -1,7 +1,5 @@
-using FakeItEasy;
 using Motorent.Domain.Users.Services;
 using Motorent.Domain.Users.ValueObjects;
-using ResultExtensions;
 
 namespace Motorent.TestUtils.Factories;
 

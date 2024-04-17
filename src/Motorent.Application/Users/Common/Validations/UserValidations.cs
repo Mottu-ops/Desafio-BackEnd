@@ -1,5 +1,3 @@
-using FluentValidation;
-
 namespace Motorent.Application.Users.Common.Validations;
 
 internal static class UserValidations
