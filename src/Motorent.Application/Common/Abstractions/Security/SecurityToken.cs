@@ -1,3 +1,3 @@
 namespace Motorent.Application.Common.Abstractions.Security;
 
-public sealed record SecurityToken(string AccessToken, int ExpiresIn);
+public sealed record SecurityToken(string TokenType, string AccessToken, int ExpiresIn);

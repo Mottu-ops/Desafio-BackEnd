@@ -67,6 +67,7 @@ public sealed class RegisterCommandHandlerTests
     {
         // Arrange
         var securityToken = new SecurityToken(
+            TokenType: "Bearer",
             AccessToken: "access-token",
             ExpiresIn: 5);
 

@@ -22,6 +22,7 @@ internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<S
         var accessToken = GenerateAccessToken(user, accessTokenId);
 
         return Task.FromResult(new SecurityToken(
+            TokenType: "Bearer",
             AccessToken: accessToken,
             ExpiresIn: options.ExpiresInMinutes));
     }

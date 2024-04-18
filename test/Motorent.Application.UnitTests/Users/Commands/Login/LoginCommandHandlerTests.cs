@@ -74,6 +74,7 @@ public sealed class LoginCommandHandlerTests
             .Returns(true);
 
         var securityToken = new SecurityToken(
+            TokenType: "Bearer",
             AccessToken: "access-token",
             ExpiresIn: 3600);
 
@@ -87,6 +88,7 @@ public sealed class LoginCommandHandlerTests
         result.Should().BeSuccess()
             .Which.Value.Should().BeEquivalentTo(new
             {
+                securityToken.TokenType,
                 securityToken.AccessToken,
                 securityToken.ExpiresIn
             });
