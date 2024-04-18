@@ -13,6 +13,7 @@ public sealed class Get : IEndpoint
                     new GetUserQuery(),
                     cancellationToken)
                 .ToResponseAsync(Results.Ok))
-            .RequireAuthorization();
+            .RequireAuthorization()
+            .WithName("get-user");
     }
 }

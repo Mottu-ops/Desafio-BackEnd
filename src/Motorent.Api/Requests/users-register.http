@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "role": "renter",
   "name": "John Doe",
-  "email": "john@doe987.com",
+  "email": "john@doe981.com",
   "password": "JohnDoe123",
   "birthdate": "2000-01-01"
 }

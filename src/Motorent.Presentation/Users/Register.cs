@@ -14,7 +14,7 @@ public sealed class Register : IEndpoint
                 CancellationToken cancellationToken) => sender.Send(
                     request.Adapt<RegisterCommand>(),
                     cancellationToken)
-                .ToResponseAsync(Results.Ok))
+                .ToResponseAsync(response => Results.CreatedAtRoute("get-user", value: response)))
             .AllowAnonymous();
     }
 }
