@@ -5,7 +5,13 @@ Content-Type: application/json
 {
   "role": "renter",
   "name": "John Doe",
-  "email": "john@doe.com",
+  "email": "john@doe987.com",
   "password": "JohnDoe123",
   "birthdate": "2000-01-01"
 }
+
+> {% 
+if (response.status === 200) {
+  client.global.set('access_token', response.body.access_token);
+}
+%}
