@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Motorent.Application.Users.Queries.Get;
 using Motorent.Presentation.Common.Endpoints;
 

@@ -1,4 +1,3 @@
-using Mapster;
 using Motorent.Application.Common.Abstractions.Identity;
 using Motorent.Application.Users.Common.Mappings;
 using Motorent.Application.Users.Queries.Get;
