@@ -1,0 +1,3 @@
+GET {{base_url}}/v1/users
+Accept: application/json
+Authorization: {{token_type}} {{access_token}}
