@@ -1,0 +1,14 @@
+POST {{base_url}}/v1/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "password": "JohnDoe123"
+}
+
+> {% 
+if (response.status === 200) {
+  client.global.set('access_token', response.body.access_token);
+}
+%}
