@@ -1,6 +1,6 @@
 using System.Text.Json;
 using Asp.Versioning;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Motorent.Presentation.Common.Endpoints;
@@ -13,7 +13,7 @@ public static class ServiceExtensions
     {
         services.Configure<JsonOptions>(options =>
         {
-            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+            options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
         });
 
         services.AddApiVersioning(options =>
