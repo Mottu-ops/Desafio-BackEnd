@@ -74,8 +74,8 @@ public sealed class LoginCommandHandlerTests
             .Returns(true);
 
         var securityToken = new SecurityToken(
-            TokenType: "Bearer",
             AccessToken: "access-token",
+            RefreshToken: "refresh-token",
             ExpiresIn: 3600);
 
         A.CallTo(() => securityTokenService.GenerateTokenAsync(user))
@@ -90,6 +90,7 @@ public sealed class LoginCommandHandlerTests
             {
                 securityToken.TokenType,
                 securityToken.AccessToken,
+                securityToken.RefreshToken,
                 securityToken.ExpiresIn
             });
     }

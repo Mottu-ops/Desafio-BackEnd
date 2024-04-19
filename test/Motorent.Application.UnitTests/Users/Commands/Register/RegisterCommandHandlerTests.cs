@@ -67,8 +67,8 @@ public sealed class RegisterCommandHandlerTests
     {
         // Arrange
         var securityToken = new SecurityToken(
-            TokenType: "Bearer",
             AccessToken: "access-token",
+            RefreshToken: "refresh-token",
             ExpiresIn: 5);
 
         A.CallTo(() => securityTokenService.GenerateTokenAsync(A<User>._))
@@ -82,7 +82,9 @@ public sealed class RegisterCommandHandlerTests
             .Which.Value.Should().BeOfType<TokenResponse>()
             .Which.Should().BeEquivalentTo(new
             {
+                securityToken.TokenType,
                 securityToken.AccessToken,
+                securityToken.RefreshToken,
                 securityToken.ExpiresIn
             });
     }

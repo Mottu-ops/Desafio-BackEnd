@@ -14,5 +14,6 @@ Content-Type: application/json
 if (response.status === 201) {
   client.global.set('token_type', response.body.token_type);
   client.global.set('access_token', response.body.access_token);
+  client.global.set('refresh_token', response.body.refresh_token);
 }
 %}

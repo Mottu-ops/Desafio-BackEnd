@@ -5,26 +5,32 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Domain.Users;
+using Motorent.Domain.Users.ValueObjects;
+using Motorent.Infrastructure.Common.Persistence;
 using SecurityToken = Motorent.Application.Common.Abstractions.Security.SecurityToken;
 
 namespace Motorent.Infrastructure.Common.Security;
 
-internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<SecurityTokenOptions> options)
+internal sealed class SecurityTokenService(
+    DataContext dataContext,
+    TimeProvider timeProvider,
+    IOptions<SecurityTokenOptions> options)
     : ISecurityTokenService
 {
     private const string Algorithm = SecurityAlgorithms.HmacSha256;
 
     private readonly SecurityTokenOptions options = options.Value;
 
-    public Task<SecurityToken> GenerateTokenAsync(User user)
+    public async Task<SecurityToken> GenerateTokenAsync(User user)
     {
         var accessTokenId = Guid.NewGuid().ToString();
         var accessToken = GenerateAccessToken(user, accessTokenId);
+        var refreshToken = await GenerateRefreshTokenAsync(user.Id, accessTokenId);
 
-        return Task.FromResult(new SecurityToken(
-            TokenType: "Bearer",
+        return new SecurityToken(
             AccessToken: accessToken,
-            ExpiresIn: options.ExpiresInMinutes));
+            RefreshToken: refreshToken,
+            ExpiresIn: options.ExpiresInMinutes);
     }
 
     private string GenerateAccessToken(User user, string accessTokenId)
@@ -54,5 +60,20 @@ internal sealed class SecurityTokenService(TimeProvider timeProvider, IOptions<S
 
         return new JwtSecurityTokenHandler()
             .WriteToken(securityToken);
+    }
+
+    private async Task<string> GenerateRefreshTokenAsync(UserId userId, string accessTokenId)
+    {
+        var refreshToken = RefreshToken.Create(
+            userId,
+            accessTokenId,
+            timeProvider.GetUtcNow().AddMinutes(options.RefreshTokenExpiresInMinutes));
+
+        await dataContext.Set<RefreshToken>()
+            .AddAsync(refreshToken);
+
+        await dataContext.SaveChangesAsync();
+
+        return refreshToken.Token;
     }
 }
