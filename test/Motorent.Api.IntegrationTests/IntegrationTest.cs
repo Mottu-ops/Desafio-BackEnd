@@ -5,7 +5,7 @@ using Motorent.Infrastructure.Common.Persistence;
 
 namespace Motorent.Api.IntegrationTests;
 
-public abstract class IntegrationTest : IClassFixture<WebAppFactory>, IDisposable
+public abstract class IntegrationTest : IClassFixture<WebAppFactory>, IDisposable, IAsyncLifetime
 {
     private static readonly JsonSerializerOptions SerializerOptions = new()
     {
@@ -13,20 +13,24 @@ public abstract class IntegrationTest : IClassFixture<WebAppFactory>, IDisposabl
     };
 
     private readonly IServiceScope serviceScope;
-    
+
     protected IntegrationTest(WebAppFactory app)
     {
         App = app;
         serviceScope = app.Services.CreateScope();
         DataContext = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
     }
-    
+
     protected WebAppFactory App { get; }
-    
+
     protected DbContext DataContext { get; }
-    
+
     protected static string Serialize<T>(T value) => JsonSerializer.Serialize(value, SerializerOptions);
-    
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public Task DisposeAsync() => App.ResetDatabaseAsync();
+
     public void Dispose()
     {
         serviceScope.Dispose();
