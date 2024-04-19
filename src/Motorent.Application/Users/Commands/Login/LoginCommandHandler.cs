@@ -20,6 +20,7 @@ internal sealed class LoginCommandHandler(
             return UserErrors.InvalidCredentials;
         }
 
-        return (await securityTokenService.GenerateTokenAsync(user)).Adapt<TokenResponse>();
+        return (await securityTokenService.GenerateTokenAsync(user, cancellationToken))
+            .Adapt<TokenResponse>();
     }
 }

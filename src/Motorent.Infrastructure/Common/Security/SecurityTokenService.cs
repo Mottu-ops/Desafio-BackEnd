@@ -24,11 +24,11 @@ internal sealed class SecurityTokenService(
 
     private readonly SecurityTokenOptions options = options.Value;
 
-    public async Task<SecurityToken> GenerateTokenAsync(User user)
+    public async Task<SecurityToken> GenerateTokenAsync(User user, CancellationToken cancellationToken = default)
     {
         var accessTokenId = Guid.NewGuid().ToString();
         var accessToken = GenerateAccessToken(user, accessTokenId);
-        var refreshToken = await GenerateRefreshTokenAsync(user.Id, accessTokenId);
+        var refreshToken = await GenerateRefreshTokenAsync(user.Id, accessTokenId, cancellationToken);
 
         return new SecurityToken(
             AccessToken: accessToken,
@@ -121,7 +121,10 @@ internal sealed class SecurityTokenService(
             .WriteToken(securityToken);
     }
 
-    private async Task<string> GenerateRefreshTokenAsync(UserId userId, string accessTokenId)
+    private async Task<string> GenerateRefreshTokenAsync(
+        UserId userId,
+        string accessTokenId,
+        CancellationToken cancellationToken)
     {
         var refreshToken = RefreshToken.Create(
             userId,
@@ -129,9 +132,9 @@ internal sealed class SecurityTokenService(
             timeProvider.GetUtcNow().AddMinutes(options.RefreshTokenExpiresInMinutes));
 
         await dataContext.Set<RefreshToken>()
-            .AddAsync(refreshToken);
+            .AddAsync(refreshToken, cancellationToken);
 
-        await dataContext.SaveChangesAsync();
+        await dataContext.SaveChangesAsync(cancellationToken);
 
         return refreshToken.Token;
     }

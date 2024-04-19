@@ -78,7 +78,7 @@ public sealed class LoginCommandHandlerTests
             RefreshToken: "refresh-token",
             ExpiresIn: 3600);
 
-        A.CallTo(() => securityTokenService.GenerateTokenAsync(user))
+        A.CallTo(() => securityTokenService.GenerateTokenAsync(user, cancellationToken))
             .Returns(securityToken);
 
         // Act

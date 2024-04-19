@@ -71,7 +71,7 @@ public sealed class RegisterCommandHandlerTests
             RefreshToken: "refresh-token",
             ExpiresIn: 5);
 
-        A.CallTo(() => securityTokenService.GenerateTokenAsync(A<User>._))
+        A.CallTo(() => securityTokenService.GenerateTokenAsync(A<User>._, cancellationToken))
             .Returns(securityToken);
 
         // Act
@@ -129,7 +129,7 @@ public sealed class RegisterCommandHandlerTests
         await sut.Handle(command, cancellationToken);
 
         // Assert
-        A.CallTo(() => securityTokenService.GenerateTokenAsync(A<User>._))
+        A.CallTo(() => securityTokenService.GenerateTokenAsync(A<User>._, cancellationToken))
             .MustNotHaveHappened();
     }
 }

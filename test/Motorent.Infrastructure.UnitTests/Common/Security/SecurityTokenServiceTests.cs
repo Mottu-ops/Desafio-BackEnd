@@ -21,6 +21,8 @@ public sealed class SecurityTokenServiceTests
     private readonly TimeProvider timeProvider = A.Fake<TimeProvider>(fakeOptions =>
         fakeOptions.Wrapping(TimeProvider.System));
     
+    private readonly CancellationToken cancellationToken = A.Dummy<CancellationToken>();
+    
     private readonly IOptions<SecurityTokenOptions> options = Options.Create(new SecurityTokenOptions
     {
         Key = "PePkSCXr0OMSgKCN06sB8sIRMXhhWQpB",
@@ -47,7 +49,7 @@ public sealed class SecurityTokenServiceTests
     public async Task GenerateTokenAsync_WhenCalled_ShouldReturnSecurityToken()
     {
         // Act
-        var result = await sut.GenerateTokenAsync(user);
+        var result = await sut.GenerateTokenAsync(user, cancellationToken);
 
         // Assert
         result.Should().NotBeNull();
@@ -61,7 +63,7 @@ public sealed class SecurityTokenServiceTests
     public async Task GenerateTokenAsync_WhenCalled_ShouldReturnSecurityTokenWithCorrectClaims()
     {
         // Act
-        var result = await sut.GenerateTokenAsync(user);
+        var result = await sut.GenerateTokenAsync(user, cancellationToken);
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(result.AccessToken);
 
@@ -111,7 +113,7 @@ public sealed class SecurityTokenServiceTests
         var handler = new JwtSecurityTokenHandler();
 
         // Act
-        var result = await sut.GenerateTokenAsync(user);
+        var result = await sut.GenerateTokenAsync(user, cancellationToken);
 
         // Assert
         var token = handler.ReadJwtToken(result.AccessToken);

@@ -32,7 +32,7 @@ internal sealed class RegisterCommandHandler(
 
         return result
             .ThenAsync(user => userRepository.AddAsync(user, cancellationToken))
-            .ThenAsync(securityTokenService.GenerateTokenAsync)
+            .ThenAsync(user => securityTokenService.GenerateTokenAsync(user, cancellationToken))
             .Then(securityToken => securityToken.Adapt<TokenResponse>());
     }
 }
