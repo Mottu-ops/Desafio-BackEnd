@@ -6,7 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.ValueObjects;
+using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 using SecurityToken = Motorent.Application.Common.Abstractions.Security.SecurityToken;
 
 namespace Motorent.Infrastructure.Common.Security;
@@ -39,7 +41,7 @@ internal sealed class SecurityTokenService(
         [
             new Claim(JwtRegisteredClaimNames.Jti, accessTokenId),
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(ClaimTypes.Role, user.Role.Name),
+            new Claim(ClaimsPrincipalExtensions.RoleClaimType, user.Role.Name),
             new Claim(JwtRegisteredClaimNames.Name, user.Name),
             new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd"))
         ];

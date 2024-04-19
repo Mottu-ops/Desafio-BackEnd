@@ -3,8 +3,10 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Motorent.Domain.Users;
+using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
 using Motorent.Infrastructure.Common.Security;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace Motorent.Infrastructure.UnitTests.Common.Security;
 
@@ -87,7 +89,7 @@ public sealed class SecurityTokenServiceTests
             claim.Value == user.Id.ToString());
 
         token.Claims.Should().ContainSingle(claim =>
-            claim.Type == ClaimTypes.Role &&
+            claim.Type == ClaimsPrincipalExtensions.RoleClaimType &&
             claim.ValueType == ClaimValueTypes.String &&
             claim.Value == user.Role.Name);
 

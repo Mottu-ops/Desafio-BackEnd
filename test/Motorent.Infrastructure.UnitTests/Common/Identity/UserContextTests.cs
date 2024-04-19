@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Motorent.Infrastructure.Common.Identity;
@@ -14,6 +15,8 @@ public sealed class UserContextTests
     [
         new Claim(ClaimTypes.NameIdentifier, UserId),
         new Claim(ClaimTypes.Role, Role)
+        new Claim(JwtRegisteredClaimNames.Sub, UserId),
+        new Claim(ClaimsPrincipalExtensions.RoleClaimType, Role)
     ], "authenticated"));
 
     private readonly ClaimsPrincipal unauthorizedUser = new(new ClaimsIdentity());

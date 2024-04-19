@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Identity;
 using Motorent.Application.Common.Abstractions.Persistence;
@@ -60,7 +61,7 @@ public static class ServiceExtensions
 
     private static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
         
         var securityTokenOptionsSection = configuration.GetSection(SecurityTokenOptions.SectionName);
         services.AddOptions<SecurityTokenOptions>()
