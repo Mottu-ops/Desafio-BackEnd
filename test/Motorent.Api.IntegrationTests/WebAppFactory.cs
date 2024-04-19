@@ -9,7 +9,7 @@ using Npgsql;
 using Respawn;
 using Testcontainers.PostgreSql;
 
-namespace Motorent.IntegrationTests;
+namespace Motorent.Api.IntegrationTests;
 
 public sealed class WebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {

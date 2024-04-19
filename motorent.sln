@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorent.Application.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorent.Infrastructure.UnitTests", "test\Motorent.Infrastructure.UnitTests\Motorent.Infrastructure.UnitTests.csproj", "{1BA139F0-C6F8-422A-8C77-878ECDB019B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorent.IntegrationTests", "test\Motorent.IntegrationTests\Motorent.IntegrationTests.csproj", "{9E49B75B-1F52-458D-9DF0-824D0CD708F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorent.Api.IntegrationTests", "test\Motorent.Api.IntegrationTests\Motorent.Api.IntegrationTests.csproj", "{9E49B75B-1F52-458D-9DF0-824D0CD708F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorent.TestUtils", "test\Motorent.TestUtils\Motorent.TestUtils.csproj", "{2833E646-3E47-42CE-9988-C1CEF9A9794C}"
 EndProject

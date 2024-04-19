@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Motorent.Infrastructure.Common.Persistence;
 
-namespace Motorent.IntegrationTests;
+namespace Motorent.Api.IntegrationTests;
 
 public abstract class IntegrationTest : IClassFixture<WebAppFactory>, IDisposable
 {
