@@ -13,8 +13,6 @@ public sealed class UserContextTests
 
     private readonly ClaimsPrincipal authenticatedUser = new(new ClaimsIdentity(
     [
-        new Claim(ClaimTypes.NameIdentifier, UserId),
-        new Claim(ClaimTypes.Role, Role)
         new Claim(JwtRegisteredClaimNames.Sub, UserId),
         new Claim(ClaimsPrincipalExtensions.RoleClaimType, Role)
     ], "authenticated"));

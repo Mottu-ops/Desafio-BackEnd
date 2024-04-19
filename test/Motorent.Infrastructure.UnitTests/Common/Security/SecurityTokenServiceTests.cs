@@ -20,7 +20,7 @@ public sealed class SecurityTokenServiceTests
 
     private readonly TimeProvider timeProvider = A.Fake<TimeProvider>(fakeOptions =>
         fakeOptions.Wrapping(TimeProvider.System));
-
+    
     private readonly IOptions<SecurityTokenOptions> options = Options.Create(new SecurityTokenOptions
     {
         Key = "PePkSCXr0OMSgKCN06sB8sIRMXhhWQpB",
@@ -116,13 +116,13 @@ public sealed class SecurityTokenServiceTests
         // Assert
         var token = handler.ReadJwtToken(result.AccessToken);
 
-        var accessTokenId = token.Claims.Single(claim =>
+        var jti = token.Claims.Single(claim =>
             claim.Type == JwtRegisteredClaimNames.Jti).Value;
 
         A.CallTo(() => refreshTokens
                 .AddAsync(A<RefreshToken>.That.Matches(refreshToken =>
                         refreshToken.UserId == user.Id &&
-                        refreshToken.AccessTokenId == accessTokenId),
+                        refreshToken.AccessTokenId == jti),
                     A<CancellationToken>._))
             .MustHaveHappenedOnceExactly()
             .Then(A.CallTo(() => dataContext.SaveChangesAsync(A<CancellationToken>._))

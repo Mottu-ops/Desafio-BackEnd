@@ -8,6 +8,7 @@ using Motorent.Domain.Users;
 using Motorent.Domain.Users.ValueObjects;
 using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
+using ResultExtensions;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 using SecurityToken = Motorent.Application.Common.Abstractions.Security.SecurityToken;
 
@@ -33,6 +34,62 @@ internal sealed class SecurityTokenService(
             AccessToken: accessToken,
             RefreshToken: refreshToken,
             ExpiresIn: options.ExpiresInMinutes);
+    }
+
+    public async Task<Result<SecurityToken>> RefreshTokenAsync(
+        string accessToken,
+        string refreshToken,
+        CancellationToken cancellationToken = default)
+    {
+        var principal = GetPrincipalFromExpiredAccessToken(accessToken);
+        var userId = principal.FindFirstValue(JwtRegisteredClaimNames.Sub) is { } sub
+            ? new UserId(Guid.Parse(sub))
+            : throw new InvalidOperationException(
+                $"Missing claim '{JwtRegisteredClaimNames.Sub}' in the access token");
+
+        var jti = principal.FindFirstValue(JwtRegisteredClaimNames.Jti);
+
+        var refreshTokenEntity = await dataContext.Set<RefreshToken>()
+            .FindAsync([userId, refreshToken], cancellationToken);
+
+        if (refreshTokenEntity is null || refreshTokenEntity.AccessTokenId != jti)
+        {
+            return SecurityTokenErrors.InvalidRefreshToken;
+        }
+
+        if (refreshTokenEntity.IsRevoked)
+        {
+            return SecurityTokenErrors.RefreshTokenRevoked;
+        }
+
+        if (refreshTokenEntity.HasExpired(timeProvider.GetUtcNow()))
+        {
+            return SecurityTokenErrors.RefreshTokenExpired;
+        }
+
+        if (refreshTokenEntity.IsUsed)
+        {
+            return SecurityTokenErrors.RefreshTokenUsed;
+        }
+
+        var user = await dataContext.Set<User>()
+            .FindAsync([userId], cancellationToken);
+
+        if (user is null)
+        {
+            return SecurityTokenErrors.InvalidRefreshToken;
+        }
+
+        var newAccessToken = GenerateAccessToken(user, jti);
+        var secureToken = new SecurityToken(
+            newAccessToken,
+            refreshToken, // Reuse the same refresh token
+            options.ExpiresInMinutes);
+
+        refreshTokenEntity.MarkAsUsed(timeProvider.GetUtcNow());
+        await dataContext.SaveChangesAsync(cancellationToken);
+
+        return secureToken;
     }
 
     private string GenerateAccessToken(User user, string accessTokenId)
@@ -77,5 +134,24 @@ internal sealed class SecurityTokenService(
         await dataContext.SaveChangesAsync();
 
         return refreshToken.Token;
+    }
+
+    private ClaimsPrincipal GetPrincipalFromExpiredAccessToken(string token)
+    {
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Key))
+        };
+
+        var handler = new JwtSecurityTokenHandler();
+        var principal = handler.ValidateToken(token, validationParameters, out var securityToken);
+
+        return securityToken is not JwtSecurityToken { Header.Alg: Algorithm }
+            ? throw new SecurityTokenException("Invalid access token")
+            : principal;
     }
 }
