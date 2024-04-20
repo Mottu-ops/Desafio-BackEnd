@@ -12,9 +12,12 @@ using Motorent.Domain.Users.Repository;
 using Motorent.Domain.Users.Services;
 using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
+using Motorent.Infrastructure.Common.Persistence.BackgroundJobs;
+using Motorent.Infrastructure.Common.Persistence.Interceptors;
 using Motorent.Infrastructure.Common.Security;
 using Motorent.Infrastructure.Users;
 using Motorent.Infrastructure.Users.Persistence;
+using Quartz;
 using Serilog;
 
 namespace Motorent.Infrastructure;
@@ -32,14 +35,16 @@ public static class ServiceExtensions
 
         services.AddPersistence(configuration);
 
+        services.AddBackgroundJobs();
+
         services.AddHttpContextAccessor();
 
         services.AddTransient<IEncryptionService, EncryptionService>();
         services.AddTransient<IEmailUniquenessChecker, EmailUniquenessChecker>();
-        
+
         services.AddTransient<TimeProvider>(_ => TimeProvider.System);
         services.AddTransient<ISecurityTokenService, SecurityTokenService>();
-        
+
         services.AddScoped<IUserContext, UserContext>();
 
         return services;
@@ -47,21 +52,43 @@ public static class ServiceExtensions
 
     private static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<PersistOutboxDomainEventsOnSaveChangesInterceptor>();
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        services.AddDbContext<DataContext>((_, options) =>
+        services.AddDbContext<DataContext>((provider, options) =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"), pgsqlOptions =>
                 pgsqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
+
+            options.AddInterceptors(
+                provider.GetRequiredService<PersistOutboxDomainEventsOnSaveChangesInterceptor>());
         });
 
         services.AddScoped<IUserRepository, UserRepository>();
     }
 
+    private static void AddBackgroundJobs(this IServiceCollection services)
+    {
+        services.AddQuartz(configurator =>
+        {
+            configurator.AddJob<ProcessOutboxMessagesJob>(builder => builder
+                    .DisallowConcurrentExecution()
+                    .WithIdentity(nameof(ProcessOutboxMessagesJob)))
+                .AddTrigger(trigger => trigger
+                    .ForJob(nameof(ProcessOutboxMessagesJob))
+                    .WithSimpleSchedule(schedule => schedule
+                        .WithInterval(TimeSpan.FromSeconds(10))
+                        .RepeatForever()));
+        });
+
+        services.AddQuartzHostedService();
+    }
+
     private static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        
+
         var securityTokenOptionsSection = configuration.GetSection(SecurityTokenOptions.SectionName);
         services.AddOptions<SecurityTokenOptions>()
             .Bind(securityTokenOptionsSection)
