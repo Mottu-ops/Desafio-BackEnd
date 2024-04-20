@@ -1,15 +1,13 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.ValueObjects;
 using Motorent.Infrastructure.Common.Identity;
 using Motorent.Infrastructure.Common.Persistence;
 using ResultExtensions;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 using SecurityToken = Motorent.Application.Common.Abstractions.Security.SecurityToken;
 
 namespace Motorent.Infrastructure.Common.Security;
@@ -41,18 +39,19 @@ internal sealed class SecurityTokenService(
         string refreshToken,
         CancellationToken cancellationToken = default)
     {
-        var principal = GetPrincipalFromExpiredAccessToken(accessToken);
-        var userId = principal.FindFirstValue(JwtRegisteredClaimNames.Sub) is { } sub
-            ? new UserId(Guid.Parse(sub))
-            : throw new InvalidOperationException(
-                $"Missing claim '{JwtRegisteredClaimNames.Sub}' in the access token");
+        var claims = await GetClaimsFromExpiredGetAccessToken(accessToken);
+        var sub = claims.Single(c => c.Key == JwtRegisteredClaimNames.Sub).Value!;
+        var jti = claims.SingleOrDefault(c => c.Key == JwtRegisteredClaimNames.Jti).Value!;
 
-        var jti = principal.FindFirstValue(JwtRegisteredClaimNames.Jti);
-
+        var userId = new UserId(Guid.Parse(sub));
+        
+        var user = await dataContext.Set<User>()
+            .FindAsync([userId], cancellationToken);
+        
         var refreshTokenEntity = await dataContext.Set<RefreshToken>()
             .FindAsync([userId, refreshToken], cancellationToken);
 
-        if (refreshTokenEntity is null || refreshTokenEntity.AccessTokenId != jti)
+        if (user is null || refreshTokenEntity is null || refreshTokenEntity.AccessTokenId != jti)
         {
             return SecurityTokenErrors.InvalidRefreshToken;
         }
@@ -72,14 +71,6 @@ internal sealed class SecurityTokenService(
             return SecurityTokenErrors.RefreshTokenUsed;
         }
 
-        var user = await dataContext.Set<User>()
-            .FindAsync([userId], cancellationToken);
-
-        if (user is null)
-        {
-            return SecurityTokenErrors.InvalidRefreshToken;
-        }
-
         var newAccessToken = GenerateAccessToken(user, jti);
         var secureToken = new SecurityToken(
             newAccessToken,
@@ -94,14 +85,14 @@ internal sealed class SecurityTokenService(
 
     private string GenerateAccessToken(User user, string accessTokenId)
     {
-        Claim[] claims =
-        [
-            new Claim(JwtRegisteredClaimNames.Jti, accessTokenId),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(ClaimsPrincipalExtensions.RoleClaimType, user.Role.Name),
-            new Claim(JwtRegisteredClaimNames.Name, user.Name),
-            new Claim(JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd"))
-        ];
+        var claims = new Dictionary<string, object>
+        {
+            { JwtRegisteredClaimNames.Jti, accessTokenId },
+            { JwtRegisteredClaimNames.Sub, user.Id.ToString() },
+            { ClaimsPrincipalExtensions.RoleClaimType, user.Role.Name },
+            { JwtRegisteredClaimNames.Name, user.Name },
+            { JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd") }
+        };
 
         var credentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Key)), Algorithm);
@@ -109,16 +100,23 @@ internal sealed class SecurityTokenService(
         var now = timeProvider.GetUtcNow().UtcDateTime;
         var expires = now.AddMinutes(options.ExpiresInMinutes);
 
-        var securityToken = new JwtSecurityToken(
-            issuer: options.Issuer,
-            audience: options.Audience,
-            claims: claims,
-            notBefore: now,
-            expires: expires,
-            signingCredentials: credentials);
+        var descriptor = new SecurityTokenDescriptor
+        {
+            Expires = expires,
+            NotBefore = now,
+            Claims = claims,
+            Issuer = options.Issuer,
+            Audience = options.Audience,
+            SigningCredentials = credentials
+        };
 
-        return new JwtSecurityTokenHandler()
-            .WriteToken(securityToken);
+        var handler = new JsonWebTokenHandler
+        {
+            MapInboundClaims = false,
+            SetDefaultTimesOnTokenCreation = false
+        };
+
+        return handler.CreateToken(descriptor);
     }
 
     private async Task<string> GenerateRefreshTokenAsync(
@@ -139,7 +137,7 @@ internal sealed class SecurityTokenService(
         return refreshToken.Token;
     }
 
-    private ClaimsPrincipal GetPrincipalFromExpiredAccessToken(string token)
+    private async Task<IDictionary<string, string?>> GetClaimsFromExpiredGetAccessToken(string accessToken)
     {
         var validationParameters = new TokenValidationParameters
         {
@@ -150,11 +148,9 @@ internal sealed class SecurityTokenService(
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Key))
         };
 
-        var handler = new JwtSecurityTokenHandler();
-        var principal = handler.ValidateToken(token, validationParameters, out var securityToken);
+        var handler = new JsonWebTokenHandler();
+        var result = await handler.ValidateTokenAsync(accessToken, validationParameters);
 
-        return securityToken is not JwtSecurityToken { Header.Alg: Algorithm }
-            ? throw new SecurityTokenException("Invalid access token")
-            : principal;
+        return result.Claims.ToDictionary(c => c.Key, c => c.Value?.ToString());
     }
 }

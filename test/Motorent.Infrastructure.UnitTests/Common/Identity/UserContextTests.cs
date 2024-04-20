@@ -1,6 +1,6 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Motorent.Infrastructure.Common.Identity;
 
 namespace Motorent.Infrastructure.UnitTests.Common.Identity;
