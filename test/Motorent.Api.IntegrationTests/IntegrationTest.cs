@@ -1,5 +1,3 @@
-using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Motorent.Infrastructure.Common.Persistence;
 
@@ -7,29 +5,26 @@ namespace Motorent.Api.IntegrationTests;
 
 public abstract class IntegrationTest : IClassFixture<WebAppFactory>, IDisposable, IAsyncLifetime
 {
-    private static readonly JsonSerializerOptions SerializerOptions = new()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-    };
-
+    private readonly WebAppFactory app;
     private readonly IServiceScope serviceScope;
 
     protected IntegrationTest(WebAppFactory app)
     {
-        App = app;
+        this.app = app;
+        
         serviceScope = app.Services.CreateScope();
         DataContext = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
     }
 
-    protected WebAppFactory App { get; }
-
+    protected HttpClient Client => app.Client;
+    
     protected DbContext DataContext { get; }
-
-    protected static string Serialize<T>(T value) => JsonSerializer.Serialize(value, SerializerOptions);
+    
+    protected Task ResetDatabaseAsync() => app.ResetDatabaseAsync();
 
     public Task InitializeAsync() => Task.CompletedTask;
 
-    public Task DisposeAsync() => App.ResetDatabaseAsync();
+    public Task DisposeAsync() => app.ResetDatabaseAsync();
 
     public void Dispose()
     {
