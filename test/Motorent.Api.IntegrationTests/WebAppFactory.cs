@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Data.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -5,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Motorent.Infrastructure.Common.Persistence;
 using Npgsql;
+using Quartz;
+using Quartz.Impl;
 using Respawn;
 using Testcontainers.PostgreSql;
 
@@ -23,7 +26,7 @@ public sealed class WebAppFactory : WebApplicationFactory<Program>, IAsyncLifeti
     private Respawner respawner = null!;
 
     public HttpClient Client { get; private set; } = null!;
-    
+
     public Task ResetDatabaseAsync() => respawner.ResetAsync(postgreSqlConnection);
 
     public async Task InitializeAsync()
@@ -31,9 +34,9 @@ public sealed class WebAppFactory : WebApplicationFactory<Program>, IAsyncLifeti
         await postgreSqlContainer.StartAsync();
 
         postgreSqlConnection = new NpgsqlConnection(postgreSqlContainer.GetConnectionString());
-        
+
         Client = CreateClient();
-        
+
         await postgreSqlConnection.OpenAsync();
 
         respawner = await Respawner.CreateAsync(postgreSqlConnection, new RespawnerOptions
@@ -50,6 +53,13 @@ public sealed class WebAppFactory : WebApplicationFactory<Program>, IAsyncLifeti
     {
         builder.ConfigureServices(services =>
         {
+            services.RemoveAll<ISchedulerFactory>();
+            services.AddSingleton<ISchedulerFactory>(_ => new StdSchedulerFactory(
+                new NameValueCollection
+                {
+                    ["quartz.scheduler.instanceName"] = Guid.NewGuid().ToString()
+                }));
+
             services.RemoveAll<DbContextOptions<DataContext>>();
 
             services.AddDbContext<DataContext>(options => options
