@@ -52,6 +52,7 @@ public static class ServiceExtensions
 
     private static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<AuditEntitiesOnSaveChangesInterceptor>();
         services.AddScoped<PersistOutboxDomainEventsOnSaveChangesInterceptor>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -62,6 +63,7 @@ public static class ServiceExtensions
                 pgsqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
 
             options.AddInterceptors(
+                provider.GetRequiredService<AuditEntitiesOnSaveChangesInterceptor>(),
                 provider.GetRequiredService<PersistOutboxDomainEventsOnSaveChangesInterceptor>());
         });
 
