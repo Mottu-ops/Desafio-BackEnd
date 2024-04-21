@@ -25,22 +25,7 @@ public sealed class GetUserQueryHandlerTests
         
         TypeAdapterConfig.GlobalSettings.Apply(new UserMappings());
     }
-
-    [Fact]
-    public async Task Handle_WhenUserDoesNotExists_ShouldThrowApplicationException()
-    {
-        // Arrange
-        A.CallTo(() => userRepository.FindAsync(userContext.UserId, cancellationToken))
-            .Returns(null as User);
-        
-        // Act
-        var act = () => sut.Handle(query, cancellationToken);
-        
-        // Assert
-        await act.Should().ThrowExactlyAsync<ApplicationException>()
-            .WithMessage($"User '{userContext.UserId}' not found");
-    }
-
+    
     [Fact]
     public async Task Handle_WhenUserExists_ShouldReturnUserResponse()
     {
@@ -62,5 +47,20 @@ public sealed class GetUserQueryHandlerTests
                 user.Email,
                 user.Birthdate
             });
+    }
+
+    [Fact]
+    public async Task Handle_WhenUserDoesNotExists_ShouldThrowApplicationException()
+    {
+        // Arrange
+        A.CallTo(() => userRepository.FindAsync(userContext.UserId, cancellationToken))
+            .Returns(null as User);
+        
+        // Act
+        var act = () => sut.Handle(query, cancellationToken);
+        
+        // Assert
+        await act.Should().ThrowExactlyAsync<ApplicationException>()
+            .WithMessage($"User '{userContext.UserId}' not found");
     }
 }

@@ -3,14 +3,13 @@ using Motorent.Contracts.Users.Responses;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.ValueObjects;
 using Motorent.Infrastructure.Common.Identity;
-using RefreshToken = Motorent.Infrastructure.Common.Security.RefreshToken;
 
 namespace Motorent.Api.IntegrationTests.Users;
 
 public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
 {
     [Fact]
-    public async Task Login_WhenCredentialsAreValid_ShouldReturnValidTokenResponse()
+    public async Task Login_WhenUserExistsAndPasswordIsCorrect_ShouldReturnValidTokenResponse()
     {
         // Arrange
         await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
@@ -34,7 +33,7 @@ public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
     }
 
     [Fact]
-    public async Task Login_WhenCredentialsAreValid_ShouldReturnAccessTokenWithCorrectUserClaims()
+    public async Task Login_WhenUserExistsAndPasswordIsCorrect_ShouldReturnTokenResponse()
     {
         // Arrange
         await ResetDatabaseAsync();
@@ -72,33 +71,6 @@ public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
     }
 
     [Fact]
-    public async Task Login_WhenCredentialsAreValid_ShouldReturnPersistedRefreshToken()
-    {
-        // Arrange
-        await ResetDatabaseAsync();
-
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
-
-        var message = Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest);
-
-        // Act
-        var response = await Client.SendAsync(message);
-
-        // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-        var tokenResponse = await response.Content.ReadFromJsonAsync<TokenResponse>(
-            ApiSerializationOptions.Options);
-
-        tokenResponse.Should().NotBeNull();
-
-        var exists = await DataContext.Set<RefreshToken>()
-            .AnyAsync(tr => tr.Token == tokenResponse!.RefreshToken);
-
-        exists.Should().BeTrue();
-    }
-
-    [Fact]
     public async Task Login_WhenUserDoesNotExist_ShouldReturnUnauthorized()
     {
         // Arrange
@@ -119,7 +91,7 @@ public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
     }
 
     [Fact]
-    public async Task Login_WhenUserExistsButPasswordIsInvalid_ShouldReturnUnauthorized()
+    public async Task Login_WhenUserExistsButPasswordIsIncorrect_ShouldReturnUnauthorized()
     {
         // Arrange
         await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));

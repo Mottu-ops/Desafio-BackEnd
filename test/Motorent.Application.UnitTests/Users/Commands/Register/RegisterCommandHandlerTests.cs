@@ -90,7 +90,7 @@ public sealed class RegisterCommandHandlerTests
     }
 
     [Fact]
-    public async Task Handle_WhenUserCreationFails_ShouldReturnFailure()
+    public async Task Handle_WhenUserCreationFails_ShouldReturnErrors()
     {
         // Arrange
         A.CallTo(() => emailUniquenessChecker.IsUniqueAsync(command.Email, cancellationToken))

@@ -7,7 +7,7 @@ namespace Motorent.Api.IntegrationTests.Users;
 public sealed class RefreshTests(WebAppFactory app) : IntegrationTest(app)
 {
     [Fact]
-    public async Task RefreshToken_WhenTokenIsValid_ShouldReturnValidTokenResponse()
+    public async Task RefreshToken_WhenTokensArValid_ShouldReturnTokenResponse()
     {
         // Arrange
         await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));

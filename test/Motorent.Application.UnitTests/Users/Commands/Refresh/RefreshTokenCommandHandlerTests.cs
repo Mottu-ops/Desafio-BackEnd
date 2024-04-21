@@ -21,7 +21,24 @@ public sealed class RefreshTokenCommandHandlerTests
     {
         sut = new RefreshTokenCommandHandler(securityTokenService);
     }
+    
+    [Fact]
+    public async Task Handle_WhenRefreshTokenFails_ShouldReturnErrors()
+    {
+        // Arrange
+        A.CallTo(() => securityTokenService.RefreshTokenAsync(
+                command.AccessToken,
+                command.RefreshToken,
+                cancellationToken))
+            .Returns(SecurityTokenErrors.InvalidRefreshToken);
 
+        // Act
+        var result = await sut.Handle(command, cancellationToken);
+
+        // Assert
+        result.Should().BeFailure();
+    }
+    
     [Fact]
     public async Task Handle_WhenTokenIsRefreshed_ShouldReturnTokenResponse()
     {
@@ -49,22 +66,5 @@ public sealed class RefreshTokenCommandHandlerTests
                 securityToken.RefreshToken,
                 securityToken.ExpiresIn
             });
-    }
-    
-    [Fact]
-    public async Task Handle_WhenTokenIsNotRefreshed_ShouldReturnFailure()
-    {
-        // Arrange
-        A.CallTo(() => securityTokenService.RefreshTokenAsync(
-                command.AccessToken,
-                command.RefreshToken,
-                cancellationToken))
-            .Returns(SecurityTokenErrors.InvalidRefreshToken);
-
-        // Act
-        var result = await sut.Handle(command, cancellationToken);
-
-        // Assert
-        result.Should().BeFailure();
     }
 }

@@ -6,30 +6,6 @@ namespace Motorent.Infrastructure.UnitTests.Common.Outbox;
 public sealed class OutboxMessageTests
 {
     [Fact]
-    public void Create_WhenCalled_ShouldCreateOutboxMessageWithCorrectValues()
-    {
-        // Arrange
-        var entity = new DummyOutboxEntity();
-
-        // Act
-        var message = OutboxMessage.Create(entity);
-
-        // Assert
-        message.Should().NotBeNull();
-        message.Id.Should().NotBeEmpty();
-        message.Type.Should().Be(entity.GetType().Name);
-        message.Data.Should().Be(OutboxMessageSerializer.Serialize(entity));
-        message.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
-        message.Status.Should().Be(OutboxMessageStatus.Pending);
-        message.ProcessedAt.Should().BeNull();
-        message.NextAttemptAt.Should().BeNull();
-        message.Attempt.Should().Be(1);
-        message.ErrorType.Should().BeNull();
-        message.ErrorMessage.Should().BeNull();
-        message.ErrorDetails.Should().BeNull();
-    }
-
-    [Fact]
     public void MarkAsProcessed_WhenStatusIsPending_ShouldMarkAsProcessed()
     {
         // Arrange

@@ -24,7 +24,7 @@ public sealed class RegisterTests(WebAppFactory app) : IntegrationTest(app)
     }
 
     [Fact]
-    public async Task Register_WhenEmailIsAlreadyTaken_ShouldNotCreateUser()
+    public async Task Register_WhenEmailIsDuplicate_ShouldNotCreateUser()
     {
         // Arrange
         await ResetDatabaseAsync();
