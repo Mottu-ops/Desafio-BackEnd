@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using Motorent.Application.Common.Abstractions.Identity;
 using Motorent.Application.Common.Abstractions.Persistence;
 using Motorent.Application.Common.Abstractions.Security;
+using Motorent.Domain.Renters.Repository;
+using Motorent.Domain.Renters.Services;
 using Motorent.Domain.Users.Repository;
 using Motorent.Domain.Users.Services;
 using Motorent.Infrastructure.Common.Identity;
@@ -15,6 +17,8 @@ using Motorent.Infrastructure.Common.Persistence;
 using Motorent.Infrastructure.Common.Persistence.BackgroundJobs;
 using Motorent.Infrastructure.Common.Persistence.Interceptors;
 using Motorent.Infrastructure.Common.Security;
+using Motorent.Infrastructure.Renters;
+using Motorent.Infrastructure.Renters.Persistence;
 using Motorent.Infrastructure.Users;
 using Motorent.Infrastructure.Users.Persistence;
 using Quartz;
@@ -42,6 +46,10 @@ public static class ServiceExtensions
         services.AddTransient<IEncryptionService, EncryptionService>();
         services.AddTransient<IEmailUniquenessChecker, EmailUniquenessChecker>();
 
+        services.AddTransient<ICnpjUniquenessChecker, CnpjUniquenessChecker>();
+        services.AddTransient<ICnhUniquenessChecker, CnhUniquenessChecker>();
+        services.AddTransient<IRenterFactory, RenterFactory>();
+
         services.AddTransient<TimeProvider>(_ => TimeProvider.System);
         services.AddTransient<ISecurityTokenService, SecurityTokenService>();
 
@@ -68,6 +76,7 @@ public static class ServiceExtensions
         });
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRenterRepository, RenterRepository>();
     }
 
     private static void AddBackgroundJobs(this IServiceCollection services)
