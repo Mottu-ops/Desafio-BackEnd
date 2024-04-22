@@ -40,6 +40,7 @@ public static class ServiceExtensions
 
         config.AddOpenBehavior(typeof(LoggingBehavior<,>))
             .AddOpenBehavior(typeof(ExceptionBehavior<,>))
+            .AddOpenBehavior(typeof(AuthorizationBehavior<,>))
             .AddOpenBehavior(typeof(ValidationBehavior<,>))
             .AddOpenBehavior(typeof(TransactionBehavior<,>));
     });

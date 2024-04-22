@@ -1,0 +1,3 @@
+namespace Motorent.Application.Common.Abstractions.Security.Authorization;
+
+public interface IAuthorizationRequirement;
