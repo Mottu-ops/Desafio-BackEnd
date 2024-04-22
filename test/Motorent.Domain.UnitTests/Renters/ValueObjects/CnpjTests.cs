@@ -8,7 +8,7 @@ public sealed class CnpjTests
     public static readonly IEnumerable<object[]> ValidCnpjs = new List<object[]>
     {
         new object[] { "27137033000134" },
-        new object[] { "27137033000134" },
+        new object[] { "92.443.739/0001-96" },
         new object[] { "97877245000133" },
         new object[] { "96.657.097/0001-89" },
         new object[] { "72.302.462/0001-74" }
