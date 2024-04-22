@@ -1,0 +1,11 @@
+POST {{base_url}}/v1/renters/finish-registration
+Accept: application/json
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "cnpj": "12.639.827/0001-29",
+  "cnh_number": "68568840208",
+  "cnh_category": "A",
+  "cnh_expiration_date": "2025-01-01"
+}
