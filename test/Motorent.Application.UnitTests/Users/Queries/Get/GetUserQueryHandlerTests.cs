@@ -46,8 +46,8 @@ public sealed class GetUserQueryHandlerTests
             {
                 Role = user.Role.Name,
                 Name = user.Name.Value,
-                user.Email,
-                user.Birthdate
+                Birthdate = user.Birthdate.Value,
+                user.Email
             });
     }
 

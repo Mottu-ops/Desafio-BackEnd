@@ -8,5 +8,8 @@ internal sealed class CommonMappings : IRegister
     {
         config.NewConfig<Name, string>()
             .ConstructUsing(src => src.Value);
+
+        config.NewConfig<Birthdate, DateOnly>()
+            .ConstructUsing(src => src.Value);
     }
 }

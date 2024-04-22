@@ -67,7 +67,7 @@ public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
 
         user.Should().NotBeNull();
         role.Should().Be(user!.Role.Name);
-        birthdate.Should().Be(user.Birthdate.ToString("yyyy-MM-dd"));
+        birthdate.Should().Be(user.Birthdate.Value.ToString("yyyy-MM-dd"));
     }
 
     [Fact]

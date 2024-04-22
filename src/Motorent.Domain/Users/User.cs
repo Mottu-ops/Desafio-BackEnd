@@ -21,10 +21,10 @@ public sealed class User : Entity<UserId>, IAggregateRoot
     public required Role Role { get; init; }
     
     public Name Name { get; private set; } = null!;
+
+    public Birthdate Birthdate { get; private set; } = null!;
     
     public string Email { get; private set; } = null!;
-
-    public DateOnly Birthdate { get; private set; }
 
     public string PasswordHash { get; private set; } = null!;
     
@@ -32,9 +32,9 @@ public sealed class User : Entity<UserId>, IAggregateRoot
         Role role,
         UserId id,
         Name name,
+        Birthdate birthdate,
         string email,
         string password,
-        DateOnly birthdate,
         IEncryptionService encryptionService,
         IEmailUniquenessChecker emailUniquenessChecker,
         CancellationToken cancellationToken = default)
@@ -49,8 +49,8 @@ public sealed class User : Entity<UserId>, IAggregateRoot
         {
             Role = role,
             Name = name,
-            Email = email,
             Birthdate = birthdate,
+            Email = email,
             PasswordHash = passwordHash
         };
     }

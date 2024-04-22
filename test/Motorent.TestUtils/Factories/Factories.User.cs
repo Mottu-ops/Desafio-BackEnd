@@ -13,9 +13,9 @@ public static partial class Factories
             UserId? id = null,
             Role? role = null,
             Name? name = null,
+            Birthdate? birthdate = null,
             string? email = null,
             string? password = null,
-            DateOnly? birthdate = null,
             IEncryptionService? encryptionService = null,
             IEmailUniquenessChecker? emailUniquenessChecker = null)
         {
@@ -37,9 +37,9 @@ public static partial class Factories
                 id: id ?? Constants.Constants.User.Id,
                 role: role ?? Constants.Constants.User.Role,
                 name: name ?? Constants.Constants.User.Name,
+                birthdate: birthdate ?? Constants.Constants.User.Birthdate,
                 email: email ?? Constants.Constants.User.Email,
                 password: password ?? Constants.Constants.User.Password,
-                birthdate: birthdate ?? Constants.Constants.User.Birthdate,
                 encryptionService: encryptionService,
                 emailUniquenessChecker: emailUniquenessChecker);
         }

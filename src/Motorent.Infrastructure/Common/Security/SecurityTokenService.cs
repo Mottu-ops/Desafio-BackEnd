@@ -91,7 +91,7 @@ internal sealed class SecurityTokenService(
             { JwtRegisteredClaimNames.Sub, user.Id.ToString() },
             { ClaimsPrincipalExtensions.RoleClaimType, user.Role.Name },
             { JwtRegisteredClaimNames.Name, user.Name.Value },
-            { JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd") }
+            { JwtRegisteredClaimNames.Birthdate, user.Birthdate.Value.ToString("yyyy-MM-dd") }
         };
 
         var credentials = new SigningCredentials(

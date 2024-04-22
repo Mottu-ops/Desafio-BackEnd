@@ -14,10 +14,10 @@ public static partial class Constants
         
         public static readonly Name Name = new("John Doe");
         
+        public static readonly Birthdate Birthdate = Birthdate.Create(new(1990, 1, 1)).Value;
+        
         public const string Email = "john@doe.com";
         
         public const string Password = "JohnDoe123";
-        
-        public static readonly DateOnly Birthdate = new(1990, 1, 1);
     }
 }

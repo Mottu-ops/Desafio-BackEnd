@@ -24,7 +24,7 @@ public sealed class RegisterCommandHandlerTests
         Name = Constants.User.Name.Value,
         Email = Constants.User.Email,
         Password = Constants.User.Password,
-        Birthdate = Constants.User.Birthdate
+        Birthdate = Constants.User.Birthdate.Value
     };
 
     private readonly RegisterCommandHandler sut;
@@ -45,6 +45,22 @@ public sealed class RegisterCommandHandlerTests
     }
 
     [Fact]
+    public async Task Handle_WhenUserAgeIsUnder18_ShouldReturnError()
+    {
+        // Arrange
+        var birthday = DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-17));
+
+        // Act
+        var result = await sut.Handle(command with
+        {
+            Birthdate = birthday
+        }, cancellationToken);
+
+        // Assert
+        result.Should().BeFailure();
+    }
+
+    [Fact]
     public async Task Handle_WhenUserCreationSucceeds_ShouldAddToRepository()
     {
         // Arrange
@@ -53,11 +69,11 @@ public sealed class RegisterCommandHandlerTests
 
         // Assert
         A.CallTo(() => userRepository.AddAsync(
-                A<User>.That.Matches(u => u.Role == Role.FromName(command.Role, false)
+                A<User>.That.Matches(u => u.Role.Value == Role.FromName(command.Role, false)
                                           && u.Name.Value == command.Name
+                                          && u.Birthdate.Value == command.Birthdate
                                           && u.Email == command.Email
-                                          && u.PasswordHash == "hashed-password"
-                                          && u.Birthdate == command.Birthdate),
+                                          && u.PasswordHash == "hashed-password"),
                 cancellationToken))
             .MustHaveHappenedOnceExactly();
     }

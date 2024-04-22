@@ -25,6 +25,9 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Name)
             .HasConversion(v => v.Value, v => new Name(v))
             .HasMaxLength(UserConstants.NameMaxLength);
+
+        builder.Property(u => u.Birthdate)
+            .HasConversion(v => v.Value, v => Birthdate.Create(v).Value);
         
         builder.Property(u => u.Email)
             .HasMaxLength(UserConstants.EmailMaxLength);
