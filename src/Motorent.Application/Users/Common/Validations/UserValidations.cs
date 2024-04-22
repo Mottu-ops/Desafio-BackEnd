@@ -41,25 +41,4 @@ internal static class UserValidations
             .Matches(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).*$")
             .WithMessage("Must contain at least one uppercase letter, one lowercase letter and one digit.");
     }
-
-    public static IRuleBuilderOptions<T, DateOnly> Birthdate<T>(this IRuleBuilder<T, DateOnly> builder)
-    {
-        return builder
-            .NotEmpty()
-            .WithMessage("Must not be empty.")
-            .Must(bd =>
-            {
-                var now = DateTime.Today;
-                var age = now.Year - bd.Year;
-
-                // If the birthday hasn't happened yet this year, subtract one year
-                if (now.Month < bd.Month || (now.Month == bd.Month && now.Day < bd.Day))
-                {
-                    age--;
-                }
-
-                return age >= 18;
-            })
-            .WithMessage("Must be at least 18 years old.");
-    }
 }

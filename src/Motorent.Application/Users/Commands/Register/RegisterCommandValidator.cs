@@ -17,8 +17,5 @@ internal sealed class RegisterCommandValidator : AbstractValidator<RegisterComma
 
         RuleFor(x => x.Password)
             .Password();
-
-        RuleFor(x => x.Birthdate)
-            .Birthdate();
     }
 }
