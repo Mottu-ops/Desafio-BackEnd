@@ -18,6 +18,8 @@ public static class ServiceExtensions
 
         services.AddValidator();
 
+        RegisterAuthorizationServices(services);
+
         return services;
     }
 
@@ -52,5 +54,40 @@ public static class ServiceExtensions
         // Our API follows the snake_case convention for responses, therefore it's recommended to maintain this
         // naming convention for validation responses.
         ValidatorOptions.Global.PropertyNameResolver = PropertyNameResolvers.SnakeCaseResolver;
+    }
+    
+    private static void RegisterAuthorizationServices(IServiceCollection services)
+    {
+        RegisterGenericTypes(services, typeof(IAuthorizer<>), ServiceLifetime.Scoped);
+        RegisterGenericTypes(services, typeof(IAuthorizationRequirementHandler<>), ServiceLifetime.Scoped);
+    }
+    
+    private static void RegisterGenericTypes(this IServiceCollection services, Type genericType,
+        ServiceLifetime lifetime)
+    {
+        var implementationTypes = GetTypesImplementingGenericType(ApplicationAssembly, genericType);
+        foreach (var implementationType in implementationTypes)
+        {
+            foreach (var interfaceType in implementationType.ImplementedInterfaces)
+            {
+                if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericType)
+                {
+                    services.Add(new ServiceDescriptor(interfaceType, implementationType, lifetime));
+                }
+            }
+        }
+    }
+
+    private static List<TypeInfo> GetTypesImplementingGenericType(Assembly assembly, Type genericType)
+    {
+        if (!genericType.IsGenericType)
+        {
+            throw new ArgumentException("Must be a generic type", nameof(genericType));
+        }
+
+        return assembly.DefinedTypes
+            .Where(t => t is { IsClass: true, IsAbstract: false } && t.GetInterfaces()
+                .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericType))
+            .ToList();
     }
 }
