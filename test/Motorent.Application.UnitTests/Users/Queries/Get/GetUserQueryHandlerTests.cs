@@ -1,4 +1,5 @@
 using Motorent.Application.Common.Abstractions.Identity;
+using Motorent.Application.Common.Mappings;
 using Motorent.Application.Users.Common.Mappings;
 using Motorent.Application.Users.Queries.Get;
 using Motorent.Domain.Users;
@@ -23,6 +24,7 @@ public sealed class GetUserQueryHandlerTests
         A.CallTo(() => userContext.UserId)
             .Returns(Constants.User.Id);
         
+        TypeAdapterConfig.GlobalSettings.Apply(new CommonMappings());
         TypeAdapterConfig.GlobalSettings.Apply(new UserMappings());
     }
     
@@ -43,7 +45,7 @@ public sealed class GetUserQueryHandlerTests
             .Which.Value.Should().BeEquivalentTo(new
             {
                 Role = user.Role.Name,
-                user.Name,
+                Name = user.Name.Value,
                 user.Email,
                 user.Birthdate
             });

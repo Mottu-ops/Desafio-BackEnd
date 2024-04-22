@@ -1,3 +1,4 @@
+using Motorent.Domain.Common.ValueObjects;
 using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.Services;
 using Motorent.Domain.Users.ValueObjects;
@@ -11,7 +12,7 @@ public static partial class Factories
         public static Task<Result<Domain.Users.User>> CreateUserAsync(
             UserId? id = null,
             Role? role = null,
-            string? name = null,
+            Name? name = null,
             string? email = null,
             string? password = null,
             DateOnly? birthdate = null,

@@ -21,7 +21,7 @@ public sealed class RegisterCommandHandlerTests
     private readonly RegisterCommand command = new()
     {
         Role = Constants.User.Role.Name,
-        Name = Constants.User.Name,
+        Name = Constants.User.Name.Value,
         Email = Constants.User.Email,
         Password = Constants.User.Password,
         Birthdate = Constants.User.Birthdate
@@ -54,7 +54,7 @@ public sealed class RegisterCommandHandlerTests
         // Assert
         A.CallTo(() => userRepository.AddAsync(
                 A<User>.That.Matches(u => u.Role == Role.FromName(command.Role, false)
-                                          && u.Name == command.Name
+                                          && u.Name.Value == command.Name
                                           && u.Email == command.Email
                                           && u.PasswordHash == "hashed-password"
                                           && u.Birthdate == command.Birthdate),

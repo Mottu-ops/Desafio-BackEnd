@@ -90,7 +90,7 @@ internal sealed class SecurityTokenService(
             { JwtRegisteredClaimNames.Jti, accessTokenId },
             { JwtRegisteredClaimNames.Sub, user.Id.ToString() },
             { ClaimsPrincipalExtensions.RoleClaimType, user.Role.Name },
-            { JwtRegisteredClaimNames.Name, user.Name },
+            { JwtRegisteredClaimNames.Name, user.Name.Value },
             { JwtRegisteredClaimNames.Birthdate, user.Birthdate.ToString("yyyy-MM-dd") }
         };
 

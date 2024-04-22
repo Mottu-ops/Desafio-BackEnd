@@ -1,3 +1,4 @@
+using Motorent.Domain.Common.ValueObjects;
 using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.ValueObjects;
 
@@ -11,7 +12,7 @@ public static partial class Constants
         
         public static readonly Role Role = Role.Renter;
         
-        public const string Name = "John Doe";
+        public static readonly Name Name = new("John Doe");
         
         public const string Email = "john@doe.com";
         

@@ -1,4 +1,5 @@
 using Motorent.Domain.Common.Entities;
+using Motorent.Domain.Common.ValueObjects;
 using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.Errors;
 using Motorent.Domain.Users.Services;
@@ -19,7 +20,7 @@ public sealed class User : Entity<UserId>, IAggregateRoot
     // externo, como Amazon Cognito, Auth0, Firebase Auth ou outro.
     public required Role Role { get; init; }
     
-    public string Name { get; private set; } = null!;
+    public Name Name { get; private set; } = null!;
     
     public string Email { get; private set; } = null!;
 
@@ -30,7 +31,7 @@ public sealed class User : Entity<UserId>, IAggregateRoot
     public static async Task<Result<User>> CreateAsync(
         Role role,
         UserId id,
-        string name,
+        Name name,
         string email,
         string password,
         DateOnly birthdate,

@@ -1,6 +1,7 @@
 using Motorent.Application.Common.Abstractions.Requests;
 using Motorent.Application.Common.Abstractions.Security;
 using Motorent.Contracts.Users.Responses;
+using Motorent.Domain.Common.ValueObjects;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.Repository;
@@ -22,7 +23,7 @@ internal sealed class RegisterCommandHandler(
         var result = User.CreateAsync(
             id: UserId.New(),
             role: Role.FromName(command.Role),
-            name: command.Name,
+            name: new Name(command.Name),
             email: command.Email,
             password: command.Password,
             birthdate: command.Birthdate,
