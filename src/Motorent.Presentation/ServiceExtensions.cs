@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Asp.Versioning;
+using Cysharp.Serialization.Json;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -13,6 +14,7 @@ public static class ServiceExtensions
     {
         services.Configure<JsonOptions>(options =>
         {
+            options.SerializerOptions.Converters.Add(new UlidJsonConverter());
             options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
         });
 
