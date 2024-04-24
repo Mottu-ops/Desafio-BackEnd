@@ -22,11 +22,13 @@ internal sealed class RenterConfiguration : IEntityTypeConfiguration<Renter>
 
         builder.Property(r => r.Id)
             .ValueGeneratedNever()
-            .HasConversion(v => v.Value, v => new RenterId(v));
+            .HasMaxLength(26)
+            .HasConversion(v => v.Value.ToString(), v => new RenterId(Ulid.Parse(v)));
 
         builder.Property(r => r.UserId)
             .ValueGeneratedNever()
-            .HasConversion(v => v.Value, v => new UserId(v));
+            .HasMaxLength(26)
+            .HasConversion(v => v.Value.ToString(), v => new UserId(Ulid.Parse(v)));
 
         builder.Property(r => r.Cnpj)
             .HasMaxLength(RenterConstants.CnpjMaxLength)

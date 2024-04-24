@@ -63,7 +63,7 @@ public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
         sub.Should().NotBeNull();
 
         var user = await DataContext.Set<User>()
-            .FindAsync([new UserId(Guid.Parse(sub!))]);
+            .FindAsync([new UserId(Ulid.Parse(sub!))]);
 
         user.Should().NotBeNull();
         role.Should().Be(user!.Role.Name);

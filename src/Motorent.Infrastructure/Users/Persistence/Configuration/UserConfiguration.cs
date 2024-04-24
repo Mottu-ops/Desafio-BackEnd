@@ -16,7 +16,8 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(u => u.Email);
 
         builder.Property(u => u.Id)
-            .HasConversion(v => v.Value, v => new UserId(v));
+            .HasMaxLength(26)
+            .HasConversion(v => v.Value.ToString(), v => new UserId(Ulid.Parse(v)));
 
         builder.Property(u => u.Role)
             .HasConversion(v => v.Name, v => Role.FromName(v, false))

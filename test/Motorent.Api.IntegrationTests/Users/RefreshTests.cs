@@ -88,11 +88,11 @@ public sealed class RefreshTests(WebAppFactory app) : IntegrationTest(app)
 
         var message = Requests.User.CreateHttpRefreshTokenRequest(new RefreshTokenRequest
         {
-            AccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MDM2NzIzZS0xMTFhLTQ3NjItOWIzMC1iOWNkMzc" +
-                          "zN2VmYTMiLCJzdWIiOiIwZjUzNmJiZS1jZjFkLTQ1MjgtYTYxMy1jODg0YWYyZjc0NmUiLCJyb2xlIjoicmVudGVy" +
-                          "IiwibmFtZSI6IkpvaG4gRG9lIiwiYmlydGhkYXRlIjoiMjAwMC0wMS0wMSIsImF1ZCI6ImxvY2FsaG9zdCIsImlz" +
-                          "cyI6ImxvY2FsaG9zdCIsImV4cCI6MTcxMzU3Mzc2NywibmJmIjoxNzEzNTczNzA3fQ.wluhLsKmgWRcfNUEbMFTMh" +
-                          "AyRxQ5g3Pxj9e5q-kLUfE",
+            AccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ODQ2NTRhZS03NDVmLTQ0ZGQtOGIwNC05ZjMyZmU4" +
+                          "YTM4MDQiLCJzdWIiOiIwMUhXN1dNUFM3N1RIRTFLOVdaUUFFNzBBUCIsInJvbGUiOiJyZW50ZXIiLCJuYW1lIjoiSm" +
+                          "9obiBEb2UiLCJiaXJ0aGRhdGUiOiIyMDAwLTAxLTAxIiwiYXVkIjoibG9jYWxob3N0IiwiaXNzIjoibG9jYWxob3N" +
+                          "0IiwiZXhwIjoxNzEzOTU3MjU3LCJuYmYiOjE3MTM5NTY5NTd9.0EsA8NTo4oTnU5nfeD7VaKlBc8Co13GFES9T4fv" +
+                          "lZWw",
             RefreshToken = tokenResponse!.RefreshToken
         });
 

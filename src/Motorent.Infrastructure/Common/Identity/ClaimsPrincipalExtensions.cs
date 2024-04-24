@@ -12,8 +12,8 @@ internal static class ClaimsPrincipalExtensions
     public static UserId GetUserId(this ClaimsPrincipal principal)
     {
         var sub = principal.FindFirstValue(JwtRegisteredClaimNames.Sub);
-        return Guid.TryParse(sub, out var guid)
-            ? new UserId(guid)
+        return Ulid.TryParse(sub, out var ulid)
+            ? new UserId(ulid)
             : throw new InvalidOperationException("User ID claim is missing or invalid");
     }
 

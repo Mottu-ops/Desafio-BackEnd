@@ -12,7 +12,7 @@ internal sealed class UserContext : IUserContext
         var user = httpContextAccessor.HttpContext?.User;
         IsAuthenticated = user?.Identity?.IsAuthenticated ?? false;
 
-        UserId = IsAuthenticated ? user!.GetUserId() : new UserId(Guid.Empty);
+        UserId = IsAuthenticated ? user!.GetUserId() : new UserId(Ulid.Empty);
         Role = IsAuthenticated ? user!.GetRole() : Role.None;
     }
 

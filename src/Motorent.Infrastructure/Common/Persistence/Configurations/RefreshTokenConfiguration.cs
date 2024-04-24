@@ -13,7 +13,8 @@ internal sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<Refre
 
         builder.Property(rt => rt.UserId)
             .ValueGeneratedNever()
-            .HasConversion(v => v.Value, v => new UserId(v));
+            .HasMaxLength(26)
+            .HasConversion(v => v.Value.ToString(), v => new UserId(Ulid.Parse(v)));
 
         builder.Property(rt => rt.Token)
             .HasMaxLength(255);

@@ -43,7 +43,7 @@ internal sealed class SecurityTokenService(
         var sub = claims.Single(c => c.Key == JwtRegisteredClaimNames.Sub).Value!;
         var jti = claims.SingleOrDefault(c => c.Key == JwtRegisteredClaimNames.Jti).Value!;
 
-        var userId = new UserId(Guid.Parse(sub));
+        var userId = new UserId(Ulid.Parse(sub));
         
         var user = await dataContext.Set<User>()
             .FindAsync([userId], cancellationToken);
