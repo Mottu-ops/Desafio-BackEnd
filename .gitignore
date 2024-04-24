@@ -8,4 +8,3 @@ riderModule.iml
 /_ReSharper.Caches/
 .data/
 .idea/
-**/Persistence/Migrations
