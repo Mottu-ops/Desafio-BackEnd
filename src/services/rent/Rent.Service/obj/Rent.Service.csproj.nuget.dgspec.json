@@ -1,0 +1,387 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Service/Rent.Service.csproj": {}
+  },
+  "projects": {
+    "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj",
+        "projectName": "BusConnections.Core",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj",
+        "projectName": "BusConnections.Events",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[8.3.1, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/Rent.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/Rent.Core.csproj",
+        "projectName": "Rent.Core",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/Rent.Core.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj",
+        "projectName": "Rent.Domain",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/Rent.Core.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Core/Rent.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/Rent.Infra.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/Rent.Infra.csproj",
+        "projectName": "Rent.Infra",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/Rent.Infra.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj"
+              },
+              "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj"
+              },
+              "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Service/Rent.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Service/Rent.Service.csproj",
+        "projectName": "Rent.Service",
+        "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Service/Rent.Service.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Service/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Domain/Rent.Domain.csproj"
+              },
+              "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/Rent.Infra.csproj": {
+                "projectPath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/rent/Rent.Infra/Rent.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.421/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VrnGd5Pmawpo5tsG1yaTZdHa3UL/fRuVIlkeuGycfG5PhgXU11wPmG37pdQT+yUjg6WNWKGV97VPogEmpGmbCw==",
+  "success": true,
+  "projectFilePath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/plan/Plan.Domain/Plan.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/lismaroliveira/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}

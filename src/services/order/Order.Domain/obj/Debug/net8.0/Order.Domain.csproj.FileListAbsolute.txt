@@ -1,0 +1,13 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/bin/Debug/net8.0/Order.Domain.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/bin/Debug/net8.0/Order.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/bin/Debug/net8.0/Order.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/refint/Order.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/Order.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/order/Order.Domain/obj/Debug/net8.0/ref/Order.Domain.dll

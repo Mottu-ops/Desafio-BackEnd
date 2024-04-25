@@ -1,0 +1,11 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.MvcApplicationPartsAssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/refint/User.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.API/obj/Release/net6.0/User.API.pdb

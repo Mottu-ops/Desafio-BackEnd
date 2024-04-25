@@ -1,0 +1,16 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/bin/Release/net6.0/BusConnections.Events.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/bin/Release/net6.0/BusConnections.Events.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/bin/Release/net6.0/BusConnections.Events.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/bin/Release/net6.0/BusConnections.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/bin/Release/net6.0/BusConnections.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConne.4835FC00.Up2Date
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/refint/BusConnections.Events.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/BusConnections.Events.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/Release/net6.0/ref/BusConnections.Events.dll

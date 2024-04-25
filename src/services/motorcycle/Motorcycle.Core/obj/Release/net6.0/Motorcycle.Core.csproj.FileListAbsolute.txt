@@ -1,0 +1,12 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/bin/Release/net6.0/Motorcycle.Core.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/bin/Release/net6.0/Motorcycle.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/bin/Release/net6.0/Motorcycle.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/refint/Motorcycle.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/Motorcycle.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Core/obj/Release/net6.0/ref/Motorcycle.Core.dll

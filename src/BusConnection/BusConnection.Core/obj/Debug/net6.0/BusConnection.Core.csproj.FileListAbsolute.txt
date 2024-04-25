@@ -1,0 +1,12 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/bin/Debug/net6.0/BusConnection.Core.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/bin/Debug/net6.0/BusConnection.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/bin/Debug/net6.0/BusConnection.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/refint/BusConnection.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/BusConnection.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/Debug/net6.0/ref/BusConnection.Core.dll

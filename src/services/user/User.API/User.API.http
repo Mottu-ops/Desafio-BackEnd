@@ -1,0 +1,82 @@
+@host =  http://localhost:5032
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImV4ZW1wbG90ZXN0OEBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTcxMzA0MzkxOSwiZXhwIjoxNzEzMDQ3NTE5LCJpYXQiOjE3MTMwNDM5MTl9.UTH8HXtAyjQpXqhhGi8EiJLb7qabds5kMc7KlxnFsH0
+
+
+### Get all users
+GET {{host}}/api/v1/users HTTP/1.1
+Accept: application/json
+Authorization: {{token}}
+
+### Get user by id
+GET {{host}}/api/v1/users/6 HTTP/1.1
+Accept: application/json
+Authorization: {{token}}
+
+### Create user
+POST {{host}}/api/v1/users/create
+Accept: */*
+Content-Type: application/json
+
+{
+    "name": "Aila Garcia",
+    "email": "ailagarcia@gmail.com",
+    "password": "12345678",
+    "Cnpj": "23979246000152",
+    "dateBirth": "1987-12-08",
+    "cnhNumber":  "123456789",
+    "cnhType": "AB",
+    "role": "user",
+    "cnhImage": "https://stackoverflow.com/questions/29840282/error-when-connect-database-continuously"
+}
+###
+
+###Update User
+PUT {{host}}/api/v1/users/update
+Accept: */*
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "id": 1,
+    "name": "Lismar Oliveira",
+    "email": "exemplo@gmail.com",
+    "password": "12345678",
+    "Cnpj": "23979246000152",
+    "dateBirth": "1987-12-08",
+    "cnhNumber":  "123456789",
+    "cnhType": "AB",
+    "cnhType": "user",
+    "cnhImage": "https://stackoverflow.com/questions/29840282/error-when-connect-database-continuously"
+}
+###
+
+###Delete User
+DELETE {{host}}/api/v1/users/delete/1
+Accept: */*
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "name": "Lismar Oliveira",
+    "email": "exemplo@gmail.com",
+    "password": "12345678",
+    "Cnpj": "23979246000152",
+    "dateBirth": "1987-12-08",
+    "cnhNumber":  "123456789",
+    "cnhType": "AB",
+    "role": "admin",
+    "cnhImage": "https://stackoverflow.com/questions/29840282/error-when-connect-database-continuously"
+}
+###
+
+### Login
+POST {{host}}/api/v1/auth/login
+Accept: */*
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "login": "exemplotest8@gmail.com",
+    "password": "12345678"
+}
+###

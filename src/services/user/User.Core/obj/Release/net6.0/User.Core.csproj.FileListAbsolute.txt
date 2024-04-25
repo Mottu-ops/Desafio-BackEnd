@@ -1,0 +1,12 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/bin/Release/net6.0/User.Core.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/bin/Release/net6.0/User.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/bin/Release/net6.0/User.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/refint/User.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/User.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/Release/net6.0/ref/User.Core.dll
