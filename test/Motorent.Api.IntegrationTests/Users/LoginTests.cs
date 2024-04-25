@@ -6,7 +6,7 @@ using Motorent.Infrastructure.Common.Identity;
 
 namespace Motorent.Api.IntegrationTests.Users;
 
-public sealed class LoginTests(WebAppFactory app) : IntegrationTest(app)
+public sealed class LoginTests(WebApiFactory api) : IntegrationTestFixture(api)
 {
     [Fact]
     public async Task Login_WhenUserExistsAndPasswordIsCorrect_ShouldReturnValidTokenResponse()
