@@ -5,7 +5,6 @@ using Job.Domain.Entities.User;
 using Job.Domain.Queries.User;
 using Job.Domain.Repositories;
 using Job.Domain.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 
 namespace Job.Domain.Services;
 
@@ -83,8 +82,8 @@ public sealed class MotoboyService(
             return new CommandResponse(validationFailures);
         }
 
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", cnpj + extension);
-        await using var stream = new FileStream(path, FileMode.Create);
+        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",  cnpj + extension);
+        await using var stream = new FileStream(path, FileMode.OpenOrCreate);
         await file.FileDetails.CopyToAsync(stream, cancellationToken);
 
         motoboy.UpdateCnhImage(path);

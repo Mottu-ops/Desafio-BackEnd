@@ -50,7 +50,7 @@ public class MotoboyController(
     public async Task<IActionResult> UploadImage([FromForm] UploadCnhMotoboyCommand file, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciado upload de imagem");
-        var cnpj = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        var cnpj = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
         var response = await motoboyService.UploadImageAsync(cnpj!, file, cancellationToken);
 
         if (!response.Success)

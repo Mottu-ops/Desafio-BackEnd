@@ -36,6 +36,7 @@ namespace Job.Infrastructure.Migrations
                     DateBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Document = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
+                    CnhImage = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Updated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: false)
@@ -85,7 +86,7 @@ namespace Job.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Managers",
                 columns: new[] { "Id", "Created", "Email", "Password", "Updated" },
-                values: new object[] { new Guid("af05aa81-e091-42cc-8114-b2b2004adf6d"), new DateTime(2024, 4, 25, 15, 57, 31, 315, DateTimeKind.Local).AddTicks(8336), "job@job.com", "mudar@123", null });
+                values: new object[] { new Guid("9d2c5164-bb23-4f14-94cf-432ed4a24b67"), new DateTime(2024, 4, 25, 16, 43, 20, 662, DateTimeKind.Local).AddTicks(6592), "job@job.com", "mudar@123", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Managers_Email",

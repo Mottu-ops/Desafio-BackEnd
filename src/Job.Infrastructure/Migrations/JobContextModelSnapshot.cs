@@ -122,8 +122,8 @@ namespace Job.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("af05aa81-e091-42cc-8114-b2b2004adf6d"),
-                            Created = new DateTime(2024, 4, 25, 15, 57, 31, 315, DateTimeKind.Local).AddTicks(8336),
+                            Id = new Guid("9d2c5164-bb23-4f14-94cf-432ed4a24b67"),
+                            Created = new DateTime(2024, 4, 25, 16, 43, 20, 662, DateTimeKind.Local).AddTicks(6592),
                             Email = "job@job.com",
                             Password = "mudar@123"
                         });
@@ -134,6 +134,9 @@ namespace Job.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("CnhImage")
+                        .HasColumnType("text");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
