@@ -1,5 +1,6 @@
 using System.Collections.Specialized;
 using System.Data.Common;
+using DotNet.Testcontainers.Builders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,8 @@ public sealed class WebAppFactory : WebApplicationFactory<Program>, IAsyncLifeti
         .WithDatabase("motorent")
         .WithUsername("root")
         .WithPassword("password")
+        .WithWaitStrategy(Wait.ForUnixContainer()
+            .UntilCommandIsCompleted("pg_isready"))
         .Build();
 
     private DbConnection postgreSqlConnection = null!;
