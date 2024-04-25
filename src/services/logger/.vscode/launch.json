@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Logger.API [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/Logger.API/Logger.API.csproj"
+        }
+    ]
+}

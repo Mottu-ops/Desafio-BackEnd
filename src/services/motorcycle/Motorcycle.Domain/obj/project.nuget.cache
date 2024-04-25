@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8oZoYDOBX9oRK2TLbHvR/NEDnYN+wo70lqI9LpzomZTMoq3SaqZFObesnT7+7pjtSGu9DUzDoYUcgke9xtLiCQ==",
+  "success": true,
+  "projectFilePath": "/Users/lismaroliveira/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/lismaroliveira/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}

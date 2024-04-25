@@ -1,0 +1,11 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.MvcApplicationPartsAssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/refint/Plan.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.API/obj/Release/net6.0/Plan.API.pdb

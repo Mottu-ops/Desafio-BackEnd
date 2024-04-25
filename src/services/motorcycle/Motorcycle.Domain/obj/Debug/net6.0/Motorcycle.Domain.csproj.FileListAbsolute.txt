@@ -1,0 +1,16 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/bin/Debug/net6.0/Motorcycle.Domain.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/bin/Debug/net6.0/Motorcycle.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/bin/Debug/net6.0/Motorcycle.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/bin/Debug/net6.0/Motorcycle.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/bin/Debug/net6.0/Motorcycle.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcyc.5DB06A30.Up2Date
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/refint/Motorcycle.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/Motorcycle.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/Debug/net6.0/ref/Motorcycle.Domain.dll

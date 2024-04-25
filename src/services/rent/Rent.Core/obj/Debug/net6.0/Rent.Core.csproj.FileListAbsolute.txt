@@ -1,0 +1,12 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/bin/Debug/net6.0/Rent.Core.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/bin/Debug/net6.0/Rent.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/bin/Debug/net6.0/Rent.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/refint/Rent.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/Rent.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Core/obj/Debug/net6.0/ref/Rent.Core.dll

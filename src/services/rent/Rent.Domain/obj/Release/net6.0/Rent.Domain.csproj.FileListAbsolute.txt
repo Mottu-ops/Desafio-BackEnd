@@ -1,0 +1,16 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/bin/Release/net6.0/Rent.Domain.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/bin/Release/net6.0/Rent.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/bin/Release/net6.0/Rent.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/bin/Release/net6.0/Rent.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/bin/Release/net6.0/Rent.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Dom.8AF6840C.Up2Date
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/refint/Rent.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/Rent.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.Domain/obj/Release/net6.0/ref/Rent.Domain.dll

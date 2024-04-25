@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Plan.API [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/Plan.API/Plan.API.csproj"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+.idea
+.vs
+*.cache
+*.vscode
+*.contairners
+*.pdb
+
+.fake
+**/Debug/*
+**/bin/*
+**/obj/*
+
+*.DS_Store
+src/.DS_Store

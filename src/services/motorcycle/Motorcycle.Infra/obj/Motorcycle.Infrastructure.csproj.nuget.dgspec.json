@@ -1,0 +1,369 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Infrastructure/Motorcycle.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj",
+        "projectName": "BusConnections.Core",
+        "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj",
+        "projectName": "BusConnections.Events",
+        "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj": {
+                "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Core/BusConnections.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[8.3.1, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj",
+        "projectName": "Motorcycle.Domain",
+        "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/User.Core.csproj": {
+                "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/User.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Infrastructure/Motorcycle.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Infrastructure/Motorcycle.Infrastructure.csproj",
+        "projectName": "Motorcycle.Infrastructure",
+        "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Infrastructure/Motorcycle.Infrastructure.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj": {
+                "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/BusConnection/BusConnection.Events/BusConnections.Events.csproj"
+              },
+              "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj": {
+                "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/motorcycle/Motorcycle.Domain/Motorcycle.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/User.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/User.Core.csproj",
+        "projectName": "User.Core",
+        "projectPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/User.Core.csproj",
+        "packagesPath": "/Users/lismaroliveira/.nuget/packages/",
+        "outputPath": "/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/user/User.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/lismaroliveira/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

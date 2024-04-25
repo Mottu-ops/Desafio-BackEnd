@@ -1,0 +1,11 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.MvcApplicationPartsAssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/refint/Rent.API.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/rent/Rent.API/obj/Release/net6.0/Rent.API.pdb

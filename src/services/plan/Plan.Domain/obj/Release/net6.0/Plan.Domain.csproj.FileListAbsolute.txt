@@ -1,0 +1,13 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/bin/Release/net6.0/Plan.Domain.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/bin/Release/net6.0/Plan.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/bin/Release/net6.0/Plan.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.csproj.AssemblyReference.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/refint/Plan.Domain.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/Plan.Domain.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Domain/obj/Release/net6.0/ref/Plan.Domain.dll

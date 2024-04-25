@@ -1,0 +1,12 @@
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/bin/Debug/net7.0/Plan.Core.deps.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/bin/Debug/net7.0/Plan.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/bin/Debug/net7.0/Plan.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.AssemblyInfoInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.AssemblyInfo.cs
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.csproj.CoreCompileInputs.cache
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.sourcelink.json
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/refint/Plan.Core.dll
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/Plan.Core.pdb
+/Users/lismaroliveira/Downloads/Desafio-BackEnd/src/services/plan/Plan.Core/obj/Debug/net7.0/ref/Plan.Core.dll

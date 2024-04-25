@@ -1,0 +1,131 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge
+  rabbitmq_go_net:
+    driver: bridge
+
+services:
+  challenger-app:
+    image: docker.io/library/challengeapp
+    depends_on:
+      - "app_db"
+    container_name: challengeapp-services
+    ports:
+      - "8088:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Passowrd=postgres;Server=app_db;Port=5433;Database=SampleDbDriver; IntegratedSecurity=true;Pooling=true;
+      - ASPNETCORE_URL=htpp://+:80
+    networks:
+      - dev
+  app_db:
+    image: postgres:latest
+    container_name: app_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=SampleDbDriver
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgres/data
+    networks:
+      - dev
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: "rabbitmq"
+    labels:
+        NAME: "rabbitmq"
+  motorcycle-service:
+    image: trycatchlearn/motorcycle-service:latest
+    build: 
+      context: .
+      dockerfile: src/services/motorcycle/Motorcycle.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONEMT=Development
+      - ASPNETCORE_URLS=http://+80
+      - BusConnection__HostName=rabbitmq
+      - BusConnection__UserName=guest
+      - BusConnection__Password=guest
+      - BusConnection__RetryCount=4
+      - ConnectionStrings__DefaultConnection=Host=localhost;Username=postgres;Password=postgres;Database=SampleDbDriver; PORT=5433
+    depends_on:
+      - app_db
+      - rabbitmq
+      - challenger-app
+  plan-service:
+    image: trycatchlearn/plan-service:latest
+    build: 
+      context: .
+      dockerfile: src/services/plan/Plan.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONEMT=Development
+      - ASPNETCORE_URLS=http://+80
+      - BusConnection__HostName=rabbitmq
+      - BusConnection__UserName=guest
+      - BusConnection__Password=guest
+      - BusConnection__RetryCount=4
+      - ConnectionStrings__DefaultConnection=Host=localhost;Username=postgres;Password=postgres;Database=SampleDbDriver; PORT=5433
+    depends_on:
+      - app_db
+      - rabbitmq
+      - challenger-app
+  rent-service:
+    image: trycatchlearn/rent-service:latest
+    build: 
+      context: .
+      dockerfile: src/services/rent/Rent.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONEMT=Development
+      - ASPNETCORE_URLS=http://+80
+      - BusConnection__HostName=rabbitmq
+      - BusConnection__UserName=guest
+      - BusConnection__Password=guest
+      - BusConnection__RetryCount=4
+      - ConnectionStrings__DefaultConnection=Host=localhost;Username=postgres;Password=postgres;Database=SampleDbDriver; PORT=5433
+    depends_on:
+      - app_db
+      - rabbitmq
+      - challenger-app
+  user-service:
+    image: trycatchlearn/user-service:latest
+    build: 
+      context: .
+      dockerfile: src/services/user/User.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONEMT=Development
+      - ASPNETCORE_URLS=http://+80
+      - BusConnection__HostName=rabbitmq
+      - BusConnection__UserName=guest
+      - BusConnection__Password=guest
+      - BusConnection__RetryCount=4
+      - ConnectionStrings__DefaultConnection=Host=localhost;Username=postgres;Password=postgres;Database=SampleDbDriver; PORT=5433
+    depends_on:
+      - app_db
+      - rabbitmq
+      - challenger-app
+  order-service:
+    image: trycatchlearn/order-service:latest
+    build: 
+      context: .
+      dockerfile: src/services/order/Order.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONEMT=Development
+      - ASPNETCORE_URLS=http://+80
+      - BusConnection__HostName=rabbitmq
+      - BusConnection__UserName=guest
+      - BusConnection__Password=guest
+      - BusConnection__RetryCount=4
+      - ConnectionStrings__DefaultConnection=Host=localhost;Username=postgres;Password=postgres;Database=SampleDbDriver; PORT=5433
+    depends_on:
+      - app_db
+      - rabbitmq
+      - challenger-app
+
+volumes:
+  app_data:

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.29" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.22" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Rent.Domain\Rent.Domain.csproj" />
+      <ProjectReference Include="..\..\..\BusConnection\BusConnection.Core\BusConnections.Core.csproj" />
+      <ProjectReference Include="..\..\..\BusConnection\BusConnection.Events\BusConnections.Events.csproj" />
+    </ItemGroup>
+
+</Project>

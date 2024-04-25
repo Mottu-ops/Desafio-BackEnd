@@ -1,0 +1,29 @@
+@host = http://localhost:5212
+
+
+##Add new vehicle
+POST {{host}}/api/v1/motorcycles/create
+Accept: */*
+Content-Type: application/json
+
+{
+  "plateCode": "aaap5896",
+  "color": "blue",
+  "model": "Falcon500",
+  "year": "2022",
+  "owner": 1
+}
+###
+PUT {{host}}/api/v1/motorcycles/update HTTP/1.1
+Accept: */*
+Content-Type: application/json
+
+{
+  "id": 1,
+  "plateCode": "aaap5896",
+  "color": "blue",
+  "model": "Falcon500",
+  "year": "2022",
+  "owner": 1
+}
+###
