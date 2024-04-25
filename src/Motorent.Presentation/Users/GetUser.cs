@@ -1,9 +1,9 @@
-using Motorent.Application.Users.Queries.Get;
+using Motorent.Application.Users.Queries.GetUser;
 using Motorent.Presentation.Common.Endpoints;
 
 namespace Motorent.Presentation.Users;
 
-public sealed class Get : IEndpoint
+public sealed class GetUser : IEndpoint
 {
     public void MapEndpoints(IEndpointRouteBuilder app)
     {

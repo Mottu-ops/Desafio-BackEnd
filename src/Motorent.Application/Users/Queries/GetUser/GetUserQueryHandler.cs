@@ -3,7 +3,7 @@ using Motorent.Application.Common.Abstractions.Requests;
 using Motorent.Contracts.Users.Responses;
 using Motorent.Domain.Users.Repository;
 
-namespace Motorent.Application.Users.Queries.Get;
+namespace Motorent.Application.Users.Queries.GetUser;
 
 internal sealed class GetUserQueryHandler(IUserContext userContext, IUserRepository userRepository) 
     : IQueryHandler<GetUserQuery, UserResponse>

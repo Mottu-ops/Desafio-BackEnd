@@ -1,7 +1,7 @@
 using Motorent.Application.Common.Abstractions.Identity;
 using Motorent.Application.Common.Mappings;
 using Motorent.Application.Users.Common.Mappings;
-using Motorent.Application.Users.Queries.Get;
+using Motorent.Application.Users.Queries.GetUser;
 using Motorent.Domain.Users;
 using Motorent.Domain.Users.Repository;
 
