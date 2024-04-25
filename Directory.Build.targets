@@ -1,0 +1,30 @@
+<Project>
+    <ItemDefinitionGroup>
+        <InternalsVisibleTo>
+            <Visible>false</Visible>
+        </InternalsVisibleTo>
+    </ItemDefinitionGroup>
+    <Target Name="_PrepareGeneratedInternalsVisibleToFile" DependsOnTargets="PrepareForBuild">
+        <PropertyGroup>
+            <GeneratedInternalsVisibleToFile>$(IntermediateOutputPath)InternalsVisibleTo.generated$(DefaultLanguageSourceExtension)</GeneratedInternalsVisibleToFile>
+        </PropertyGroup>
+    </Target>
+    <!--/-:cnd-->
+    <Target Name="GenerateInternalsVisibleToFile"
+            Outputs="$(GeneratedInternalsVisibleToFile)"
+            BeforeTargets="CoreCompile"
+            DependsOnTargets="_PrepareGeneratedInternalsVisibleToFile"
+            Condition="'@(InternalsVisibleTo)' != ''">
+        <Message Text="Generating '$(GeneratedInternalsVisibleToFile)'"/>
+        <CreateItem
+                Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute"
+                AdditionalMetadata="_Parameter1=%(InternalsVisibleTo.Identity)$(InternalsVisibleToSuffix)"
+                Condition="'@(InternalsVisibleTo)' != ''">
+            <Output TaskParameter="Include" ItemName="InternalsVisibleToAttribute"/>
+        </CreateItem>
+        <WriteCodeFragment AssemblyAttributes="@(InternalsVisibleToAttribute)" Language="$(Language)" OutputFile="$(GeneratedInternalsVisibleToFile)">
+            <Output TaskParameter="OutputFile" ItemName="Compile"/>
+            <Output TaskParameter="OutputFile" ItemName="FileWrites"/>
+        </WriteCodeFragment>
+    </Target>
+</Project>

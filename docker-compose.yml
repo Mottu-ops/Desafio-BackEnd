@@ -1,0 +1,39 @@
+services:
+
+  core-webapi:
+    build: 
+      context: .
+      dockerfile: ./src/Job.WebApi/Dockerfile
+    user: app
+    container_name: core-webapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - '5001:8080'
+    networks:
+        - core-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:latest
+    container_name: postegres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=job
+    restart: unless-stopped
+    networks:
+        - core-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  core-network:
+    driver: bridge
