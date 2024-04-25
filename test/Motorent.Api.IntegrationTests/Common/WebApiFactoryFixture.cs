@@ -1,6 +1,6 @@
 namespace Motorent.Api.IntegrationTests.Common;
 
-public abstract class IntegrationTestFixture(WebApiFactory api) : IClassFixture<WebApiFactory>, IAsyncLifetime
+public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<WebApiFactory>, IAsyncLifetime
 {
     private HttpClient? client;
 

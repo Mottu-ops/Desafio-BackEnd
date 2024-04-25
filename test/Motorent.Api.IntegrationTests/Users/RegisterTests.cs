@@ -2,7 +2,7 @@ using Motorent.Domain.Users;
 
 namespace Motorent.Api.IntegrationTests.Users;
 
-public sealed class RegisterTests(WebApiFactory api) : IntegrationTestFixture(api)
+public sealed class RegisterTests(WebApiFactory api) : WebApiFactoryFixture(api)
 {
     [Fact]
     public async Task Register_WhenCommandIsValid_ShouldCreateUser()

@@ -4,7 +4,7 @@ using Motorent.Infrastructure.Common.Security;
 
 namespace Motorent.Api.IntegrationTests.Users;
 
-public sealed class RefreshTests(WebApiFactory api) : IntegrationTestFixture(api)
+public sealed class RefreshTests(WebApiFactory api) : WebApiFactoryFixture(api)
 {
     [Fact]
     public async Task RefreshToken_WhenTokensArValid_ShouldReturnTokenResponse()
