@@ -10,14 +10,14 @@ public sealed class RefreshTests(WebApiFactory api) : IntegrationTestFixture(api
     public async Task RefreshToken_WhenTokensArValid_ShouldReturnTokenResponse()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
         var loginResponse = await Client.SendAsync(
-            Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest));
+            Requests.User.LoginHttpRequest(Requests.User.LoginRequest));
 
         var tokenResponse = await loginResponse.Content.ReadFromJsonAsync<TokenResponse>(
             ApiSerializationOptions.Options);
 
-        var message = Requests.User.CreateHttpRefreshTokenRequest(new RefreshTokenRequest
+        var message = Requests.User.RefreshTokenHttpRequest(new RefreshTokenRequest
         {
             AccessToken = tokenResponse!.AccessToken,
             RefreshToken = tokenResponse.RefreshToken
@@ -44,14 +44,14 @@ public sealed class RefreshTests(WebApiFactory api) : IntegrationTestFixture(api
     public async Task RefreshToken_WhenTokenIsRefreshed_ShouldMarkRefreshTokenAsUsed()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
         var loginResponse = await Client.SendAsync(
-            Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest));
+            Requests.User.LoginHttpRequest(Requests.User.LoginRequest));
 
         var tokenResponse = await loginResponse.Content.ReadFromJsonAsync<TokenResponse>(
             ApiSerializationOptions.Options);
 
-        var message = Requests.User.CreateHttpRefreshTokenRequest(new RefreshTokenRequest
+        var message = Requests.User.RefreshTokenHttpRequest(new RefreshTokenRequest
         {
             AccessToken = tokenResponse!.AccessToken,
             RefreshToken = tokenResponse.RefreshToken
@@ -79,14 +79,14 @@ public sealed class RefreshTests(WebApiFactory api) : IntegrationTestFixture(api
     public async Task RefreshToken_WhenAccessTokenIsInvalid_ShouldReturnUnauthorized()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
         var loginResponse = await Client.SendAsync(
-            Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest));
+            Requests.User.LoginHttpRequest(Requests.User.LoginRequest));
 
         var tokenResponse = await loginResponse.Content.ReadFromJsonAsync<TokenResponse>(
             ApiSerializationOptions.Options);
 
-        var message = Requests.User.CreateHttpRefreshTokenRequest(new RefreshTokenRequest
+        var message = Requests.User.RefreshTokenHttpRequest(new RefreshTokenRequest
         {
             AccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ODQ2NTRhZS03NDVmLTQ0ZGQtOGIwNC05ZjMyZmU4" +
                           "YTM4MDQiLCJzdWIiOiIwMUhXN1dNUFM3N1RIRTFLOVdaUUFFNzBBUCIsInJvbGUiOiJyZW50ZXIiLCJuYW1lIjoiSm" +
@@ -107,14 +107,14 @@ public sealed class RefreshTests(WebApiFactory api) : IntegrationTestFixture(api
     public async Task RefreshToken_WhenRefreshTokenIsInvalid_ShouldReturnUnauthorized()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
         var loginResponse = await Client.SendAsync(
-            Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest));
+            Requests.User.LoginHttpRequest(Requests.User.LoginRequest));
 
         var tokenResponse = await loginResponse.Content.ReadFromJsonAsync<TokenResponse>(
             ApiSerializationOptions.Options);
 
-        var message = Requests.User.CreateHttpRefreshTokenRequest(new RefreshTokenRequest
+        var message = Requests.User.RefreshTokenHttpRequest(new RefreshTokenRequest
         {
             AccessToken = tokenResponse!.AccessToken,
             RefreshToken = "RimGKeC1Uvt4k29PpRiuR/ER4YgLTUDdHLjo1zeeeINGjBcOXESOOcCcMdsg+s0MDErnN6lWLByMRWPMVqtU2g=="

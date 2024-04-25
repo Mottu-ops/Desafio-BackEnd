@@ -12,9 +12,9 @@ public sealed class LoginTests(WebApiFactory api) : IntegrationTestFixture(api)
     public async Task Login_WhenUserExistsAndPasswordIsCorrect_ShouldReturnValidTokenResponse()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
 
-        var message = Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest);
+        var message = Requests.User.LoginHttpRequest(Requests.User.LoginRequest);
 
         // Act
         var response = await Client.SendAsync(message);
@@ -38,9 +38,9 @@ public sealed class LoginTests(WebApiFactory api) : IntegrationTestFixture(api)
         // Arrange
         await ResetDatabaseAsync();
 
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
 
-        var message = Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest);
+        var message = Requests.User.LoginHttpRequest(Requests.User.LoginRequest);
 
         // Act
         var response = await Client.SendAsync(message);
@@ -76,7 +76,7 @@ public sealed class LoginTests(WebApiFactory api) : IntegrationTestFixture(api)
         // Arrange
         await ResetDatabaseAsync();
 
-        var message = Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest);
+        var message = Requests.User.LoginHttpRequest(Requests.User.LoginRequest);
 
         // Act
         var response = await Client.SendAsync(message);
@@ -94,9 +94,9 @@ public sealed class LoginTests(WebApiFactory api) : IntegrationTestFixture(api)
     public async Task Login_WhenUserExistsButPasswordIsIncorrect_ShouldReturnUnauthorized()
     {
         // Arrange
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
 
-        var message = Requests.User.CreateHttpLoginRequest(Requests.User.LoginRequest with
+        var message = Requests.User.LoginHttpRequest(Requests.User.LoginRequest with
         {
             Password = "quero um emprego :("
         });

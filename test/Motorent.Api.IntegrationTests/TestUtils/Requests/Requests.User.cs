@@ -21,13 +21,13 @@ internal static partial class Requests
             Birthdate = new DateOnly(2000, 9, 5)
         };
 
-        public static HttpRequestMessage CreateHttpLoginRequest(LoginRequest request) =>
+        public static HttpRequestMessage LoginHttpRequest(LoginRequest request) =>
             Post("v1/users/login", request);
 
-        public static HttpRequestMessage CreateHttpRegisterRequest(RegisterRequest request) =>
+        public static HttpRequestMessage RegisterHttpRequest(RegisterRequest request) =>
             Post("v1/users/register", request);
 
-        public static HttpRequestMessage CreateHttpRefreshTokenRequest(RefreshTokenRequest request) =>
+        public static HttpRequestMessage RefreshTokenHttpRequest(RefreshTokenRequest request) =>
             Post("v1/users/refresh-token", request);
     }
 }

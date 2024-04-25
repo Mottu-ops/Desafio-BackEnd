@@ -8,7 +8,7 @@ public sealed class RegisterTests(WebApiFactory api) : IntegrationTestFixture(ap
     public async Task Register_WhenCommandIsValid_ShouldCreateUser()
     {
         // Arrange
-        var message = Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest);
+        var message = Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest);
 
         // Act
         var response = await Client.SendAsync(message);
@@ -29,11 +29,11 @@ public sealed class RegisterTests(WebApiFactory api) : IntegrationTestFixture(ap
         // Arrange
         await ResetDatabaseAsync();
         
-        await Client.SendAsync(Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+        await Client.SendAsync(Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
 
         // Act
         var response = await Client.SendAsync(
-            Requests.User.CreateHttpRegisterRequest(Requests.User.RegisterRequest));
+            Requests.User.RegisterHttpRequest(Requests.User.RegisterRequest));
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.Conflict);
