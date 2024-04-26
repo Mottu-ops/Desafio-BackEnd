@@ -85,7 +85,7 @@ public sealed class MotoboyService(
             return new CommandResponse<string>(validationFailures);
         }
 
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",  cnpj + extension);
+        var path = Path.Combine(Directory.GetCurrentDirectory(),  cnpj + extension);
         await using var stream = new FileStream(path, FileMode.OpenOrCreate);
         await file.FileDetails.CopyToAsync(stream, cancellationToken);
 
