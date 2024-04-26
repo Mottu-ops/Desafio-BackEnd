@@ -1,3 +1,10 @@
+using Motorent.Domain.Users.Enums;
+using Motorent.Domain.Users.ValueObjects;
+using Motorent.Infrastructure.Renters.Persistence.Configuration;
+using Motorent.Infrastructure.Users;
+using Motorent.Infrastructure.Users.Persistence.Configuration;
+using Motorent.TestUtils.Constants;
+
 namespace Motorent.Api.IntegrationTests.Common;
 
 public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<WebApiFactory>, IAsyncLifetime
@@ -13,4 +20,53 @@ public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<We
     public Task InitializeAsync() => Task.CompletedTask;
 
     public Task DisposeAsync() => api.ResetDatabaseAsync();
+
+    protected async Task<UserId> CreateUserAsync(UserData data)
+    {
+        var encryptionService = new EncryptionService();
+        var passwordHash = encryptionService.Encrypt(data.Password);
+        var sql = $"""
+                   INSERT INTO {UserConstants.TableName} (id, role, name, birthdate, email, password_hash)
+                   VALUES ('{data.UserId}',
+                           '{data.Role.Name}',
+                           '{data.Name.Value}',
+                           '{data.Birthdate.Value.ToString()}',
+                           '{data.Email}',
+                           '{passwordHash}')
+                   """;
+
+        await DataContext.Database.ExecuteSqlRawAsync(sql);
+
+        if (data.Role == Role.Renter)
+        {
+            await CreateRenterAsync(data);
+        }
+
+        return data.UserId;
+    }
+
+    private async Task CreateRenterAsync(UserData data)
+    {
+        var sql = $"""
+                   INSERT INTO {RenterConstants.TableName} (
+                                                              id,
+                                                              user_id,
+                                                              cnpj,
+                                                              cnh_number,
+                                                              cnh_category,
+                                                              cnh_exp_date,
+                                                              name,
+                                                              birthdate)
+                   VALUES ('{Constants.Renter.Id}',
+                           '{data.UserId}',
+                           '{Constants.Renter.Cnpj}',
+                           '{Constants.Renter.Cnh.Number.Value}',
+                           '{Constants.Renter.Cnh.Category.Name}',
+                           '{Constants.Renter.Cnh.ExpirationDate.ToString()}',
+                           '{data.Name.Value}',
+                           '{data.Birthdate.Value.ToString()}')
+                   """;
+
+        await DataContext.Database.ExecuteSqlRawAsync(sql);
+    }
 }
