@@ -11,4 +11,7 @@ internal sealed class RenterRepository(DataContext context) : Repository<Renter,
 {
     public Task<Renter?> FindByUserAsync(UserId userId, CancellationToken cancellationToken = default) =>
         Set.SingleOrDefaultAsync(r => r.UserId == userId, cancellationToken);
+
+    public Task<bool> ExistsByUserAsync(UserId userId, CancellationToken cancellationToken = default) =>
+        Set.AnyAsync(r => r.UserId == userId, cancellationToken);
 }
