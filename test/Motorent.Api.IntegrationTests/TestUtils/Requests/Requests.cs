@@ -18,4 +18,6 @@ internal static partial class Requests
         {
             Content = new StringContent(Serialize(request), Encoding, MediaType)
         };
+    
+    private static HttpRequestMessage Get(string path) => new(HttpMethod.Get, $"{BaseUrl}/{path}");
 }

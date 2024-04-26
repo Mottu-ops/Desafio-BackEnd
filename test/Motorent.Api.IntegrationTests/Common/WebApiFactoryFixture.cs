@@ -1,3 +1,7 @@
+using System.Net.Http.Headers;
+using Microsoft.Extensions.DependencyInjection;
+using Motorent.Application.Common.Abstractions.Security;
+using Motorent.Domain.Users;
 using Motorent.Domain.Users.Enums;
 using Motorent.Domain.Users.ValueObjects;
 using Motorent.Infrastructure.Renters.Persistence.Configuration;
@@ -9,6 +13,7 @@ namespace Motorent.Api.IntegrationTests.Common;
 
 public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<WebApiFactory>, IAsyncLifetime
 {
+    private readonly IServiceScope serviceScope = api.Services.CreateScope();
     private HttpClient? client;
 
     protected HttpClient Client => client ??= api.CreateClient();
@@ -19,7 +24,29 @@ public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<We
 
     public Task InitializeAsync() => Task.CompletedTask;
 
-    public Task DisposeAsync() => api.ResetDatabaseAsync();
+    public Task DisposeAsync()
+    {
+        serviceScope.Dispose();
+        return api.ResetDatabaseAsync();
+    }
+
+    protected async Task AuthenticateAsync(UserId userId)
+    {
+        var user = await DataContext.Set<User>()
+            .SingleOrDefaultAsync(u => u.Id == userId);
+
+        if (user is null)
+        {
+            throw new InvalidOperationException(
+                $"User with id {userId} not found. Make sure to create the user before authenticating.");
+        }
+
+        var securityTokenService = serviceScope.ServiceProvider.GetRequiredService<ISecurityTokenService>();
+        var securityToken = await securityTokenService.GenerateTokenAsync(user);
+
+        Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+            "Bearer", securityToken.AccessToken);
+    }
 
     protected async Task<UserId> CreateUserAsync(UserData data)
     {

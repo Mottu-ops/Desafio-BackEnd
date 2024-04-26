@@ -29,5 +29,7 @@ internal static partial class Requests
 
         public static HttpRequestMessage RefreshTokenHttpRequest(RefreshTokenRequest request) =>
             Post("v1/users/refresh-token", request);
+        
+        public static HttpRequestMessage GetUserHttpRequest() => Get("v1/users");
     }
 }
