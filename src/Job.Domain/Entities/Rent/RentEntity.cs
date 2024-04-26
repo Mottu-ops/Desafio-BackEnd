@@ -43,8 +43,13 @@ public class RentEntity : BaseEntity
         DatePreview = datePreview;
         var days = DateEnd.DayNumber - DatePreview.DayNumber;
 
-        if (DateEnd < DatePreview) Fine = 50 * days;
-        if (days <= 0) Fine = 0;
+        if (DateEnd < DatePreview)
+        {
+            Fine = 50 * (days * -1);
+            return Fine ?? 0;
+        }
+
+        if (days <= 0) return 0;
 
         Fine = Plan switch
         {
