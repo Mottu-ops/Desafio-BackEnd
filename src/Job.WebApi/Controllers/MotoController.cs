@@ -29,6 +29,15 @@ public class MotoController(
         return moto is null ? NotFound() : Ok(moto);
     }
 
+    [HttpGet]
+    [Authorize(Roles = "admin,motoboy")]
+    public async Task<IActionResult> GetByPlate([FromQuery] string plate, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Recuperando moto por placa {plate}", plate);
+        var moto = await motoService.GetByPlateAsync(plate, cancellationToken);
+        return moto is null ? NotFound() : Ok(moto);
+    }
+
     [HttpPost]
     [Authorize(Roles = "admin")]
     public async Task<IActionResult> Create([FromBody] CreateMotoCommand command, CancellationToken cancellationToken)
