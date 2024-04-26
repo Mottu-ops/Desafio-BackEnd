@@ -22,4 +22,10 @@ public class RentRepository(JobContext context) : IRentRepository
     {
         return await context.Rents.Where(x => x.IdMoto == id).FirstOrDefaultAsync(cancellationToken);
     }
+
+    public async Task UpdateAsync(RentEntity rent, CancellationToken cancellationToken)
+    {
+        context.Rents.Update(rent);
+        await context.SaveChangesAsync(cancellationToken);
+    }
 }

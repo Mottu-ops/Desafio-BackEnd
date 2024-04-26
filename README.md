@@ -13,7 +13,7 @@ Agradeço a oportunidade e aguardo feedback.
 ## Intruções para execução
 
 Para executar o projeto, basta clonar o repositório e executar o comando `docker compose up -d` para subir o container do banco de dados e da aplicação.
-Abra o navegador e acesse `http://lcalhost:5001/swagger/index.html` para visualizar a aplicação.
+Abra o navegador e acesse `http://localhost:5001/swagger/index.html~~~~` para visualizar a aplicação.
 
 Ao executar o comando `docker compose up -d` o banco de dados será populado com dados de teste.
 

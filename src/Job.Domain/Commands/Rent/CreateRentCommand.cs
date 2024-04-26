@@ -2,4 +2,7 @@
 
 namespace Job.Domain.Commands.Rent;
 
-public record CreateRentCommand(Guid IdMotoboy, Guid IdMoto, DateOnly DatePreview, EPlan Plan);
+public record CreateRentCommand(Guid IdMoto, DateTime DatePreview, EPlan Plan)
+{
+    public string Cnpj { get; set; } = default!;
+}

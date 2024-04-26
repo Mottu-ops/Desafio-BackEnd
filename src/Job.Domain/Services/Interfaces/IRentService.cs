@@ -5,7 +5,7 @@ namespace Job.Domain.Services.Interfaces;
 
 public interface IRentService
 {
-    Task<CommandResponse> CreateRentAsync(CreateRentCommand command, CancellationToken cancellationToken);
+    Task<CommandResponse<string>> CreateRentAsync(CreateRentCommand command, CancellationToken cancellationToken);
 
-    Task<CommandResponse> CancelRentAsync(CancelRentCommand command, CancellationToken cancellationToken);
+    Task<CommandResponse<string>> CancelRentAsync(CancelRentCommand command, CancellationToken cancellationToken);
 }

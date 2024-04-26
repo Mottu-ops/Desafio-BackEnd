@@ -9,4 +9,6 @@ public interface IRentRepository
     Task<RentEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
     Task<RentEntity?> GetByMotoIdAsync(Guid id, CancellationToken cancellationToken);
+
+    Task UpdateAsync(RentEntity rent, CancellationToken cancellationToken);
 }

@@ -10,4 +10,5 @@ public interface IMotoboyRepository
     Task<bool> CheckCnpjExistsAsync(string cnpj, CancellationToken cancellationToken);
     Task CreateAsync(MotoboyEntity motoboy, CancellationToken cancellationToken);
     Task UpdateAsync(MotoboyEntity motoboy, CancellationToken cancellationToken);
+    Task<bool> CheckCnhExistsAsync(string cnh, CancellationToken cancellationToken);
 }

@@ -38,4 +38,9 @@ public class MotoboyRepository(JobContext context) : IMotoboyRepository
         context.Motoboys.Update(motoboy);
         await context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<bool> CheckCnhExistsAsync(string cnh, CancellationToken cancellationToken)
+    {
+        return await context.Motoboys.AnyAsync(x => x.Document == cnh, cancellationToken);
+    }
 }

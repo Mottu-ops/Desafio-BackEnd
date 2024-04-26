@@ -12,13 +12,10 @@ public sealed class MotoboyService(
     ILogger<MotoboyService> logger,
     IMotoboyRepository motoboyRepository) : IMotoboyService
 {
-    public async Task<CommandResponse> CreateAsync(CreateMotoboyCommand command, CancellationToken cancellationToken)
+    public async Task<CommandResponse<string>> CreateAsync(CreateMotoboyCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciando o processo de criação de um motoboy");
         var validate = await new CreateMotoboyValidation().ValidateAsync(command, cancellationToken);
-
-
-        //TODO: Publicando imagem
 
         logger.LogInformation("Criando objeto motoboy");
         var motoboyEntity = new MotoboyEntity(command.Password, command.Name, command.Cnpj, DateOnly.FromDateTime(command.DateBirth), command.Cnh, command.TypeCnh);
@@ -29,17 +26,23 @@ public sealed class MotoboyService(
             validate.Errors.Add(new ValidationFailure("Cnpj", "CNPJ já cadastrado"));
         }
 
+        if(validate.IsValid && await motoboyRepository.CheckCnhExistsAsync(motoboyEntity.Document, cancellationToken))
+        {
+            logger.LogInformation("CNH já cadastrada {cnh}", motoboyEntity.Document);
+            validate.Errors.Add(new ValidationFailure("Cnh", "CNH já cadastrada"));
+        }
+
         if(!validate.IsValid)
         {
             logger.LogInformation("Erros de validação encontrados {errors}", validate.Errors);
-            return new CommandResponse(validate.Errors);
+            return new CommandResponse<string>(validate.Errors);
         }
 
         await motoboyRepository.CreateAsync(motoboyEntity, cancellationToken);
 
 
         logger.LogInformation("Motoboy criado com sucesso");
-        return new CommandResponse(motoboyEntity.Id);
+        return new CommandResponse<string>(motoboyEntity.Id);
     }
 
     public async Task<MotoboyQuery?> GetMotoboy(AuthenticationMotoboyCommand command, CancellationToken cancellationToken)
@@ -57,7 +60,7 @@ public sealed class MotoboyService(
         return new MotoboyQuery(motoboy.Id, motoboy.Cnpj);
     }
 
-    public async Task<CommandResponse> UploadImageAsync(string cnpj, UploadCnhMotoboyCommand file, CancellationToken cancellationToken)
+    public async Task<CommandResponse<string>> UploadImageAsync(string cnpj, UploadCnhMotoboyCommand file, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciando upload de imagem");
 
@@ -69,7 +72,7 @@ public sealed class MotoboyService(
         {
             logger.LogInformation("Tipo de arquivo inválido");
             validationFailures.Add(new ValidationFailure("File", "Tipo de arquivo inválido"));
-            return new CommandResponse(validationFailures);
+            return new CommandResponse<string>(validationFailures);
         }
 
         logger.LogInformation("Buscando motoboy {cnpj}", cnpj);
@@ -79,7 +82,7 @@ public sealed class MotoboyService(
         {
             logger.LogError("Motoboy não encontrado");
             validationFailures.Add(new ValidationFailure("Cnpj", "Motoboy não encontrado"));
-            return new CommandResponse(validationFailures);
+            return new CommandResponse<string>(validationFailures);
         }
 
         var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",  cnpj + extension);
@@ -90,6 +93,6 @@ public sealed class MotoboyService(
         await motoboyRepository.UpdateAsync(motoboy, cancellationToken);
 
         logger.LogInformation("Upload de imagem realizado com sucesso");
-        return new CommandResponse(motoboy.Id);
+        return new CommandResponse<string>(motoboy.Id);
     }
 }
