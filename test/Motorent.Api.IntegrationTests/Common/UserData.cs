@@ -11,7 +11,8 @@ public sealed record UserData(
     Name Name,
     Birthdate Birthdate,
     string Email,
-    string Password)
+    string Password,
+    bool CreateRenter = true)
 {
     public static readonly UserData Default = new(
         Constants.User.Id,

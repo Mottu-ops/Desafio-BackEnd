@@ -64,7 +64,7 @@ public abstract class WebApiFactoryFixture(WebApiFactory api) : IClassFixture<We
 
         await DataContext.Database.ExecuteSqlRawAsync(sql);
 
-        if (data.Role == Role.Renter)
+        if (data.Role == Role.Renter && data.CreateRenter)
         {
             await CreateRenterAsync(data);
         }
