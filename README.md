@@ -1,14 +1,6 @@
 # Introdução
 
-Olá,
-
-Gostaria de salientar, antes de prosseguir com a análise do meu código, que este foi inteiramente escrito na quinta-feira (24/05). Conforme acordado com Brian Ripper, o prazo para entrega do projeto era de dois dias, portanto, peço que isso seja levado em consideração.
-
-No tempo disponível, tentei entregar o melhor trabalho possível, priorizando a implementação de funcionalidades e realização de testes extensivos, sempre mantendo a organização do código.
-
-Estarei implementando alguns testes de integração até às 14 horas do dia 25/04, cumprindo, assim, parte dos requisitos. Estou à disposição para discutirmos mais sobre o código e tecnologias envolvidas, caso seja necessário.
-
-Agradeço a oportunidade e aguardo feedback.
+< Incluir introdução >
 
 ## Intruções para execução
 
