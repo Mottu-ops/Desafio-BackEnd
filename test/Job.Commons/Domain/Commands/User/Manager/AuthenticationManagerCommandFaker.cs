@@ -3,7 +3,7 @@ using Job.Domain.Commands.User.Manager;
 
 namespace Job.Commons.Domain.Commands.User.Manager;
 
-public class AuthenticationManagerCommandFaker
+public static class AuthenticationManagerCommandFaker
 {
     public static Faker<AuthenticationManagerCommand> Default()
     {

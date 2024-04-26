@@ -16,4 +16,5 @@ public class MotoboyServiceTest
         _motoboyService = new MotoboyService(_logger.Object, _managerRepository.Object);
     }
 
+
 }

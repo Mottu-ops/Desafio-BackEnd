@@ -14,7 +14,7 @@ public static class DependencyInjectService
     {
         services.AddDbContext<JobContext>(options =>
         {
-            options.UseNpgsql("Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=job;");
+            options.UseNpgsql("Server=postgres;Port=5432;User Id=postgres;Password=postgres;Database=job;");
         });
 
         services.RegisterService();
