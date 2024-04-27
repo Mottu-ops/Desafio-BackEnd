@@ -1,5 +1,8 @@
-﻿using Job.Commons.Domain.Commands.User.Manager;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Job.Commons.Domain.Commands.User.Manager;
 using Job.Commons.Domain.Entities.User;
+using Job.Domain.Commands.User.Manager;
 using Job.Domain.Entities.User;
 using Job.Domain.Repositories;
 using Job.Domain.Services;
@@ -12,11 +15,12 @@ public class ManagerServiceTest
 {
     private readonly Mock<ILogger<ManagerService>> _logger = new();
     private readonly Mock<IManagerRepository> _managerRepository = new();
+    private readonly Mock<IValidator<AuthenticationManagerCommand>> _validator = new();
     private readonly ManagerService _managerService;
 
     public ManagerServiceTest()
     {
-        _managerService = new ManagerService(_logger.Object, _managerRepository.Object);
+        _managerService = new ManagerService(_logger.Object, _managerRepository.Object, _validator.Object);
     }
 
     #region GetManager
@@ -27,7 +31,7 @@ public class ManagerServiceTest
         // Arrange
         var command = AuthenticationManagerCommandFaker.Default().Generate();
         var manager = ManagerEntityFaker.Default().Generate();
-        _managerRepository.Setup(x => x.GetAsync(command.email, command.password, It.IsAny<CancellationToken>()))
+        _managerRepository.Setup(x => x.GetAsync(command.Email, command.Password, It.IsAny<CancellationToken>()))
             .ReturnsAsync(manager);
 
         // Act
@@ -35,7 +39,7 @@ public class ManagerServiceTest
 
         // Assert
         Assert.NotNull(response);
-        _managerRepository.Verify(x => x.GetAsync(command.email, command.password, It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(command.Email, command.Password, It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -52,6 +56,27 @@ public class ManagerServiceTest
         // Assert
         Assert.Null(response);
         _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetManager_WhenCommandIsInvalid_ShouldReturnValidationErrors()
+    {
+        // Arrange
+        var command = AuthenticationManagerCommandFaker.Invalid().Generate();
+        var validationErrors = new List<ValidationFailure>
+        {
+            new("Email", "Email inválido")
+        };
+        _validator.Setup(x => x.ValidateAsync(command, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new ValidationResult(validationErrors));
+
+        // Act
+        var response = await _managerService.GetManager(command, CancellationToken.None);
+
+        // Assert
+        Assert.NotNull(response);
+        Assert.NotEmpty(response.Errors);
+        _validator.Verify(x => x.ValidateAsync(command, It.IsAny<CancellationToken>()), Times.Once);
     }
 
     #endregion

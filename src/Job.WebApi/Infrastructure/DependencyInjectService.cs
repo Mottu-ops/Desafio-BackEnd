@@ -10,11 +10,12 @@ namespace Job.WebApi.Infrastructure;
 
 public static class DependencyInjectService
 {
-    public static void AddDependencyInject(this IServiceCollection services)
+    public static void AddDependencyInject(this IServiceCollection services, IConfiguration configuration)
     {
+
         services.AddDbContext<JobContext>(options =>
         {
-            options.UseNpgsql("Server=postgres;Port=5432;User Id=postgres;Password=postgres;Database=job;");
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
 
         services.RegisterService();

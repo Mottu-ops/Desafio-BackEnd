@@ -39,7 +39,7 @@ public class MotoboyController(
 
         if (!response.Success)
         {
-            return BadRequest(response.Message);
+            return BadRequest(response.Errors);
         }
 
         return Ok(response.Id);
@@ -55,7 +55,7 @@ public class MotoboyController(
 
         if (!response.Success)
         {
-            return BadRequest(response.Message);
+            return BadRequest(response.Errors);
         }
 
         return Ok(response.Id);

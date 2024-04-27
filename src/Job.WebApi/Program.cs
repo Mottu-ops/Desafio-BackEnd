@@ -36,7 +36,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-builder.Services.AddDependencyInject();
+var configuration = builder.Configuration;
+builder.Services.AddDependencyInject(configuration);
 
 builder.Services.AddAuthentication(x =>
 {

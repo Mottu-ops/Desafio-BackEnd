@@ -18,14 +18,16 @@ public class ManagerController(
     public async Task<IActionResult> Authentication(AuthenticationManagerCommand command)
     {
         logger.LogInformation("Iniciado autenticação de admin");
-        var manager = await managerService.GetManager(command);
+        var response = await managerService.GetManager(command);
 
-        if (manager is null)
-        {
-            return NotFound();
-        }
+        if (response.Success is false)
+            return BadRequest(response.Errors);
 
-        var token = tokenService.GenerateToken(manager.Email, "admin");
+        var query = response.Data;
+
+        if (query is null) return NotFound();
+
+        var token = tokenService.GenerateToken(query.Email, "admin");
 
         return Ok(token);
     }

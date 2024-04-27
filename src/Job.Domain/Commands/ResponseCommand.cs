@@ -6,7 +6,7 @@ public sealed class CommandResponse<T>
 {
     public CommandResponse(IEnumerable<ValidationFailure> failure)
     {
-        Message = failure.Select(x =>
+        Errors = failure.Select(x =>
             new ErrorMessage(
                 x.ErrorMessage,
                 x.PropertyName,
@@ -17,16 +17,23 @@ public sealed class CommandResponse<T>
 
     public CommandResponse(Guid id)
     {
-        Message = new List<ErrorMessage>();
+        Errors = new List<ErrorMessage>();
         Id = id;
+        Data = default!;
+    }
+
+    public CommandResponse()
+    {
+        Errors = new List<ErrorMessage>();
+        Id = Guid.Empty;
         Data = default!;
     }
 
     public Guid Id { get; }
 
-    public IEnumerable<ErrorMessage> Message { get; }
+    public IEnumerable<ErrorMessage> Errors { get; }
 
     public T Data { get; set; }
 
-    public bool Success => Message.Any() is false;
+    public bool Success => Errors.Any() is false;
 }

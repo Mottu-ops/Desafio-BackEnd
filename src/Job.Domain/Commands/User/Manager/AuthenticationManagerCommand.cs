@@ -1,3 +1,3 @@
 ﻿namespace Job.Domain.Commands.User.Manager;
 
-public record AuthenticationManagerCommand(string email, string password);
+public record AuthenticationManagerCommand(string Email, string Password);
