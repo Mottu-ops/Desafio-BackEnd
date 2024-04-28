@@ -5,13 +5,13 @@ public sealed class MotoEntity(int year, string model, string plate) : BaseEntit
 
     public int Year { get; private set; } = year;
     public string Model { get; private set; } = model;
-    public string Plate { get; private set; } = plate;
+    public string Plate { get; private set; } = plate.Replace("-", string.Empty);
 
     public void Update(int year, string model, string plate)
     {
         base.Update();
         Year = year;
         Model = model;
-        Plate = plate;
+        Plate = plate.Replace("-", string.Empty);
     }
 }

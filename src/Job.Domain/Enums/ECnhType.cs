@@ -2,6 +2,6 @@
 
 public enum ECnhType
 {
-    A,
-    B,
+    A = 1,
+    B = 2,
 }

@@ -45,19 +45,30 @@ public sealed class MotoboyService(
         return new CommandResponse<string>(motoboyEntity.Id);
     }
 
-    public async Task<MotoboyQuery?> GetMotoboy(AuthenticationMotoboyCommand command, CancellationToken cancellationToken)
+    public async Task<CommandResponse<MotoboyQuery?>> GetMotoboy(AuthenticationMotoboyCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Buscando motoboy {cnpj}", command.Cnpj);
-        var motoboy = await motoboyRepository.GetAsync(command.Cnpj, command.Password, cancellationToken);
+        var validate = await new AuthenticationMotoboyValidation().ValidateAsync(command, cancellationToken);
 
-        if (motoboy is null)
+        if (validate.IsValid)
         {
-            logger.LogError("Motoboy não encontrado");
-            return null;
+            var motoboy = await motoboyRepository.GetAsync(command.Cnpj, command.Password, cancellationToken);
+
+            if (motoboy is null)
+            {
+                logger.LogError("Motoboy não encontrado");
+                return new CommandResponse<MotoboyQuery?>();
+            }
+
+            logger.LogInformation("Motoboy encontrado com sucesso");
+            var query = new MotoboyQuery(motoboy.Id, motoboy.Cnpj);
+            return new CommandResponse<MotoboyQuery?>
+            {
+                Data = query
+            };
         }
 
-        logger.LogInformation("Motoboy encontrado com sucesso");
-        return new MotoboyQuery(motoboy.Id, motoboy.Cnpj);
+        return new CommandResponse<MotoboyQuery?>(validate.Errors);
     }
 
     public async Task<CommandResponse<string>> UploadImageAsync(string cnpj, UploadCnhMotoboyCommand file, CancellationToken cancellationToken)

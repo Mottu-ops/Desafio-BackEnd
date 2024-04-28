@@ -26,15 +26,15 @@ public sealed class MotoService(
             validator.Errors.Add(new ValidationFailure("Plate", "Placa já cadastrada"));
         }
 
-        if (!validator.IsValid)
+        if (validator.IsValid)
         {
-            logger.LogInformation("Erros de validação encontrados {errors}", validator.Errors);
-            return new CommandResponse<string>(validator.Errors);
+            logger.LogInformation("Moto criada com sucesso");
+            await motoRepository.CreateAsync(moto, cancellationToken);
+            return new CommandResponse<string>(moto.Id);
         }
 
-        logger.LogInformation("Moto criada com sucesso");
-        await motoRepository.CreateAsync(moto, cancellationToken);
-        return new CommandResponse<string>(moto.Id);
+        logger.LogInformation("Erros de validação encontrados {errors}", validator.Errors);
+        return new CommandResponse<string>(validator.Errors);
     }
 
     public async Task<CommandResponse<string>> UpdateAsync(UpdateMotoCommand command, CancellationToken cancellationToken)
@@ -49,16 +49,16 @@ public sealed class MotoService(
             validator.Errors.Add(new ValidationFailure("Id", "Moto não encontrada"));
         }
 
-        if (!validator.IsValid)
+        if (validator.IsValid)
         {
-            logger.LogInformation("Erros de validação encontrados {errors}", validator.Errors);
-            return new CommandResponse<string>(validator.Errors);
+            moto!.Update(command.Year, command.Model, command.Plate);
+            logger.LogInformation("Moto atualizada com sucesso");
+            await motoRepository.UpdateAsync(moto, cancellationToken);
+            return new CommandResponse<string>(moto.Id);
         }
 
-        moto!.Update(command.Year, command.Model, command.Plate);
-        logger.LogInformation("Moto atualizada com sucesso");
-        await motoRepository.UpdateAsync(moto, cancellationToken);
-        return new CommandResponse<string>(moto.Id);
+        logger.LogInformation("Erros de validação encontrados {errors}", validator.Errors);
+        return new CommandResponse<string>(validator.Errors);
     }
 
     public async Task<CommandResponse<string>> DeleteAsync(Guid idMoto, CancellationToken cancellationToken)

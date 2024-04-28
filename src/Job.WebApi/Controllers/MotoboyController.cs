@@ -21,12 +21,12 @@ public class MotoboyController(
         logger.LogInformation("Iniciado autenticação de motoboy");
         var motoboy = await motoboyService.GetMotoboy(command, cancellationToken);
 
-        if (motoboy is null)
-        {
-            return NotFound();
-        }
+        if (!motoboy.Success) return BadRequest(motoboy.Errors);
 
-        var token = tokenService.GenerateToken(motoboy.Cnpj, "motoboy");
+        if (motoboy.Data is null)
+            return NotFound();
+
+        var token = tokenService.GenerateToken(motoboy.Data.Cnpj, "motoboy");
         return Ok(token);
     }
 

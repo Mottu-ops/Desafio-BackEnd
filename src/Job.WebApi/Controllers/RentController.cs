@@ -30,7 +30,6 @@ public sealed class RentController(
     {
         logger.LogInformation("Cancelando aluguel");
 
-
         var response = await rentService.CancelRentAsync(command, cancellationToken);
         return response.Success ? Ok(response) : BadRequest(response);
     }
