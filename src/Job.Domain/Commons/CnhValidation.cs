@@ -1,10 +1,13 @@
 ﻿namespace Job.Domain.Commons;
 
-public static class Cnh
+public static class CnhValidation
 {
     public static bool IsCnh(string cnh)
     {
         if (cnh == new string(Convert.ToChar(cnh[..1]), 11))
+            return false;
+
+        if(cnh.Length != 11)
             return false;
 
         var digitoVerificador1 = GerarDigitoVerificador(cnh[..9], false);
@@ -33,5 +36,12 @@ public static class Cnh
         }
 
         return soma % 11;
+    }
+
+    public static string FormatCnh(string cnh)
+    {
+        cnh = cnh.Trim();
+        cnh = cnh.Replace(".", "").Replace("-", "");
+        return cnh;
     }
 }

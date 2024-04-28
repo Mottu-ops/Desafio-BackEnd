@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-
-namespace Job.Domain.Commands;
+﻿namespace Job.Domain.Commands;
 
 public sealed class CommandResponse<T>
 {

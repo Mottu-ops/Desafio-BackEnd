@@ -19,7 +19,7 @@ public class CreateMotoboyValidation : AbstractValidator<CreateMotoboyCommand>
         RuleFor(x => x.Cnpj)
             .NotEmpty()
             .WithMessage("Cnpj é obrigatório")
-            .Must(Cnpj.IsCnpj)
+            .Must(CnpjValidation.IsCnpj)
             .WithMessage("Cnpj inválido");
 
         RuleFor(x => x.DateBirth)
@@ -31,7 +31,7 @@ public class CreateMotoboyValidation : AbstractValidator<CreateMotoboyCommand>
         RuleFor(x => x.Cnh)
             .NotEmpty()
             .WithMessage("Cnh é obrigatório")
-            .Must(Cnh.IsCnh)
+            .Must(CnhValidation.IsCnh)
             .WithMessage("CNH inválida");
 
         RuleFor(x => x.TypeCnh)

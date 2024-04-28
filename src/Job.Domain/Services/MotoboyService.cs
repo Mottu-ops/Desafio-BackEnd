@@ -1,6 +1,7 @@
 ﻿using Job.Domain.Commands;
 using Job.Domain.Commands.User.Motoboy;
 using Job.Domain.Commands.User.Motoboy.Validations;
+using Job.Domain.Commons;
 using Job.Domain.Entities.User;
 using Job.Domain.Queries.User;
 using Job.Domain.Repositories;
@@ -20,17 +21,7 @@ public sealed class MotoboyService(
         logger.LogInformation("Criando objeto motoboy");
         var motoboyEntity = new MotoboyEntity(command.Password, command.Name, command.Cnpj, DateOnly.FromDateTime(command.DateBirth), command.Cnh, command.TypeCnh);
 
-        if(validate.IsValid && await motoboyRepository.CheckCnpjExistsAsync(motoboyEntity.Cnpj, cancellationToken))
-        {
-            logger.LogInformation("CNPJ já cadastrado {cnpj}", motoboyEntity.Cnpj);
-            validate.Errors.Add(new ValidationFailure("Cnpj", "CNPJ já cadastrado"));
-        }
-
-        if(validate.IsValid && await motoboyRepository.CheckCnhExistsAsync(motoboyEntity.Document, cancellationToken))
-        {
-            logger.LogInformation("CNH já cadastrada {cnh}", motoboyEntity.Document);
-            validate.Errors.Add(new ValidationFailure("Cnh", "CNH já cadastrada"));
-        }
+        await CheckDocumentAsync(validate, motoboyEntity, cancellationToken);
 
         if(!validate.IsValid)
         {
@@ -39,7 +30,6 @@ public sealed class MotoboyService(
         }
 
         await motoboyRepository.CreateAsync(motoboyEntity, cancellationToken);
-
 
         logger.LogInformation("Motoboy criado com sucesso");
         return new CommandResponse<string>(motoboyEntity.Id);
@@ -50,25 +40,24 @@ public sealed class MotoboyService(
         logger.LogInformation("Buscando motoboy {cnpj}", command.Cnpj);
         var validate = await new AuthenticationMotoboyValidation().ValidateAsync(command, cancellationToken);
 
-        if (validate.IsValid)
+        if (!validate.IsValid)
+            return new CommandResponse<MotoboyQuery?>(validate.Errors);
+
+        var motoboy = await motoboyRepository.GetAsync(CnpjValidation.FormatCnpj(command.Cnpj), command.Password, cancellationToken);
+
+        if (motoboy is null)
         {
-            var motoboy = await motoboyRepository.GetAsync(command.Cnpj, command.Password, cancellationToken);
-
-            if (motoboy is null)
-            {
-                logger.LogError("Motoboy não encontrado");
-                return new CommandResponse<MotoboyQuery?>();
-            }
-
-            logger.LogInformation("Motoboy encontrado com sucesso");
-            var query = new MotoboyQuery(motoboy.Id, motoboy.Cnpj);
-            return new CommandResponse<MotoboyQuery?>
-            {
-                Data = query
-            };
+            logger.LogError("Motoboy não encontrado");
+            return new CommandResponse<MotoboyQuery?>();
         }
 
-        return new CommandResponse<MotoboyQuery?>(validate.Errors);
+        logger.LogInformation("Motoboy encontrado com sucesso");
+        var query = new MotoboyQuery(motoboy.Id, motoboy.Cnpj);
+        return new CommandResponse<MotoboyQuery?>
+        {
+            Data = query
+        };
+
     }
 
     public async Task<CommandResponse<string>> UploadImageAsync(string cnpj, UploadCnhMotoboyCommand file, CancellationToken cancellationToken)
@@ -106,4 +95,24 @@ public sealed class MotoboyService(
         logger.LogInformation("Upload de imagem realizado com sucesso");
         return new CommandResponse<string>(motoboy.Id);
     }
+
+    #region Private Methods
+
+    private async Task CheckDocumentAsync(ValidationResult validate, MotoboyEntity motoboyEntity,
+        CancellationToken cancellationToken)
+    {
+        if(validate.IsValid && await motoboyRepository.CheckCnpjExistsAsync(motoboyEntity.Cnpj, cancellationToken))
+        {
+            logger.LogInformation("CNPJ já cadastrado {cnpj}", motoboyEntity.Cnpj);
+            validate.Errors.Add(new ValidationFailure("Cnpj", "CNPJ já cadastrado"));
+        }
+
+        if(validate.IsValid && await motoboyRepository.CheckCnhExistsAsync(motoboyEntity.Document, cancellationToken))
+        {
+            logger.LogInformation("CNH já cadastrada {cnh}", motoboyEntity.Document);
+            validate.Errors.Add(new ValidationFailure("Cnh", "CNH já cadastrada"));
+        }
+    }
+
+    #endregion
 }

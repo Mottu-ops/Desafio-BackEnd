@@ -18,7 +18,7 @@ public static class AuthenticationManagerCommandFaker
     {
         return new Faker<AuthenticationManagerCommand>()
             .CustomInstantiator(faker => new AuthenticationManagerCommand(
-                faker.Internet.Email(),
+                faker.Random.AlphaNumeric(5),
                 faker.Lorem.Letter(5)
             ));
     }

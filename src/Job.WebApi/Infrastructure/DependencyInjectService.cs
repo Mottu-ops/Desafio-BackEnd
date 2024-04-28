@@ -1,4 +1,7 @@
-﻿using Job.Domain.Repositories;
+﻿using FluentValidation;
+using Job.Domain.Commands.User.Manager;
+using Job.Domain.Commands.User.Manager.Validations;
+using Job.Domain.Repositories;
 using Job.Domain.Services;
 using Job.Domain.Services.Interfaces;
 using Job.Infrastructure.Context;
@@ -20,6 +23,7 @@ public static class DependencyInjectService
 
         services.RegisterService();
         services.RegisterRepository();
+        services.RegisterValidation();
         services.AddTransient<TokenService>();
     }
 
@@ -37,5 +41,10 @@ public static class DependencyInjectService
         services.AddScoped<IRentService, RentService>();
         services.AddScoped<IMotoService, MotoService>();
         services.AddScoped<IManagerService, ManagerService>();
+    }
+
+    private static void RegisterValidation(this IServiceCollection services)
+    {
+        services.AddScoped<IValidator<AuthenticationManagerCommand>, AuthenticationManagerValidation>();
     }
 }

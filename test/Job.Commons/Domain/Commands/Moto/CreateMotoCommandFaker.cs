@@ -11,7 +11,7 @@ public static class CreateMotoCommandFaker
             .CustomInstantiator(faker => new CreateMotoCommand(
                 faker.Random.Int(1900, 2050),
                 faker.Vehicle.Model(),
-                faker.Vehicle.Vin()
+                "AAA5F55"
             ));
     }
 
@@ -22,6 +22,16 @@ public static class CreateMotoCommandFaker
                 0,
                 string.Empty,
                 string.Empty
+            ));
+    }
+
+    public static Faker<CreateMotoCommand> Invalid()
+    {
+        return new Faker<CreateMotoCommand>()
+            .CustomInstantiator(faker => new CreateMotoCommand(
+                faker.Random.Int(0, 1899),
+                string.Empty,
+                faker.Random.AlphaNumeric(1)
             ));
     }
 }

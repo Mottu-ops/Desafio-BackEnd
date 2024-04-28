@@ -2,14 +2,10 @@
 using Job.Commons.Domain.Entities.Moto;
 using Job.Commons.Domain.Entities.Rent;
 using Job.Domain.Entities.Moto;
-using Job.Domain.Repositories;
-using Job.Domain.Services;
-using Microsoft.Extensions.Logging;
-using Moq;
 
 namespace Job.UnitTests.Domain.Services;
 
-
+[Trait("Services", "MotoService")]
 public sealed class MotoServiceTest
 {
     private readonly Mock<IMotoRepository> _motoRepository = new();
@@ -29,7 +25,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var command = CreateMotoCommandFaker.Default().Generate();
-        _motoRepository.Setup(x => x.CheckPlateExistsAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         // Act
@@ -45,8 +41,8 @@ public sealed class MotoServiceTest
     public async Task CreateAsync_WhenPlateExists_ShouldReturnError()
     {
         // Arrange
-        var command = CreateMotoCommandFaker.Empty().Generate();
-        _motoRepository.Setup(x => x.CheckPlateExistsAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        var command = CreateMotoCommandFaker.Default().Generate();
+        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         // Act
@@ -223,5 +219,38 @@ public sealed class MotoServiceTest
         Assert.Null(response);
     }
 
+    #endregion
+
+    #region GetByPlaceAsync
+
+    [Fact]
+    public async Task GetByPlateAsync_WhenMotoExists_ShouldReturnMoto()
+    {
+        // Arrange
+        var entity = MotoEntityFaker.Default().Generate();
+        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(entity);
+
+        // Act
+        var response = await _motoService.GetByPlateAsync(entity.Plate, CancellationToken.None);
+
+        // Assert
+        Assert.NotNull(response);
+        Assert.NotNull(response);
+    }
+
+    [Fact]
+    public async Task GetByPlateAsync_WhenMotoNotExists_ShouldReturnNull()
+    {
+        // Arrange
+        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((MotoEntity?)null);
+
+        // Act
+        var response = await _motoService.GetByPlateAsync(It.IsAny<string>(), CancellationToken.None);
+
+        // Assert
+        Assert.Null(response);
+    }
     #endregion
 }

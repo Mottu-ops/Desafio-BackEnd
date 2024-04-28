@@ -12,7 +12,7 @@ public static class UpdateMotoCommandFaker
                 faker.Random.Guid(),
                 faker.Random.Int(1900, 2050),
                 faker.Vehicle.Model(),
-                faker.Vehicle.Vin()
+                "AAA5F55"
             ));
     }
 
@@ -24,6 +24,17 @@ public static class UpdateMotoCommandFaker
                 0,
                 string.Empty,
                 string.Empty
+            ));
+    }
+
+    public static Faker<UpdateMotoCommand> Invalid()
+    {
+        return new Faker<UpdateMotoCommand>()
+            .CustomInstantiator(faker => new UpdateMotoCommand(
+                Guid.Empty,
+                0,
+                string.Empty,
+                faker.Random.AlphaNumeric(1)
             ));
     }
 }

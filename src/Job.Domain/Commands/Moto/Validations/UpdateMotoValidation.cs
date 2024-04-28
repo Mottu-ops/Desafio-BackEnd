@@ -16,9 +16,7 @@ public class UpdateMotoValidation : AbstractValidator<UpdateMotoCommand>
 
         RuleFor(x => x.Model)
             .NotEmpty()
-            .WithMessage("Modelo é obrigatório")
-            .MinimumLength(3)
-            .WithMessage("Modelo deve ter no mínimo 3 caracteres");
+            .WithMessage("Modelo é obrigatório");
 
         RuleFor(x => x.Plate)
             .NotEmpty()

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Job.Domain.Enums;
+﻿namespace Job.Domain.Enums;
 
 public enum EPlan
 {

@@ -1,6 +1,6 @@
 ﻿namespace Job.Domain.Commons;
 
-public static class Cnpj
+public static class CnpjValidation
 {
     public static bool IsCnpj(string cnpj)
     {
@@ -32,4 +32,11 @@ public static class Cnpj
         digito += resto;
         return cnpj.EndsWith(digito);
     }
+    public static string FormatCnpj(string cnpj)
+    {
+        cnpj = cnpj.Trim();
+        cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
+        return cnpj;
+    }
+
 }

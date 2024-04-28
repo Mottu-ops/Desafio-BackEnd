@@ -9,7 +9,7 @@ public class AuthenticationMotoboyValidation : AbstractValidator<AuthenticationM
         RuleFor(x => x.Cnpj)
             .NotEmpty()
             .WithMessage("Cnpj é obrigatório")
-            .Must(Cnpj.IsCnpj)
+            .Must(CnpjValidation.IsCnpj)
             .WithMessage("Cnpj inválido");
 
         RuleFor(x => x.Password)

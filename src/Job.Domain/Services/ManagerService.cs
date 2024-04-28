@@ -1,6 +1,5 @@
 ﻿using Job.Domain.Commands;
 using Job.Domain.Commands.User.Manager;
-using Job.Domain.Commands.User.Manager.Validations;
 using Job.Domain.Queries.User;
 using Job.Domain.Repositories;
 using Job.Domain.Services.Interfaces;

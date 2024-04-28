@@ -1,16 +1,17 @@
-﻿using Job.Domain.Enums;
+﻿using Job.Domain.Commons;
+using Job.Domain.Enums;
 
 namespace Job.Domain.Entities.User;
 
-public sealed class MotoboyEntity(string password, string name, string cnpj, DateOnly dateBirth, string document, ECnhType type)
+public sealed class MotoboyEntity(string password, string name, string cnpj, DateOnly dateBirth, string cnh, ECnhType type)
     : UserEntity(password)
 {
     public string Name { get; private set; } = name;
-    public string Cnpj { get; private set; } = cnpj;
+    public string Cnpj { get; private set; } = CnpjValidation.FormatCnpj(cnpj);
 
     public DateOnly DateBirth { get; private set; } = dateBirth;
 
-    public string Document { get; private set; } = document;
+    public string Document { get; private set; } = CnhValidation.FormatCnh(cnh);
     public ECnhType Type { get; private set; } = type;
 
     public string? CnhImage { get; private set; } = string.Empty;
@@ -20,4 +21,5 @@ public sealed class MotoboyEntity(string password, string name, string cnpj, Dat
         Update();
         CnhImage = image;
     }
+
 }

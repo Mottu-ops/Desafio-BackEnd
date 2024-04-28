@@ -12,8 +12,19 @@ public static class RentEntityFaker
             .CustomInstantiator(faker => new RentEntity(
                 faker.Random.Guid(),
                 faker.Random.Guid(),
-                DateOnly.FromDateTime(DateTime.Now.AddDays(5)),
-                EPlan.Sete
+                faker.Date.FutureDateOnly(),
+                faker.PickRandom<EPlan>()
+            ));
+    }
+
+    public static Faker<RentEntity> Invalid()
+    {
+        return new Faker<RentEntity>()
+            .CustomInstantiator(faker => new RentEntity(
+                Guid.Empty,
+                Guid.Empty,
+                faker.Date.PastDateOnly(),
+                faker.PickRandom<EPlan>()
             ));
     }
 }
