@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Job.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialCreated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,7 @@ namespace Job.Infrastructure.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Cnpj = table.Column<string>(type: "text", nullable: false),
                     DateBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Document = table.Column<string>(type: "text", nullable: false),
+                    Cnh = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     CnhImage = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -86,7 +86,7 @@ namespace Job.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Managers",
                 columns: new[] { "Id", "Created", "Email", "Password", "Updated" },
-                values: new object[] { new Guid("9d2c5164-bb23-4f14-94cf-432ed4a24b67"), new DateTime(2024, 4, 25, 16, 43, 20, 662, DateTimeKind.Local).AddTicks(6592), "job@job.com", "mudar@123", null });
+                values: new object[] { new Guid("500923f0-1ffb-4f59-8c4b-fc28f2dc6339"), new DateTime(2024, 4, 28, 19, 56, 37, 591, DateTimeKind.Local).AddTicks(544), "job@job.com", "mudar@123", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Managers_Email",

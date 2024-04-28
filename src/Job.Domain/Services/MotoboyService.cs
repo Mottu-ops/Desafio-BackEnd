@@ -1,4 +1,6 @@
-﻿using Job.Domain.Commands;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Job.Domain.Commands;
 using Job.Domain.Commands.User.Motoboy;
 using Job.Domain.Commands.User.Motoboy.Validations;
 using Job.Domain.Commons;
@@ -85,15 +87,24 @@ public sealed class MotoboyService(
             return new CommandResponse<string>(validationFailures);
         }
 
-        var path = Path.Combine(Directory.GetCurrentDirectory(),  cnpj + extension);
-        await using var stream = new FileStream(path, FileMode.OpenOrCreate);
-        await file.FileDetails.CopyToAsync(stream, cancellationToken);
+        var stream = file.FileDetails.OpenReadStream();
+        var path = await UploadImage(file.FileDetails.FileName, stream, cancellationToken);
+
+        if(path is null)
+        {
+            logger.LogError("Erro ao realizar upload de imagem");
+            validationFailures.Add(new ValidationFailure("File", "Erro ao realizar upload de imagem"));
+            return new CommandResponse<string>(validationFailures);
+        }
 
         motoboy.UpdateCnhImage(path);
         await motoboyRepository.UpdateAsync(motoboy, cancellationToken);
 
         logger.LogInformation("Upload de imagem realizado com sucesso");
-        return new CommandResponse<string>(motoboy.Id);
+        return new CommandResponse<string>(motoboy.Id)
+        {
+            Data = path
+        };
     }
 
     #region Private Methods
@@ -107,11 +118,27 @@ public sealed class MotoboyService(
             validate.Errors.Add(new ValidationFailure("Cnpj", "CNPJ já cadastrado"));
         }
 
-        if(validate.IsValid && await motoboyRepository.CheckCnhExistsAsync(motoboyEntity.Document, cancellationToken))
+        if(validate.IsValid && await motoboyRepository.CheckCnhExistsAsync(motoboyEntity.Cnh, cancellationToken))
         {
-            logger.LogInformation("CNH já cadastrada {cnh}", motoboyEntity.Document);
+            logger.LogInformation("CNH já cadastrada {cnh}", motoboyEntity.Cnh);
             validate.Errors.Add(new ValidationFailure("Cnh", "CNH já cadastrada"));
         }
+    }
+
+    private static async Task<string?> UploadImage(string fileName, Stream stream, CancellationToken cancellationToken)
+    {
+        var account = new Account(
+            "dpft0wjf0",
+            "141897328334374",
+            "atZyaFEhIZRcnLaOhnJVceydWXY");
+
+        var cloudinary = new Cloudinary(account);
+        var uploadParams = new ImageUploadParams
+        {
+            File = new FileDescription(fileName, stream)
+        };
+        var result = await cloudinary.UploadAsync(uploadParams, cancellationToken);
+        return  result?.SecureUrl.AbsoluteUri;
     }
 
     #endregion

@@ -58,6 +58,10 @@ public class MotoboyController(
             return BadRequest(response.Errors);
         }
 
-        return Ok(response.Id);
+        return Ok(new
+        {
+            response.Id,
+            response.Data
+        });
     }
 }

@@ -11,7 +11,7 @@ public sealed class MotoboyEntity(string password, string name, string cnpj, Dat
 
     public DateOnly DateBirth { get; private set; } = dateBirth;
 
-    public string Document { get; private set; } = CnhValidation.FormatCnh(cnh);
+    public string Cnh { get; private set; } = CnhValidation.FormatCnh(cnh);
     public ECnhType Type { get; private set; } = type;
 
     public string? CnhImage { get; private set; } = string.Empty;

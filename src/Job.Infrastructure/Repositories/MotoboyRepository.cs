@@ -41,6 +41,6 @@ public class MotoboyRepository(JobContext context) : IMotoboyRepository
 
     public async Task<bool> CheckCnhExistsAsync(string cnh, CancellationToken cancellationToken)
     {
-        return await context.Motoboys.AnyAsync(x => x.Document == cnh, cancellationToken);
+        return await context.Motoboys.AnyAsync(x => x.Cnh == cnh, cancellationToken);
     }
 }
