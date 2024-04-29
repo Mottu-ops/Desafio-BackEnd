@@ -9,7 +9,8 @@ Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em faz
   
 ## Requisitos não funcionais 
 - A aplicação deverá ser construida com .Net utilizando C#.
-- Utilizar apenas os seguintes bancos de dados ( Postgress, MongoDB)
+- Utilizar apenas os seguintes bancos de dados (Postgress, MongoDB)
+    - Não utilizar PL/pgSQL
 - Escolha o sistema de mensageria de sua preferencia( RabbitMq, Sqs/Sns , Kafka, Gooogle Pub/Sub ou qualquer outro)
 
 ## Aplicação a ser desenvolvida
