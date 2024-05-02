@@ -25,7 +25,7 @@ public class ManagerController(
 
         var query = response.Data;
 
-        if (query is null) return NotFound();
+        if (query is null) return Unauthorized();
 
         var token = tokenService.GenerateToken(query.Email, "admin");
 
