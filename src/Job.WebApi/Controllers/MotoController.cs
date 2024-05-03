@@ -5,19 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Job.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]/[action]")]
 public class MotoController(
     ILogger<MotoController> logger,
-    IMotoService motoService) : ControllerBase
+    IMotoService motoService) : BaseController
 {
     [HttpGet]
     [Authorize(Roles = "admin,motoboy")]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         logger.LogInformation("Recuperando todos as motos cadastradas");
-        var lista = await motoService.GetAllAsync(cancellationToken);
-        return Ok(lista);
+        var motos = await motoService.GetAllAsync(cancellationToken);
+        return HandleResponse(motos);
     }
 
     [HttpGet]
@@ -26,7 +24,7 @@ public class MotoController(
     {
         logger.LogInformation("Recuperando moto por id {id}", id);
         var moto = await motoService.GetByIdAsync(id, cancellationToken);
-        return moto is null ? NotFound() : Ok(moto);
+        return HandleResponse(moto);
     }
 
     [HttpGet]
@@ -35,7 +33,7 @@ public class MotoController(
     {
         logger.LogInformation("Recuperando moto por placa {plate}", plate);
         var moto = await motoService.GetByPlateAsync(plate, cancellationToken);
-        return moto is null ? NotFound() : Ok(moto);
+        return HandleResponse(moto);
     }
 
     [HttpPost]
@@ -44,7 +42,7 @@ public class MotoController(
     {
         logger.LogInformation("Criando moto");
         var response = await motoService.CreateAsync(command, cancellationToken);
-        return response.Success ? Ok(response) : BadRequest(response);
+        return HandleResponse(response);
     }
 
     [HttpPut]
@@ -53,7 +51,7 @@ public class MotoController(
     {
         logger.LogInformation("Atualizando moto");
         var response = await motoService.UpdateAsync(command, cancellationToken);
-        return response.Success ? Ok(response) : BadRequest(response);
+        return HandleResponse(response);
     }
 
     [HttpDelete]
@@ -62,6 +60,6 @@ public class MotoController(
     {
         logger.LogInformation("Deletando moto");
         var response = await motoService.DeleteAsync(id, cancellationToken);
-        return response.Success ? Ok(response) : BadRequest(response);
+        return HandleResponse(response);
     }
 }

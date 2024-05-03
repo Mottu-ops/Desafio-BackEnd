@@ -7,27 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Job.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]/[action]")]
 public class MotoboyController(
     ILogger<MotoboyController> logger,
     IMotoboyService motoboyService,
-    TokenService tokenService) : ControllerBase
+    TokenService tokenService) : BaseController
 {
     [HttpPost]
     [AllowAnonymous]
     public async Task<IActionResult> Authentication(AuthenticationMotoboyCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciado autenticação de motoboy");
-        var motoboy = await motoboyService.GetMotoboy(command, cancellationToken);
-
-        if (!motoboy.Success) return BadRequest(motoboy.Errors);
-
-        if (motoboy.Data is null)
-            return NotFound();
-
-        var token = tokenService.GenerateToken(motoboy.Data.Cnpj, "motoboy");
-        return Ok(token);
+        var response = await motoboyService.GetMotoboy(command, cancellationToken);
+        return HandleResponse(response, response.Data?.Cnpj, "motoboy", tokenService);
     }
 
     [HttpPost]
@@ -36,13 +27,7 @@ public class MotoboyController(
     {
         logger.LogInformation("Iniciado criação de motoboy");
         var response = await motoboyService.CreateAsync(command, cancellationToken);
-
-        if (!response.Success)
-        {
-            return BadRequest(response.Errors);
-        }
-
-        return Ok(response.Id);
+        return HandleResponse(response);
     }
 
     [HttpPost]
@@ -52,16 +37,6 @@ public class MotoboyController(
         logger.LogInformation("Iniciado upload de imagem");
         var cnpj = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
         var response = await motoboyService.UploadImageAsync(cnpj!, file, cancellationToken);
-
-        if (!response.Success)
-        {
-            return BadRequest(response.Errors);
-        }
-
-        return Ok(new
-        {
-            response.Id,
-            response.Data
-        });
+        return HandleResponse(response);
     }
 }

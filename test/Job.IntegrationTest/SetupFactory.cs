@@ -11,11 +11,11 @@ public class SetupFactory(DbFixture dbFixture) : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test");
-        builder.ConfigureServices(services =>
+        builder.ConfigureServices(_ =>
         {
 
         });
-        builder.ConfigureAppConfiguration((context, configuration) =>
+        builder.ConfigureAppConfiguration((_, configuration) =>
         {
             configuration.AddInMemoryCollection(new[]
             {

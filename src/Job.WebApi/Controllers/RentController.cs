@@ -6,13 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Job.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]/[action]")]
 [Authorize(Roles = "motoboy")]
 public sealed class RentController(
     ILogger<RentController> logger,
     IRentService rentService
-) : ControllerBase
+) : BaseController
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateRentCommand command, CancellationToken cancellationToken)
@@ -22,15 +20,14 @@ public sealed class RentController(
         command.Cnpj = cnpj!;
 
         var response = await rentService.CreateRentAsync(command, cancellationToken);
-        return response.Success ? Ok(response) : BadRequest(response);
+        return HandleResponse(response);
     }
 
     [HttpPut]
     public async Task<IActionResult> Cancel([FromBody] CancelRentCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Cancelando aluguel");
-
         var response = await rentService.CancelRentAsync(command, cancellationToken);
-        return response.Success ? Ok(response) : BadRequest(response);
+        return HandleResponse(response);
     }
 }

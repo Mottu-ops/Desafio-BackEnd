@@ -18,7 +18,7 @@ public static class CreateMotoCommandFaker
     public static Faker<CreateMotoCommand> Empty()
     {
         return new Faker<CreateMotoCommand>()
-            .CustomInstantiator(faker => new CreateMotoCommand(
+            .CustomInstantiator(_ => new CreateMotoCommand(
                 0,
                 string.Empty,
                 string.Empty

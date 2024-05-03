@@ -19,7 +19,7 @@ public static class UpdateMotoCommandFaker
     public static Faker<UpdateMotoCommand> Empty()
     {
         return new Faker<UpdateMotoCommand>()
-            .CustomInstantiator(faker => new UpdateMotoCommand(
+            .CustomInstantiator(_ => new UpdateMotoCommand(
                 Guid.Empty,
                 0,
                 string.Empty,

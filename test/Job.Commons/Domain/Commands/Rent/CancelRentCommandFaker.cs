@@ -17,7 +17,7 @@ public static class CancelRentCommandFaker
     public static Faker<CancelRentCommand> Empty()
     {
         return new Faker<CancelRentCommand>()
-            .CustomInstantiator(faker => new CancelRentCommand(
+            .CustomInstantiator(_ => new CancelRentCommand(
                 Guid.Empty,
                 DateTime.MinValue
             ));
