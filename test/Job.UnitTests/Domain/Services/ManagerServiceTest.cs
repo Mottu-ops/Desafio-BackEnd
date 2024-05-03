@@ -2,6 +2,7 @@
 using Job.Commons.Domain.Entities.User;
 using Job.Domain.Commands.User.Manager;
 using Job.Domain.Commands.User.Manager.Validations;
+using Job.Domain.Commons;
 using Job.Domain.Entities.User;
 
 namespace Job.UnitTests.Domain.Services;
@@ -35,7 +36,7 @@ public class ManagerServiceTest
 
         // Assert
         Assert.NotNull(response);
-        _managerRepository.Verify(x => x.GetAsync(command.Email, command.Password, It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(command.Email, Cryptography.Encrypt(command.Password), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

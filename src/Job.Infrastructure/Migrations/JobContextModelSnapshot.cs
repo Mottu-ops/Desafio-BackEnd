@@ -122,10 +122,10 @@ namespace Job.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("500923f0-1ffb-4f59-8c4b-fc28f2dc6339"),
-                            Created = new DateTime(2024, 4, 28, 19, 56, 37, 591, DateTimeKind.Local).AddTicks(544),
+                            Id = new Guid("706b906a-cddf-47d6-8f01-959eeaea99fb"),
+                            Created = new DateTime(2024, 5, 3, 18, 22, 49, 300, DateTimeKind.Local).AddTicks(20),
                             Email = "job@job.com",
-                            Password = "mudar@123"
+                            Password = "LQvciOgwS1JVt2xclWvuxw=="
                         });
                 });
 

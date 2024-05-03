@@ -18,7 +18,7 @@ public sealed class RentController(
     public async Task<IActionResult> Create([FromBody] CreateRentCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Criando aluguel");
-        var cnpj = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+        var cnpj = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value;
         command.Cnpj = cnpj!;
 
         var response = await rentService.CreateRentAsync(command, cancellationToken);

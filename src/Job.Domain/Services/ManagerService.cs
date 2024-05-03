@@ -1,5 +1,6 @@
 ﻿using Job.Domain.Commands;
 using Job.Domain.Commands.User.Manager;
+using Job.Domain.Commons;
 using Job.Domain.Queries.User;
 using Job.Domain.Repositories;
 using Job.Domain.Services.Interfaces;
@@ -22,7 +23,7 @@ public class ManagerService(
             return new CommandResponse<ManagerQuery?>(validationResult.Errors);
         }
 
-        var manager = await managerRepository.GetAsync(command.Email, command.Password, cancellationToken);
+        var manager = await managerRepository.GetAsync(command.Email, Cryptography.Encrypt(command.Password), cancellationToken);
         if (manager is null)
         {
             logger.LogError("Manager not found");

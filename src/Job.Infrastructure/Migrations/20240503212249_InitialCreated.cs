@@ -86,7 +86,7 @@ namespace Job.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Managers",
                 columns: new[] { "Id", "Created", "Email", "Password", "Updated" },
-                values: new object[] { new Guid("500923f0-1ffb-4f59-8c4b-fc28f2dc6339"), new DateTime(2024, 4, 28, 19, 56, 37, 591, DateTimeKind.Local).AddTicks(544), "job@job.com", "mudar@123", null });
+                values: new object[] { new Guid("706b906a-cddf-47d6-8f01-959eeaea99fb"), new DateTime(2024, 5, 3, 18, 22, 49, 300, DateTimeKind.Local).AddTicks(20), "job@job.com", "LQvciOgwS1JVt2xclWvuxw==", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Managers_Email",

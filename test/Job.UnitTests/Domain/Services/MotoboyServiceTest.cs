@@ -1,5 +1,6 @@
 ﻿using Job.Commons.Domain.Commands.User.Motoboy;
 using Job.Commons.Domain.Entities.User;
+using Job.Domain.Commons;
 using Job.Domain.Entities.User;
 
 namespace Job.UnitTests.Domain.Services;
@@ -32,7 +33,7 @@ public class MotoboyServiceTest
 
         // Assert
         Assert.NotNull(response);
-        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), command.Password, It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), Cryptography.Encrypt(command.Password), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -48,7 +49,7 @@ public class MotoboyServiceTest
 
         // Assert
         Assert.NotNull(response);
-        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), command.Password, It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), Cryptography.Encrypt(command.Password), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

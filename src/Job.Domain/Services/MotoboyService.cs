@@ -45,7 +45,7 @@ public sealed class MotoboyService(
         if (!validate.IsValid)
             return new CommandResponse<MotoboyQuery?>(validate.Errors);
 
-        var motoboy = await motoboyRepository.GetAsync(CnpjValidation.FormatCnpj(command.Cnpj), command.Password, cancellationToken);
+        var motoboy = await motoboyRepository.GetAsync(CnpjValidation.FormatCnpj(command.Cnpj), Cryptography.Encrypt(command.Password), cancellationToken);
 
         if (motoboy is null)
         {
