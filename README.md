@@ -1,12 +1,17 @@
-# Desafio backend Mottu.
-Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em fazer parte do nosso time e ajudar a melhorar a vida de milhares de pessoas.
+# Apresentação
+Projeto de apresentação de serviço de Alguél de veículos para Delivery;
 
-## Instruções
-- O desafio é válido para diversos níveis, portanto não se preocupe se não conseguir resolver por completo.
-- A aplicação só será avaliada se estiver rodando, se necessário crie um passo a passo para isso.
-- Faça um clone do repositório em seu git pessoal para iniciar o desenvolvimento e não cite nada relacionado a Mottu.
-- Após finalização envie um e-mail para o recrutador informando o repositório para análise.
-  
+## Detalhes do Projeto 
+- .NET 8
+- Design Pattern: Solid
+- Banco de dados PostgreSQL
+- ORM: EntityFramework Core
+- Framework de Testes: XUnit
+- Framework de Mock: Moq
+- Projeto para testes de Unidade
+
+# Dados de requisitos
+
 ## Requisitos não funcionais 
 - A aplicação deverá ser construida com .Net utilizando C#.
 - Utilizar apenas os seguintes bancos de dados (Postgress, MongoDB)
@@ -54,15 +59,9 @@ Seu objetivo é criar uma aplicação para gerenciar aluguel de motos e entregad
 ## Diferenciais 🚀
 - Testes unitários
 - Testes de integração
-- EntityFramework e/ou Dapper
 - Docker e Docker Compose
-- Design Patterns
 - Documentação
-- Tratamento de erros
 - Arquitetura e modelagem de dados
-- Código escrito em língua inglesa
-- Código limpo e organizado
 - Logs bem estruturados
-- Seguir convenções utilizadas pela comunidade
-  
+
 
