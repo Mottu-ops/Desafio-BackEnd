@@ -1,8 +1,8 @@
 ﻿namespace Job.Domain.Commands.Rent.Validations;
 
-public class CancelRentValidation : AbstractValidator<CancelRentCommand>
+public class CancelRentalValidation : AbstractValidator<CancelRentCommand>
 {
-    public CancelRentValidation()
+    public CancelRentalValidation()
     {
         RuleFor(x => x.Id)
             .NotEmpty()

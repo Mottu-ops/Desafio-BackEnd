@@ -1,12 +1,11 @@
 ﻿using Job.Domain.Entities.Moto;
-using Job.Domain.Entities.Rent;
+using Job.Domain.Entities.Rental;
 using Job.Domain.Entities.User;
 using Job.Infrastructure.Conversions;
-using Microsoft.EntityFrameworkCore;
-using DateOnlyConverter = Job.Infrastructure.Conversions.DateOnlyConverter;
 
 namespace Job.Infrastructure.Context;
 
+[ExcludeFromCodeCoverage]
 public sealed class JobContext : DbContext
 {
     public JobContext(DbContextOptions<JobContext> options) : base(options)
@@ -29,7 +28,7 @@ public sealed class JobContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<RentEntity> Rents => Set<RentEntity>();
+    public DbSet<RentalEntity> Rents => Set<RentalEntity>();
     public DbSet<MotoboyEntity> Motoboys => Set<MotoboyEntity>();
     public DbSet<MotoEntity> Motos => Set<MotoEntity>();
     public DbSet<ManagerEntity> Managers => Set<ManagerEntity>();

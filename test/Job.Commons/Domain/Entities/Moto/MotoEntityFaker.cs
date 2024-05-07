@@ -3,7 +3,7 @@ using Job.Domain.Entities.Moto;
 
 namespace Job.Commons.Domain.Entities.Moto;
 
-public class MotoEntityFaker
+public static class MotoEntityFaker
 {
     public static Faker<MotoEntity> Default()
     {

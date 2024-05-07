@@ -1,12 +1,9 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using Bogus;
-using FluentAssertions;
-using Job.Domain.Commands.User.Manager;
+﻿using Job.Domain.Commands.User.Manager;
 
 namespace Job.IntegrationTest.Controllers;
 
 [Collection("Database")]
+[Trait("Integration", "Manager")]
 public class ManagerControllerTest(SetupFactory factory) : IClassFixture<SetupFactory>
 {
     private readonly Faker _faker = new Faker();

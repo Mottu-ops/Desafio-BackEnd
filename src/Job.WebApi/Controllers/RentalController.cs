@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using Job.Domain.Commands.Rent;
+﻿using Job.Domain.Commands.Rent;
 using Job.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Job.WebApi.Controllers;
 
 [Authorize(Roles = "motoboy")]
-public sealed class RentController(
-    ILogger<RentController> logger,
+public sealed class RentalController(
+    ILogger<RentalController> logger,
     IRentService rentService
 ) : BaseController
 {
@@ -16,8 +15,10 @@ public sealed class RentController(
     public async Task<IActionResult> Create([FromBody] CreateRentCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Criando aluguel");
-        var cnpj = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value;
-        command.Cnpj = cnpj!;
+        var cnpj = GetCnpj();
+        if (cnpj is null)
+            return Unauthorized();
+        command.Cnpj = cnpj;
 
         var response = await rentService.CreateRentAsync(command, cancellationToken);
         return HandleResponse(response);

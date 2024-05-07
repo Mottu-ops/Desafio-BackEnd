@@ -31,14 +31,14 @@ public static class DependencyInjectService
     {
         services.AddScoped<IManagerRepository, ManagerRepository>();
         services.AddScoped<IMotoboyRepository, MotoboyRepository>();
-        services.AddScoped<IRentRepository, RentRepository>();
+        services.AddScoped<IRentalRepository, RentalRepository>();
         services.AddScoped<IMotoRepository, MotoRepository>();
     }
 
     private static void RegisterService(this IServiceCollection services)
     {
         services.AddScoped<IMotoboyService, MotoboyService>();
-        services.AddScoped<IRentService, RentService>();
+        services.AddScoped<IRentService, RentalService>();
         services.AddScoped<IMotoService, MotoService>();
         services.AddScoped<IManagerService, ManagerService>();
     }

@@ -50,7 +50,7 @@ namespace Job.Infrastructure.Migrations
                     b.ToTable("Motos");
                 });
 
-            modelBuilder.Entity("Job.Domain.Entities.Rent.RentEntity", b =>
+            modelBuilder.Entity("Job.Domain.Entities.Rental.RentEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

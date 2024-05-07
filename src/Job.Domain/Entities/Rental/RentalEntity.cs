@@ -1,10 +1,10 @@
 ﻿using Job.Domain.Enums;
 
-namespace Job.Domain.Entities.Rent;
+namespace Job.Domain.Entities.Rental;
 
-public class RentEntity : BaseEntity
+public class RentalEntity : BaseEntity
 {
-    public RentEntity(Guid idMotoboy, Guid idMoto, DateOnly datePreview, EPlan plan)
+    public RentalEntity(Guid idMotoboy, Guid idMoto, DateOnly datePreview, EPlan plan)
     {
         DateStart = DateOnly.FromDateTime(DateTime.Now.AddDays(1));
         IdMotoboy = idMotoboy;
@@ -12,7 +12,7 @@ public class RentEntity : BaseEntity
         DatePreview = datePreview;
         Plan = plan;
         DateEnd = DateStart.AddDays((int) plan);
-        CalculateRent();
+        CalculateRental();
     }
 
     public DateOnly DateStart { get; private set; }
@@ -24,7 +24,7 @@ public class RentEntity : BaseEntity
     public decimal Value { get; private set; }
     public decimal? Fine { get; private set; }
 
-    private void CalculateRent()
+    private void CalculateRental()
     {
         Value = Plan switch
         {

@@ -1,9 +1,9 @@
 ﻿using Job.Domain.Entities.User;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Job.Infrastructure.Configurations.User;
 
+[ExcludeFromCodeCoverage]
 public class ManagerConfiguration : IEntityTypeConfiguration<ManagerEntity>
 {
     public void Configure(EntityTypeBuilder<ManagerEntity> builder)

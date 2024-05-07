@@ -1,6 +1,6 @@
 ﻿using Job.Commons.Domain.Commands.Moto;
 using Job.Commons.Domain.Entities.Moto;
-using Job.Commons.Domain.Entities.Rent;
+using Job.Commons.Domain.Entities.Rental;
 using Job.Domain.Entities.Moto;
 
 namespace Job.UnitTests.Domain.Services;
@@ -10,8 +10,9 @@ public sealed class MotoServiceTest
 {
     private readonly Mock<IMotoRepository> _motoRepository = new();
     private readonly Mock<ILogger<MotoService>> _logger = new();
-    private readonly Mock<IRentRepository> _rentRepository = new();
+    private readonly Mock<IRentalRepository> _rentRepository = new();
     private readonly MotoService _motoService;
+    private readonly CancellationToken _cancellationToken = CancellationToken.None;
 
     public MotoServiceTest()
     {
@@ -25,7 +26,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var command = CreateMotoCommandFaker.Default().Generate();
-        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, _cancellationToken))
             .ReturnsAsync(false);
 
         // Act
@@ -34,7 +35,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.True(response.Success);
-        _motoRepository.Verify(x => x.CreateAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Once);
+        _motoRepository.Verify(x => x.CreateAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Once);
     }
 
     [Fact]
@@ -42,7 +43,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var command = CreateMotoCommandFaker.Default().Generate();
-        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.CheckPlateExistsAsync(command.Plate, _cancellationToken))
             .ReturnsAsync(true);
 
         // Act
@@ -51,7 +52,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.False(response.Success);
-        _motoRepository.Verify(x => x.CreateAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Never);
+        _motoRepository.Verify(x => x.CreateAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Never);
     }
 
     #endregion
@@ -64,7 +65,7 @@ public sealed class MotoServiceTest
         // Arrange
         var entity = MotoEntityFaker.Default().Generate();
         var command = UpdateMotoCommandFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync(entity);
 
         // Act
@@ -73,7 +74,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.True(response.Success);
-        _motoRepository.Verify(x => x.UpdateAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Once);
+        _motoRepository.Verify(x => x.UpdateAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Once);
     }
 
     [Fact]
@@ -81,7 +82,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var command = UpdateMotoCommandFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync((MotoEntity?)null);
 
         // Act
@@ -90,7 +91,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.False(response.Success);
-        _motoRepository.Verify(x => x.UpdateAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Never);
+        _motoRepository.Verify(x => x.UpdateAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Never);
     }
 
     #endregion
@@ -102,7 +103,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var entity = MotoEntityFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync(entity);
 
         // Act
@@ -111,14 +112,14 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.True(response.Success);
-        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Once);
+        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Once);
     }
 
     [Fact]
     public async Task DeleteAsync_WhenMotoNotFound_ShouldReturnError()
     {
         // Arrange
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync((MotoEntity?)null);
 
         // Act
@@ -127,7 +128,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.False(response.Success);
-        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Never);
+        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Never);
     }
 
     [Fact]
@@ -135,10 +136,10 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var motoEntity = MotoEntityFaker.Default().Generate();
-        var rentEntity = RentEntityFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        var rentEntity = RentalEntityFaker.Default().Generate();
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync(motoEntity);
-        _rentRepository.Setup(x => x.GetByMotoIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _rentRepository.Setup(x => x.GetByMotoIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync(rentEntity);
 
         // Act
@@ -147,7 +148,7 @@ public sealed class MotoServiceTest
         // Assert
         Assert.NotNull(response);
         Assert.False(response.Success);
-        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), It.IsAny<CancellationToken>()), Times.Never);
+        _motoRepository.Verify(x => x.DeleteAsync(It.IsAny<MotoEntity>(), _cancellationToken), Times.Never);
     }
 
     #endregion
@@ -159,7 +160,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var entities = MotoEntityFaker.Default().Generate(30);
-        _motoRepository.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetAllAsync(_cancellationToken))
             .ReturnsAsync(entities);
 
         // Act
@@ -174,7 +175,7 @@ public sealed class MotoServiceTest
     public async Task GetAllAsync_WhenMotosNotExists_ShouldReturnEmptyList()
     {
         // Arrange
-        _motoRepository.Setup(x => x.GetAllAsync(It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetAllAsync(_cancellationToken))
             .ReturnsAsync(new List<MotoEntity>());
 
         // Act
@@ -194,7 +195,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var entity = MotoEntityFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync(entity);
 
         // Act
@@ -209,7 +210,7 @@ public sealed class MotoServiceTest
     public async Task GetByIdAsync_WhenMotoNotExists_ShouldReturnNull()
     {
         // Arrange
-        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>(), _cancellationToken))
             .ReturnsAsync((MotoEntity?)null);
 
         // Act
@@ -228,7 +229,7 @@ public sealed class MotoServiceTest
     {
         // Arrange
         var entity = MotoEntityFaker.Default().Generate();
-        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), _cancellationToken))
             .ReturnsAsync(entity);
 
         // Act
@@ -243,7 +244,7 @@ public sealed class MotoServiceTest
     public async Task GetByPlateAsync_WhenMotoNotExists_ShouldReturnNull()
     {
         // Arrange
-        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        _motoRepository.Setup(x => x.GetByPlateAsync(It.IsAny<string>(), _cancellationToken))
             .ReturnsAsync((MotoEntity?)null);
 
         // Act

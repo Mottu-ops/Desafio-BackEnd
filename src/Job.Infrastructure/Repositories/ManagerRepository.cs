@@ -1,7 +1,4 @@
 ﻿using Job.Domain.Entities.User;
-using Job.Domain.Repositories;
-using Job.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace Job.Infrastructure.Repositories;
 
