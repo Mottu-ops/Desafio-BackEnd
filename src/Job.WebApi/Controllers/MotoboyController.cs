@@ -14,6 +14,9 @@ public class MotoboyController(
 {
     [HttpPost]
     [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Authentication(AuthenticationMotoboyCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciado autenticação de motoboy");
@@ -23,6 +26,8 @@ public class MotoboyController(
 
     [HttpPost]
     [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create(CreateMotoboyCommand command, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciado criação de motoboy");
@@ -32,6 +37,11 @@ public class MotoboyController(
 
     [HttpPost]
     [Authorize (Roles = "motoboy")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UploadImage([FromForm] UploadCnhMotoboyCommand file, CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciado upload de imagem");
