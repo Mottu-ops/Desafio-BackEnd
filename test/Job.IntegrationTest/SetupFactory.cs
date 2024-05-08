@@ -1,4 +1,5 @@
 ﻿using Job.IntegrationTest.Fixtures;
+using Job.WebApi;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;

@@ -1,12 +1,12 @@
 ﻿using Job.Commons.Domain.Commands.Rent;
 using Job.Domain.Commands.Rent.Validations;
 
-namespace Job.UnitTests.Domain.Commands.Rent;
+namespace Job.UnitTests.Domain.Commands.Rental;
 
-[Trait("Validation", "CreateRentValidation")]
-public class CreateRentValidationTest
+[Trait("Validation", "CreateRentalValidation")]
+public class CreateRentalValidationTest
 {
-    private readonly CreateRentValidation _validator = new();
+    private readonly CreateRentalValidation _validator = new();
 
     [Fact]
     public void ShouldReturnErrorWhenIdMotoIsEmpty()

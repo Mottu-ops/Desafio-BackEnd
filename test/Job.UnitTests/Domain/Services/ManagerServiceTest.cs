@@ -14,6 +14,7 @@ public class ManagerServiceTest
     private readonly Mock<IManagerRepository> _managerRepository = new();
     private readonly IValidator<AuthenticationManagerCommand> _validator = new AuthenticationManagerValidation();
     private readonly ManagerService _managerService;
+    private readonly CancellationToken _cancellationToken = CancellationToken.None;
 
     public ManagerServiceTest()
     {
@@ -28,7 +29,7 @@ public class ManagerServiceTest
         // Arrange
         var command = AuthenticationManagerCommandFaker.Default().Generate();
         var manager = ManagerEntityFaker.Default().Generate();
-        _managerRepository.Setup(x => x.GetAsync(command.Email, command.Password, It.IsAny<CancellationToken>()))
+        _managerRepository.Setup(x => x.GetAsync(command.Email, command.Password, _cancellationToken))
             .ReturnsAsync(manager);
 
         // Act
@@ -36,7 +37,7 @@ public class ManagerServiceTest
 
         // Assert
         Assert.NotNull(response);
-        _managerRepository.Verify(x => x.GetAsync(command.Email, Cryptography.Encrypt(command.Password), It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(command.Email, Cryptography.Encrypt(command.Password), _cancellationToken), Times.Once);
     }
 
     [Fact]
@@ -44,7 +45,7 @@ public class ManagerServiceTest
     {
         // Arrange
         var command = AuthenticationManagerCommandFaker.Invalid().Generate();
-        _managerRepository.Setup(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        _managerRepository.Setup(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), _cancellationToken))
             .ReturnsAsync((ManagerEntity?)null);
 
         // Act
@@ -52,7 +53,7 @@ public class ManagerServiceTest
 
         // Assert
         response.Errors.Should().HaveCount(2);
-        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Never);
+        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), _cancellationToken), Times.Never);
     }
 
     [Fact]
@@ -60,7 +61,7 @@ public class ManagerServiceTest
     {
         // Arrange
         var command = AuthenticationManagerCommandFaker.Default().Generate();
-        _managerRepository.Setup(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        _managerRepository.Setup(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), _cancellationToken))
             .ReturnsAsync((ManagerEntity?)null);
 
         // Act
@@ -69,7 +70,7 @@ public class ManagerServiceTest
         // Assert
         response.Data.Should().BeNull();
         response.Errors.Should().HaveCount(0);
-        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
+        _managerRepository.Verify(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>(), _cancellationToken), Times.Once);
     }
 
     #endregion

@@ -81,4 +81,7 @@ app.MapControllers();
 
 app.Run();
 
-public abstract partial class Program() {}
+namespace Job.WebApi
+{
+    public abstract partial class Program() {}
+}

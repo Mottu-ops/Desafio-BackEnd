@@ -11,7 +11,7 @@ namespace Job.Domain.Services;
 public sealed class MotoService(
     ILogger<MotoService> logger,
     IMotoRepository motoRepository,
-    IRentRepository rentRepository) : IMotoService
+    IRentalRepository rentalRepository) : IMotoService
 {
     public async Task<CommandResponse<string>> CreateAsync(CreateMotoCommand command, CancellationToken cancellationToken)
     {
@@ -71,12 +71,12 @@ public sealed class MotoService(
             return new CommandResponse<string>(new List<ValidationFailure> { new("Id", "Moto não encontrada") });
         }
 
-        var rent = await rentRepository.GetByMotoIdAsync(moto.Id, cancellationToken);
+        var rent = await rentalRepository.GetByMotoIdAsync(moto.Id, cancellationToken);
 
         if(rent is not null && rent.DateEnd > DateOnly.FromDateTime(DateTime.Now))
         {
             logger.LogInformation("Moto com aluguel ativo");
-            return new CommandResponse<string>(new List<ValidationFailure> { new("Rent", "Moto com aluguel ativo") });
+            return new CommandResponse<string>(new List<ValidationFailure> { new("Rental", "Moto com aluguel ativo") });
         }
 
         logger.LogInformation("Moto excluída com sucesso");

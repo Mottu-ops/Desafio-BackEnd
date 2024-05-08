@@ -1,8 +1,8 @@
 ﻿namespace Job.Domain.Commands.Rent.Validations;
 
-public class CreateRentValidation : AbstractValidator<CreateRentCommand>
+public class CreateRentalValidation : AbstractValidator<CreateRentCommand>
 {
-    public CreateRentValidation()
+    public CreateRentalValidation()
     {
         RuleFor(x => x.IdMoto)
             .NotEmpty()

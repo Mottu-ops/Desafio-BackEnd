@@ -1,12 +1,12 @@
 ﻿using Job.Commons.Domain.Commands.Rent;
 using Job.Domain.Commands.Rent.Validations;
 
-namespace Job.UnitTests.Domain.Commands.Rent;
+namespace Job.UnitTests.Domain.Commands.Rental;
 
-[Trait("Validation", "CancelRentValidation")]
-public class CancelRentValidationTest
+[Trait("Validation", "CancelRentalValidation")]
+public class CancelRentalValidationTest
 {
-    private readonly CancelRentValidation _validator = new();
+    private readonly CancelRentalValidation _validator = new();
 
     [Fact]
     public void ShouldReturnErrorWhenIdRentIsEmpty()

@@ -1,7 +1,4 @@
 ﻿using Job.Domain.Entities.Moto;
-using Job.Domain.Repositories;
-using Job.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace Job.Infrastructure.Repositories;
 

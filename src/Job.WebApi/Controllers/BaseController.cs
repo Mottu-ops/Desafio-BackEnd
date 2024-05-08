@@ -1,4 +1,5 @@
-﻿using Job.Domain.Commands;
+﻿using System.Security.Claims;
+using Job.Domain.Commands;
 using Job.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,5 +44,11 @@ public class BaseController : ControllerBase
             token,
             Data = query
         });
+    }
+
+    protected string? GetCnpj()
+    {
+        var cnpj = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value;
+        return cnpj;
     }
 }

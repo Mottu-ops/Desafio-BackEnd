@@ -2,7 +2,7 @@
 using Job.Domain.Commands.Rent;
 using Job.Domain.Commands.Rent.Validations;
 using Job.Domain.Entities.Moto;
-using Job.Domain.Entities.Rent;
+using Job.Domain.Entities.Rental;
 using Job.Domain.Entities.User;
 using Job.Domain.Enums;
 using Job.Domain.Repositories;
@@ -10,9 +10,9 @@ using Job.Domain.Services.Interfaces;
 
 namespace Job.Domain.Services;
 
-public sealed class RentService(
-    ILogger<RentService> logger,
-    IRentRepository rentRepository,
+public sealed class RentalService(
+    ILogger<RentalService> logger,
+    IRentalRepository rentalRepository,
     IMotoRepository motoRepository,
     IMotoboyRepository motoboyRepository
 ) : IRentService
@@ -21,7 +21,7 @@ public sealed class RentService(
         CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciando o processo de criação de um aluguel");
-        var validate = await new CreateRentValidation().ValidateAsync(command, cancellationToken);
+        var validate = await new CreateRentalValidation().ValidateAsync(command, cancellationToken);
 
         logger.LogInformation("Buscando motoboy");
         var motoboy = await GetMotoboyEntity(command, validate, cancellationToken);
@@ -35,10 +35,10 @@ public sealed class RentService(
         }
 
         logger.LogInformation("Criando objeto aluguel");
-        var rentEntity = new RentEntity(motoboy!.Id, moto!.Id, DateOnly.FromDateTime(command.DatePreview),
+        var rentEntity = new RentalEntity(motoboy!.Id, moto!.Id, DateOnly.FromDateTime(command.DatePreview),
             command.Plan);
 
-        await rentRepository.CreateAsync(rentEntity, cancellationToken);
+        await rentalRepository.CreateAsync(rentEntity, cancellationToken);
 
         logger.LogInformation("Aluguel criado com sucesso");
         return new CommandResponse<string>(rentEntity.Id)
@@ -51,10 +51,10 @@ public sealed class RentService(
         CancellationToken cancellationToken)
     {
         logger.LogInformation("Iniciando o processo de cancelamento de um aluguel");
-        var validate = await new CancelRentValidation().ValidateAsync(command, cancellationToken);
+        var validate = await new CancelRentalValidation().ValidateAsync(command, cancellationToken);
 
         logger.LogInformation("Buscando aluguel");
-        var rent = await rentRepository.GetByIdAsync(command.Id, cancellationToken);
+        var rent = await rentalRepository.GetByIdAsync(command.Id, cancellationToken);
         if (rent is null)
         {
             logger.LogInformation("Aluguel não encontrado {id}", command.Id);
@@ -68,7 +68,7 @@ public sealed class RentService(
         }
 
         var fine = rent!.CalculateFine(DateOnly.FromDateTime(command.DatePreview));
-        await rentRepository.UpdateAsync(rent, cancellationToken);
+        await rentalRepository.UpdateAsync(rent, cancellationToken);
         var response = new CommandResponse<string>(rent.Id)
         {
             Data = "Valor da multa é de R$ " + fine
