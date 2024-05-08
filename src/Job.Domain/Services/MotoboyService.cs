@@ -127,10 +127,10 @@ public sealed class MotoboyService(
 
     private static async Task<string?> UploadImage(string fileName, Stream stream, CancellationToken cancellationToken)
     {
-        var account = new Account(
-            "dpft0wjf0",
-            "141897328334374",
-            "atZyaFEhIZRcnLaOhnJVceydWXY");
+        const string cloud = "cloud";
+        const string apiKey = "";
+        const string apiSecret = "";
+        var account = new Account(cloud, apiKey, apiSecret);
 
         var cloudinary = new Cloudinary(account);
         var uploadParams = new ImageUploadParams
