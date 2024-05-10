@@ -1,6 +1,6 @@
 ﻿namespace Job.Domain.Commands.Rent.Validations;
 
-public class CancelRentalValidation : AbstractValidator<CancelRentCommand>
+public sealed class CancelRentalValidation : AbstractValidator<CancelRentCommand>
 {
     public CancelRentalValidation()
     {

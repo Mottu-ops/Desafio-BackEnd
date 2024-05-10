@@ -2,7 +2,7 @@
 
 namespace Job.Domain.Commands.Moto.Validations;
 
-public class CreateMotoValidation : AbstractValidator<CreateMotoCommand>
+public sealed class CreateMotoValidation : AbstractValidator<CreateMotoCommand>
 {
     public CreateMotoValidation()
     {

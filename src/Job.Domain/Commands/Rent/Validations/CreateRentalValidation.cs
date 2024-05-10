@@ -1,6 +1,6 @@
 ﻿namespace Job.Domain.Commands.Rent.Validations;
 
-public class CreateRentalValidation : AbstractValidator<CreateRentCommand>
+public sealed class CreateRentalValidation : AbstractValidator<CreateRentCommand>
 {
     public CreateRentalValidation()
     {

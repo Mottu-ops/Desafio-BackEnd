@@ -2,7 +2,7 @@
 
 namespace Job.Domain.Entities.Rental;
 
-public class RentalEntity : BaseEntity
+public sealed class RentalEntity : BaseEntity
 {
     public RentalEntity(Guid idMotoboy, Guid idMoto, DateOnly datePreview, EPlan plan)
     {

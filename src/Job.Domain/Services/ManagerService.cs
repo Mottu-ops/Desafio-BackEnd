@@ -7,7 +7,7 @@ using Job.Domain.Services.Interfaces;
 
 namespace Job.Domain.Services;
 
-public class ManagerService(
+public sealed class ManagerService(
     ILogger<ManagerService> logger,
     IManagerRepository managerRepository,
     IValidator<AuthenticationManagerCommand> validator) : IManagerService

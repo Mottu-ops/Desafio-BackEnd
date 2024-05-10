@@ -2,7 +2,7 @@
 
 namespace Job.Domain.Commands.User.Motoboy.Validations;
 
-public class AuthenticationMotoboyValidation : AbstractValidator<AuthenticationMotoboyCommand>
+public sealed class AuthenticationMotoboyValidation : AbstractValidator<AuthenticationMotoboyCommand>
 {
     public AuthenticationMotoboyValidation()
     {
