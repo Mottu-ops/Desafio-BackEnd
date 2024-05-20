@@ -1,3 +1,60 @@
+# Projeto: Motorcycle Rental
+## Este projeto, foi desenvolvido em uma arquitetuar de micro serviço.
+
+Ao total, foram desenvolvidos 11 projetos, são eles:
+
+- 2 - Serviços principais: 
+    - AdminManagementService e DeliveryManagementService
+        - Cada serviço principal são compostos por 2 projetos: Api e Service.
+- 2 - Serviços para consumir filas com o RabbitMq:
+    - MotorcycleConsumer - utilizado para consumir as mensagens enviadas pelo serviço: AdminManagementService
+                           Após processar a mensagem, o serviço guardará a informação em uma base de dados MongoDb, para consultas futuras e enviará uma mensagem para a fila de notificação "MailServiceConsumer"
+    - MailServiceConsumer - utilizado para consumir fila Notify e disparar emails, para 1 ou um lista de emails, previamente cadastrados. 
+- 1 - Serviço de Authentication - Responsável por criar os usuarios que terão acesso a aplicação.
+- 1 - Projeto do Domain - Responsável por armazenar as informações principais do negocio, tais como Entitidades que serão utilizadas pelo projeto e interfaces, 
+que ditarão o comportamento dos projetos principais
+- 1 - Infraestructure - Responsável por gerenciar conexões com os principais serviços utilizado pela aplicação, como por ex: bancos e serviços externos.
+- 1 - Shared/Api.Core - Serviço responsável por guardar configurações que poderão ser utilizadas pelos demais projetos.
+- 1 - Shared/RabbitMqMessage - Serviço responsável, por disponibillizar uma interface, para que os outros projetos, possam publicar mensagens para as filas do rabbitMq.
+    
+## Instruções para execução dos Projetos.
+### OBS: Para a exucução de projeto, será necessário a instlação prévia do Docker Desktop, para a utilização do Docker-Compose
+
+### Para executar, você poderá optar em executar o projeto que desejar, ou executar todos os projetos.
+
+### Obs: Para executar o serviço: AdminManagementService, obrigatoriamente, você deverá executar os 2 serviços Consumer, para que possa verificar o funcionamento da coreografia.
+#### Lembrando para receber notificação, basta cadatrar o seu email, dentro o appSettings (EmailList) do serviço: MotorcycleRental.MotorcycleConsumer.
+
+##### Let's bora!
+
+##### Para executar todos os serviços:
+- Antes de qualquer configuração, serão necessário primeiro buildar a aplicação.
+- Em seguida, deverá clicar com o botão direito no projeto, selecionar a opção: Propriedades -> Multiplie Start Projects -> Selecionar os seguintes projetos para iniciar:
+    - AdminManagementService.Api
+    - DeliveryManagementService.Api
+    - Authentication
+    - MotorcycleConsumer
+    - MailServiceConsumer
+Depois, basta clicar em Aplicar, para que todos os serviçoes possam executar. 
+- Feito isso
+- Agora, você precisará abrir um pronpt de comando: 
+    - Deverá clicar com o botão direito no projeto, selecionar a opção: Open In terminal
+    - Agora, basta digitar o comando: docker-compose up e apertar "Enter"
+
+### Obs: Todas as bases serão criadas no momento em que os 2 principais serviçoes forem executados. Por precaução, as migrations, serão aplicadas nas 2 aplicações.
+
+### No serviço de Authentication, poderá registrar 2 tipos de usuario: Admin e Entregadores. Ao cadastrar um novo Entregador, o Authenticario, enviar uma mensagem para a fila de NewUserRegister, que por sua vez, um serviço que tá rodando em BackgroundService no serviço: AdminManagementService, que receberá a mensagem e efetuará o cadastro do novo entregador.
+
+#### Qualquer dúvida, meus contatos: 
+##### What's: 11-95925-0776
+##### Email: cleber.trindade.net@gmail.com
+
+
+
+
+#### *** Detalhes sobre o desafio ***
+
+
 # Desafio backend Mottu.
 Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em fazer parte do nosso time e ajudar a melhorar a vida de milhares de pessoas.
 
