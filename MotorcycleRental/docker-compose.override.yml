@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  motorcyclerental.database:
+    image: postgres:latest
+    container_name: motorcyclerental.database
+    environment:
+      - POSTGRES_DB=motorcyclerental_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.containers/motorcyclerental-db:/var/lib/postgresql/data
+
+  motorcyclerental.mongodb:
+    image: mongo:latest
+    container_name: motorcyclerental.mongodb
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3.8-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "rabbitmq_data:/var/lib/rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+
+volumes:
+  rabbitmq_data:
+    driver: local

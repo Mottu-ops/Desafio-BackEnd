@@ -1,0 +1,6 @@
+@MotorcycleRental.AdminManagementService.Api_HostAddress = http://localhost:5146
+
+GET {{MotorcycleRental.AdminManagementService.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

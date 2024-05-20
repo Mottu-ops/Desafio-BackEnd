@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Config\Configurations\**" />
+    <Content Remove="Config\Configurations\**" />
+    <EmbeddedResource Remove="Config\Configurations\**" />
+    <None Remove="Config\Configurations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+
+    <PackageReference Include="FluentValidation" Version="11.9.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\04 - Infraestructure\MotorcycleRental.Infraestructure\MotorcycleRental.Infraestructure.csproj" />
+    <ProjectReference Include="..\..\07 - Shared\Services\MotorcycleRental.Api.Core\MotorcycleRental.Api.Core.csproj" />
+    <ProjectReference Include="..\MotorcycleRental.DeliveryManagementService.Service\MotorcycleRental.DeliveryManagementService.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\Images\" />
+  </ItemGroup>
+
+</Project>

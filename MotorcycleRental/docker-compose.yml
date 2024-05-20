@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  motorcyclerental.adminmanagementservice.api:
+    image: ${DOCKER_REGISTRY-}motorcyclerentaladminmanagementserviceapi
+    build:
+      context: .
+      dockerfile: src/01 - MotorcycleManagementService/MotorcycleRental.AdminManagementService.Api/Dockerfile

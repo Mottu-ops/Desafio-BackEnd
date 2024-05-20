@@ -1,0 +1,11 @@
+﻿global using AutoMapper;
+global using MotorcycleRental.Domain.Entities;
+global using MotorcycleRental.Domain.Interfaces;
+global using MotorcycleRental.AdminManagementService.Service.Mappings;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.MotorcycleUseCase;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.MotorcycleUseCase.AddMotorcycle;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.MotorcycleUseCase.DeleteMotocycle;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.MotorcycleUseCase.GetMotorcycleByPlate;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.MotorcycleUseCase.UpdateMotocycle;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.RentalPlanUseCase;
+global using MotorcycleRental.AdminManagementService.Service.UseCases.RentalPlanUseCase.AddRentalPlan;
