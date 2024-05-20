@@ -8,6 +8,7 @@ using MotorcycleRental.Infraestructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddApplication();
 builder.Services.AddInfraestructure(builder.Configuration);
 
@@ -22,15 +23,16 @@ builder.Services.AddHostedService<RegisterUserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-app.UseSwaggerConfiguration();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 app.UseMiddleware(typeof(ErrorMiddleware));
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseAuthConfiguration();
 
 app.MapControllers();
 

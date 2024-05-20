@@ -51,7 +51,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Config.ConfigApi
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 });
-                app.ApplyMigrations();
+                //app.ApplyMigrations();
             }
 
             return app;

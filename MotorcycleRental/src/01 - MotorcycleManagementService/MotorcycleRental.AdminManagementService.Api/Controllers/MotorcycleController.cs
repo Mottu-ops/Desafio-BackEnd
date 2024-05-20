@@ -18,7 +18,7 @@ namespace MotorcycleRental.AdminManagementService.Api.Controllers
         {
             _logger = logger;
         }
-        [ClaimsAuthorize("Delivery", "user")]
+        [ClaimsAuthorize("Deliveryman", "user")]
         [HttpGet("get-all-motorcycle")]
         public async Task<ActionResult> GetAllMotorcycle([FromServices] IGetAllMotorcycleUseCase _getAllMotorcycle)
         {
@@ -27,7 +27,7 @@ namespace MotorcycleRental.AdminManagementService.Api.Controllers
             return CustomResponse(output);
         }
 
-        [ClaimsAuthorize("Delivery", "user")]
+        [ClaimsAuthorize("Deliveryman", "user")]
         [HttpGet("get-motorcycle-by-place/{place}")]
         public async Task<ActionResult> GetMotorcycleByPlace(
             [FromServices] IGetMotorcycleByPlateUseCase _getMotorcycleByPlateUseCase, string place)

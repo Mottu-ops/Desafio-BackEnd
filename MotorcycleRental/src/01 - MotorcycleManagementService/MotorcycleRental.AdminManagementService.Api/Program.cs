@@ -14,6 +14,7 @@ builder.Services.AddSwaggerConfiguration();
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
 
+
 var app = builder.Build();
 
 app.UseSwaggerConfiguration();

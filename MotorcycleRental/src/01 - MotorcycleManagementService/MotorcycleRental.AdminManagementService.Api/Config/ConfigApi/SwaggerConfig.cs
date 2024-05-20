@@ -10,8 +10,8 @@ namespace MotorcycleRental.AdminManagementService.Api.Config.ConfigApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "DeliveryManagementService Api",
-                    Description = "Essa Api tem o objetivo de Registrar e Autenticar usuários.",
+                    Title = "AdminManagementService Api",
+                    Description = "Essa Api tem o objetivo de Registrar as informações de Plans e Motorcycle.",
                     Contact = new OpenApiContact() { Name = "Cleber Trindade", Email = "cleber.trindade.net@gmail.com" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/license/mit/") }
                 });

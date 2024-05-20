@@ -1,4 +1,4 @@
-@MotorcycleRental.DeliveryManagementService.Api_HostAddress = http://localhost:5239
+@MotorcycleRental.DeliveryManagementService.Api_HostAddress = http://localhost:5179
 
 GET {{MotorcycleRental.DeliveryManagementService.Api_HostAddress}}/weatherforecast/
 Accept: application/json

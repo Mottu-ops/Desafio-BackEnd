@@ -26,7 +26,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Config.Middlewares
             }
             catch (DbUpdateException ex) when (ex.InnerException is PostgresException postgresEx && postgresEx.SqlState == "23505")
             {
-                await HandleExceptionAsync(context, ex, HttpStatusCode.Conflict, ExtractMessageUniqueConstraintViolation(ex.InnerException.Message));
+                await HandleExceptionAsync(context, ex, HttpStatusCode.Conflict, ExtractMessageUniqueConstraintViolation(ex.InnerException.Message));                
             }
             catch (DbUpdateException ex) when (ex.InnerException is PostgresException postgresEx && postgresEx.SqlState == "23503")
             {
@@ -90,7 +90,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Config.Middlewares
         private string ExtractMessageUniqueConstraintViolation(string errorMessage)
         {
             string pattern = "\"([^\"]*)\"";
-            Match match = Regex.Match(errorMessage, pattern);
+             Match match = Regex.Match(errorMessage, pattern);
             if (match.Success)
                 return $"Duplicate key value violates unique constraint {match.Groups[1].Value}.";
             else

@@ -3,10 +3,6 @@ using MotorcycleRental.DeliveryManagementService.Service.DTOs;
 using MotorcycleRental.DeliveryManagementService.Service.Exceptions;
 using MotorcycleRental.Domain.Entities;
 using MotorcycleRental.Domain.Interfaces;
-using MotorcycleRental.Infraestructure.Migrations;
-using MotorcycleRental.Infraestructure.Repositories;
-using System.Diagnostics.Contracts;
-using System.Numerics;
 
 namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalContractService
 {
@@ -49,9 +45,6 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
                 throw new NotFoundException("Motorcycle not found!");
 
             RentalContract rentalContract = _mapper.Map<RentalContract>(rentalContractDto);
-            //rentalContract.SetPlan(plan);
-            //rentalContract.SetDeliveryman(deliveryman);
-            //rentalContract.SetMotorcycle(motorcycle);
 
             rentalContract.SetRentalValue(plan.Days * plan.DayValue);
             rentalContract.SetExpectedEndDate(rentalContract.StartDate.AddDays(plan.Days));

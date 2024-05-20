@@ -2,7 +2,7 @@
 {
     public class CustomErrorResponse
     {
-        public CustomErrorResponse() { }
+        public CustomErrorResponse(){}
 
         public CustomErrorResponse(int status, ErrorDetail errors)
         {
@@ -18,7 +18,7 @@
 
     public class ErrorDetail
     {
-        public ErrorDetail() { }
+        public ErrorDetail(){}
 
         public ErrorDetail(List<string> messages)
         {

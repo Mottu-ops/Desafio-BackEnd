@@ -10,7 +10,7 @@ namespace MotorcycleRental.Api.Core.Identity
         public static bool UserClaimsValidation(HttpContext context, string claimName, string claimValue)
         {
             return context.User.Identity.IsAuthenticated &&
-                   context.User.Claims.Any(c => c.Type == claimName && c.Value.Contains(claimValue));
+                   context.User.Claims.Any(c => c.Type == claimName && c.Value.Contains(claimValue)); 
         }
     }
 
@@ -33,16 +33,12 @@ namespace MotorcycleRental.Api.Core.Identity
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!context.HttpContext.User.Identity.IsAuthenticated)
+            if (!context.HttpContext.User.Identity.IsAuthenticated ||
+                !CustomAuthorization.UserClaimsValidation(context.HttpContext, _claim.Type, _claim.Value))
             {
                 context.Result = new StatusCodeResult(401);
                 return;
-            }
-
-            if (!CustomAuthorization.UserClaimsValidation(context.HttpContext, _claim.Type, _claim.Value))
-            {
-                context.Result = new StatusCodeResult(203);
-            }
+            }           
         }
     }
 }

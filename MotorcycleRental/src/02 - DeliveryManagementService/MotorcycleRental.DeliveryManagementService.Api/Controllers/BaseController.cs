@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc;
 using MotorcycleRental.DeliveryManagementService.Api.Config.Models;
 
 namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
@@ -34,8 +34,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
             return true;
         }
 
-        protected bool IsIdValid(string id)
-        {
+        protected bool IsIdValid(string id) {
             if (string.IsNullOrEmpty(id))
             {
                 AddError("The id parameter must be informed!");

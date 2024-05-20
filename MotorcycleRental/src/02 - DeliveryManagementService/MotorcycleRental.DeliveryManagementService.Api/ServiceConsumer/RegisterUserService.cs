@@ -12,14 +12,14 @@ using System.Text;
 namespace MotorcycleRental.DeliveryManagementService.Api.ServiceConsumer
 {
     public class RegisterUserService : BackgroundService
-    {
+    {   
         private readonly RegisterQueueSettings _registerQueueSettings;
         private readonly IConnection _connection;
         private readonly IModel _channel;
-        public IServiceProvider _serviceProvider;
+        public  IServiceProvider _serviceProvider;
         public RegisterUserService(IOptions<RegisterQueueSettings> registerQueueSettings,
                                    IServiceProvider serviceProvider)
-        {
+        {        
             _registerQueueSettings = registerQueueSettings.Value;
             Initialize(ref _connection, ref _channel);
             _serviceProvider = serviceProvider;
@@ -43,7 +43,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.ServiceConsumer
                 }
                 catch (Exception ex)
                 {
-                    _channel.BasicReject(eventArgs.DeliveryTag, false);
+                    _channel.BasicReject(eventArgs.DeliveryTag, false);                    
                 }
 
                 if (isValid)
@@ -59,7 +59,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.ServiceConsumer
                         _channel.BasicNack(eventArgs.DeliveryTag, false, true);
                         //Enviar email para Admin ou o proprio usuario.
                     }
-
+                    
                 }
             };
 
@@ -75,7 +75,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.ServiceConsumer
 
             using (var scope = _serviceProvider.CreateScope())
             {
-
+                
                 var _deliverymanRepository = scope.ServiceProvider.GetService<IDeliverymanRepository>();
                 try
                 {
@@ -84,7 +84,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.ServiceConsumer
                 catch (Exception ex)
                 {
                 }
-
+                
             }
         }
 
