@@ -125,6 +125,9 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
             var plans = await GetPossiblePlans(simulation.StartDate, simulation.EndDate);
             int daysUsed = (simulation.EndDate - simulation.StartDate).Days;
 
+            if (!plans.Any())
+                throw new NotFoundException("No plan registered");
+
             PlanDto planDto;
             foreach (var plan in plans)
             {
