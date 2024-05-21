@@ -22,7 +22,7 @@ namespace MotorcycleRental.DeliveryManagementService.Service.DTOs.Validations
                 .WithMessage("{PropertyName}: cannot be empty!")
                 .NotNull()
                 .WithMessage("{PropertyName}: Cannot be Null!")
-                .Must(x => x.Length < 14 || x.Length > 18)
+                .Must(x => x.Length >= 14 || x.Length <= 18)
                 .WithMessage("Inválid CNPJ.");
 
             RuleFor(m => m.DriverLicenseNumber)
@@ -31,11 +31,6 @@ namespace MotorcycleRental.DeliveryManagementService.Service.DTOs.Validations
                 .NotNull()
                 .WithMessage("{PropertyName}: Cannot be Null!");
             RuleFor(m => m.DriverLicenseType)
-                .NotEmpty()
-                .WithMessage("{PropertyName}: cannot be empty!")
-                .NotNull()
-                .WithMessage("{PropertyName}: Cannot be Null!");
-            RuleFor(m => m.CNHImageUrl)
                 .NotEmpty()
                 .WithMessage("{PropertyName}: cannot be empty!")
                 .NotNull()

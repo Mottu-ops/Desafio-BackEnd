@@ -53,8 +53,8 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
             if (!validation.IsValid)
                 return BadRequest(validation.Errors.ToCustomErrorResponse());
 
-            await _rentalContractService.AddAsync(rentalContract);
-            return CustomResponse();
+            var contract = await _rentalContractService.AddAsync(rentalContract);
+            return CustomResponse(contract);
         }
         [ClaimsAuthorize("Deliveryman", "user")]
         [HttpPut("update-rental-contract-async")]

@@ -27,7 +27,7 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
             _motorcycleRepository = motorcycleRepository;
         }
 
-        public async Task AddAsync(RentalContractAddDto rentalContractDto)
+        public async Task<RentalContractFullDto> AddAsync(RentalContractAddDto rentalContractDto)
         {
             var plan = await _rentalPlanRepository.GetByIdAsync(rentalContractDto.RentanPlanId);
 
@@ -50,6 +50,10 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
             rentalContract.SetExpectedEndDate(rentalContract.StartDate.AddDays(plan.Days));
 
             await _rentalContractRepository.AddAsync(rentalContract);
+
+            RentalContractFullDto contractDto = _mapper.Map<RentalContractFullDto>(rentalContract);
+
+            return contractDto;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -137,7 +141,7 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
                 //contract.SetPlan(plan);
                 contract.SetRentalValue(plan.Days * plan.DayValue);
                 contract.FinalizeRental(plan, simulation.EndDate);
-                planDto = new PlanDto(plan.Descrition, plan.DayValue,
+                planDto = new PlanDto(plan.Id, plan.Descrition, plan.DayValue,
                                       contract.RentalValue, contract.AdditionalFineValue, contract.AdditionalDailyValue,
                                       contract.TotalRentalValue);
 

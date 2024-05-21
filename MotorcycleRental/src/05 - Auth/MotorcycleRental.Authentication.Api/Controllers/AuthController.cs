@@ -165,8 +165,6 @@ namespace MotorcycleRental.Authentication.Api.Controllers
             return !Erros.Any();
         }
 
-        //[ClaimsAuthorize("Authentication", "Master")]
-        //[HttpPost("AddClaims")]
         private async Task<ActionResult> AddClaims(string email, UserClaimViewModel userClaimViewModel)
         {
             var user = await _userManager.FindByNameAsync(email);

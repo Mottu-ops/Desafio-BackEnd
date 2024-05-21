@@ -4,7 +4,7 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.RentalCont
 {
     public interface IRentalContractService
     {
-        Task AddAsync(RentalContractAddDto dto);
+        Task<RentalContractFullDto> AddAsync(RentalContractAddDto dto);
         Task<List<RentalContractFullDto>> GetAllAsync();
         Task<RentalContractFullDto> GetByIdAsync(Guid Id);
         Task UpdateAsync(RentalContractFullDto rentalContract);

@@ -1,4 +1,6 @@
-﻿namespace MotorcycleRental.DeliveryManagementService.Service.DTOs
+﻿using System.Numerics;
+
+namespace MotorcycleRental.DeliveryManagementService.Service.DTOs
 {
     public class SimulationDto
     {
@@ -18,8 +20,9 @@
 
     public class PlanDto
     {
-        public PlanDto(string description, decimal dayValue, decimal rentalValue, decimal additionalFineValue, decimal additionalDailyValue, decimal totalRentalValue)
+        public PlanDto(Guid plaId, string description, decimal dayValue, decimal rentalValue, decimal additionalFineValue, decimal additionalDailyValue, decimal totalRentalValue)
         {
+            PlanId = plaId;
             Description = description;
             DayValue = dayValue;
             RentalValue = rentalValue;
@@ -29,6 +32,7 @@
             Observation = new List<string>();
         }
 
+        public Guid PlanId { get; set; }
         public string Description { get; private set; }
         public decimal DayValue { get; private set; }
         public decimal RentalValue { get; private set; }

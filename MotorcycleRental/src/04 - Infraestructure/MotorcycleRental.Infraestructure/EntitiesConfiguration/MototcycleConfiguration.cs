@@ -14,8 +14,8 @@ namespace MotorcycleRental.Infraestructure.EntitiesConfiguration
             builder.Property(p => p.Year).HasColumnType("numeric(18, 2)").IsRequired();
             builder.Property(p => p.Plate).HasColumnType("varchar").HasMaxLength(20).IsRequired();
             builder.HasIndex(p => p.Plate).IsUnique();
-            builder.Property(p => p.CreatedAt).HasColumnType("timestamp");
-            builder.Property(p => p.UpdatedAt).HasColumnType("timestamp");
+            builder.Property(p => p.CreatedAt);
+            builder.Property(p => p.UpdatedAt);
             builder.Property(p => p.IsActived);
         }
     }

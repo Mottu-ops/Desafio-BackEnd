@@ -17,7 +17,7 @@ namespace MotorcycleRental.Infraestructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -90,7 +90,7 @@ namespace MotorcycleRental.Infraestructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActived")
                         .HasColumnType("boolean");
@@ -106,7 +106,7 @@ namespace MotorcycleRental.Infraestructure.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal>("Year")
                         .HasColumnType("numeric(18, 2)");

@@ -15,30 +15,12 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IDeliverymanService _deliverymanService;
-
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-                
+               
         public DeliverymanController(IWebHostEnvironment webHostEnvironment, 
                                      IDeliverymanService deliverymanService)
         {
             _webHostEnvironment = webHostEnvironment;
             _deliverymanService = deliverymanService;
-        }
-
-        [ClaimsAuthorize("Deliveryman", "user")]
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
         }
 
         [ClaimsAuthorize("Admin", "admin")]
@@ -50,8 +32,29 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
             return CustomResponse(output);
         }
 
-        [ClaimsAuthorize("Delivery", "user")]
-        [HttpPost("add-deliveryman-async")]
+        [ClaimsAuthorize("Deliveryman", "user")]
+        [HttpGet("get-deliveryman-by-id-async/{id}")]
+        public async Task<ActionResult> GetDeliverymanByidAsync(Guid id)
+        {
+            if (string.IsNullOrEmpty(id.ToString()))
+            {
+                AddError("The id parameter must be informed!");
+                return CustomResponse();
+            }
+
+            DeliverymanFullDto output = await _deliverymanService.GetByIdAsync(id);
+
+            if (output == null)
+            {
+                AddError("Deliveryman reported, not found!");
+                return CustomResponse();
+            }
+
+            return CustomResponse(output);
+        }
+
+        [ClaimsAuthorize("Deliveryman", "user")]
+        [HttpPost("add-deliveryman-photo-async")]
         public async Task<ActionResult> AddPhotoCnh([FromBody] DeliverymanAddPhotoDto deliveryman)
         {
             if (string.IsNullOrEmpty(deliveryman.Id.ToString()))
@@ -65,7 +68,7 @@ namespace MotorcycleRental.DeliveryManagementService.Api.Controllers
             return CustomResponse();
         }
 
-        [ClaimsAuthorize("Delivery", "user")]
+        [ClaimsAuthorize("Deliveryman", "user")]
         [HttpPut("update-deliveryman-async")]
         public async Task<ActionResult> UpdateDeliverymanAsync(
             [FromBody] DeliverymanFullDto deliveryman,

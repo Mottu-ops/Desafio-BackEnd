@@ -19,9 +19,9 @@ namespace MotorcycleRental.Infraestructure.EntitiesConfiguration
             builder.HasIndex(p => p.DriverLicenseNumber).IsUnique();
             builder.Property(p => p.DateOfBirth).HasColumnType("date");
             builder.Property(p => p.DriverLicenseType).HasColumnType("varchar").HasMaxLength(30);
-            builder.Property(p => p.CNHImageUrl).HasColumnType("varchar").HasMaxLength(100).IsRequired(false); ;
-            builder.Property(p => p.CreatedAt).HasColumnType("timestamp");
-            builder.Property(p => p.UpdatedAt).HasColumnType("timestamp");
+            builder.Property(p => p.CNHImageUrl).HasColumnType("varchar").HasMaxLength(100).IsRequired(false);
+            builder.Property(p => p.CreatedAt);
+            builder.Property(p => p.UpdatedAt);
             builder.Property(p => p.IsActived);
         }
     }

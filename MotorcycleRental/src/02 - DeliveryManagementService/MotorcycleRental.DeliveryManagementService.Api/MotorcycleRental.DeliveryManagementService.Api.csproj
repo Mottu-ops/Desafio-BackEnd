@@ -19,4 +19,8 @@
     <ProjectReference Include="..\MotorcycleRental.DeliveryManagementService.Service\MotorcycleRental.DeliveryManagementService.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="App_Data\Images\" />
+  </ItemGroup>
+
 </Project>

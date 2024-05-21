@@ -3,18 +3,6 @@
     public class Deliveryman : AggregateRoot
     {
         protected Deliveryman() { }
-        /*public Deliveryman(string name, string email, string cNPJ, DateTime dateOfBirth, string driverLicenseNumber, 
-                           string driverLicenseType, string cNHImageUrl)
-        {
-            Name = name;
-            CNPJ = cNPJ;
-            Email = email;
-            DateOfBirth = dateOfBirth;
-            DriverLicenseNumber = driverLicenseNumber;
-            DriverLicenseType = driverLicenseType;
-            CNHImageUrl = cNHImageUrl;
-            IsActived = true;
-        }*/
 
         public Deliveryman(Guid id, string name, string email, string cNPJ, DateTime dateOfBirth, string driverLicenseNumber,
                            string driverLicenseType)
@@ -26,6 +14,7 @@
             DateOfBirth = dateOfBirth;
             DriverLicenseNumber = driverLicenseNumber;
             DriverLicenseType = driverLicenseType;
+            IsActived = true;
         }
 
         public string Name { get; private set; }

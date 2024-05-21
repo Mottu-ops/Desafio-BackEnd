@@ -44,7 +44,7 @@ namespace MotorcycleRental.DeliveryManagementService.Service.Services.Deliveryma
             deleiveryman.SetCnhImageUrl(url);
             try
             {
-                await _deliverymanRespository.AddAsync(deleiveryman);
+                await _deliverymanRespository.UpdateAsync(deleiveryman);
             }
             catch (Exception)
             {

@@ -9,7 +9,7 @@
         public DateTime DateOfBirth { get; set; }
         public string DriverLicenseNumber { get; set; }
         public string DriverLicenseType { get; set; }
-        public string CNHImageUrl { get; set; }
+        public string CNHImageUrl { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsActived { get; set; }

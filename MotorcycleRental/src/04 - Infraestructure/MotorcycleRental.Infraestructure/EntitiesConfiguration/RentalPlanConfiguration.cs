@@ -16,8 +16,8 @@ namespace MotorcycleRental.Infraestructure.EntitiesConfiguration
             builder.Property(p => p.DayValue).HasColumnType("numeric(18, 2)").IsRequired();
             builder.Property(p => p.PercentageFine).HasColumnType("numeric(18, 2)").IsRequired();
             builder.Property(p => p.AdditionalValueDaily).HasColumnType("numeric(18, 2)").IsRequired();
-            builder.Property(p => p.CreatedAt).HasColumnType("timestamp");
-            builder.Property(p => p.UpdatedAt).HasColumnType("timestamp");
+            builder.Property(p => p.CreatedAt);
+            builder.Property(p => p.UpdatedAt);
             builder.Property(p => p.IsActived);
         }
     }

@@ -22,7 +22,7 @@ namespace MotorcycleRental.AdminManagementService.Api.Controllers
         {
             _logger = logger;
         }
-        [ClaimsAuthorize("Delivery", "user")]
+        [ClaimsAuthorize("Deliveryman", "user")]
         [HttpGet("get-all-rental-plan")]
         public async Task<ActionResult> GetAllRentalPlan([FromServices] IGetAllRentalPlanUseCase _getAllRentalPlan)
         {
@@ -30,7 +30,7 @@ namespace MotorcycleRental.AdminManagementService.Api.Controllers
 
             return CustomResponse(output);
         }
-        [ClaimsAuthorize("Delivery", "user")]
+        [ClaimsAuthorize("Deliveryman", "user")]
         [HttpGet("get-rental-plan-by-id/{id}")]
         public async Task<ActionResult> GetRentalPlanByid(
             [FromServices] IGetRentalPlanByIdUseCase _getRentalPlanById, Guid id)
