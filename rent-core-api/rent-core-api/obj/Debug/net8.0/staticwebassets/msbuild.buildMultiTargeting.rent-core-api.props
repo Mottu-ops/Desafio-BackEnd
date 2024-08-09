@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\rent-core-api.props" />
+</Project>

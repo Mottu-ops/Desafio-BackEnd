@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SI2VSWPioS+Wt6wnmH0OB9FrsaNsANyYoJrNdWuoQOw=",
+  "Source": "rent-core-api",
+  "BasePath": "_content/rent-core-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
