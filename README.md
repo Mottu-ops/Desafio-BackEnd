@@ -15,6 +15,13 @@ Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em faz
 
 ## Aplicação a ser desenvolvida
 Seu objetivo é criar uma aplicação para gerenciar aluguel de motos e entregadores. Quando um entregador estiver registrado e com uma locação ativa poderá também efetuar entregas de pedidos disponíveis na plataforma.
+
+Iremos executar um teste de integração para validar os cenários de uso. Por isso, sua aplicação deve seguir exatamente as especificações de API`s Rest do nosso Swager: request, response e status code.
+Garanta que os atributos dos JSON`s e estão de acordo com o Swagger abaixo.
+
+Swagger de referência:
+https://app.swaggerhub.com/apis-docs/Mottu/mottu_desafio_backend/1.0.0
+
 ### Casos de uso
 - Eu como usuário admin quero cadastrar uma nova moto.
   - Os dados obrigatórios da moto são Identificador, Ano, Modelo e Placa
