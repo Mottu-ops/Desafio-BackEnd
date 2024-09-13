@@ -1,10 +1,10 @@
-# Desafio backend Mottu.
-Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em fazer parte do nosso time e ajudar a melhorar a vida de milhares de pessoas.
+# Desafio backend FooCompany.
+Seja muito bem-vindo ao desafio backend da FooCompany, obrigado pelo interesse em fazer parte do nosso time e ajudar a melhorar a vida de milhares de pessoas.
 
 ## Instruções
 - O desafio é válido para diversos níveis, portanto não se preocupe se não conseguir resolver por completo.
 - A aplicação só será avaliada se estiver rodando, se necessário crie um passo a passo para isso.
-- Faça um clone do repositório em seu git pessoal para iniciar o desenvolvimento e não cite nada relacionado a Mottu.
+- Faça um clone do repositório em seu git pessoal para iniciar o desenvolvimento e não cite nada relacionado a FooCompany.
 - Após finalização envie um e-mail para o recrutador informando o repositório para análise.
   
 ## Requisitos não funcionais 
@@ -20,7 +20,7 @@ Iremos executar um teste de integração para validar os cenários de uso. Por i
 Garanta que os atributos dos JSON`s e estão de acordo com o Swagger abaixo.
 
 Swagger de referência:
-https://app.swaggerhub.com/apis-docs/Mottu/mottu_desafio_backend/1.0.0
+https://app.swaggerhub.com/apis-docs/FooCompany/foocompany_desafio_backend/1.0.0
 
 ### Casos de uso
 - Eu como usuário admin quero cadastrar uma nova moto.
