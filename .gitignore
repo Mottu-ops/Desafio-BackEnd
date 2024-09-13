@@ -1,0 +1,10 @@
+# Ignorar dados do MinIO
+application/storage/data/
+
+# Ignorar dados do PostgreSQL (se houver)
+pgdata/
+
+# Ignorar dados do Docker
+**/node_modules/
+**/bin/
+**/obj/
