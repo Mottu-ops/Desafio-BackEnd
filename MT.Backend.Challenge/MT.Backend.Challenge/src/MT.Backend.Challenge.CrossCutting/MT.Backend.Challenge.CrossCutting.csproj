@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MT.Backend.Challenge.Application\MT.Backend.Challenge.Application.csproj" />
+    <ProjectReference Include="..\MT.Backend.Challenge.Domain\MT.Backend.Challenge.Domain.csproj" />
+    <ProjectReference Include="..\MT.Backend.Challenge.Infrastructure\MT.Backend.Challenge.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

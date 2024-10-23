@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EA647200-5F30-4A56-BD48-366262CAA456}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E4F235FD-1825-49E2-808D-42DC7404B266}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Domain", "MT.Backend.Challenge\src\MT.Backend.Challenge.Domain\MT.Backend.Challenge.Domain.csproj", "{9D4E3B5D-0511-4600-803C-A62CE000D565}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.CrossCutting", "MT.Backend.Challenge\src\MT.Backend.Challenge.CrossCutting\MT.Backend.Challenge.CrossCutting.csproj", "{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Application", "MT.Backend.Challenge\src\MT.Backend.Challenge.Application\MT.Backend.Challenge.Application.csproj", "{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Api", "MT.Backend.Challenge\src\MT.Backend.Challenge.Api\MT.Backend.Challenge.Api.csproj", "{AA20D373-F184-4205-9892-600357E8F82D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Infrastructure", "MT.Backend.Challenge\src\MT.Backend.Challenge.Infrastructure\MT.Backend.Challenge.Infrastructure.csproj", "{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{8E49072A-DDDF-4457-904C-8C90B8884B3B}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{97D28829-84F5-459B-854C-601E674A3F57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{3DA92325-FA26-4622-92EC-9E0600BA7191}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\postgres\docker-compose.yml = scripts\postgres\docker-compose.yml
+		scripts\postgres\README.md = scripts\postgres\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sonar-local", "sonar-local", "{F023E028-B39A-4D39-B30D-EAEA95CE7026}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\sonar-local\docker-compose.yml = scripts\sonar-local\docker-compose.yml
+		scripts\sonar-local\README.md = scripts\sonar-local\README.md
+		scripts\sonar-local\sonar.local.bat = scripts\sonar-local\sonar.local.bat
+		scripts\sonar-local\sonar.local.sh = scripts\sonar-local\sonar.local.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMq", "RabbitMq", "{985DB4A8-E020-4080-A16C-49A4483C4D15}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\RabbitMq\docker-compose.yml = scripts\RabbitMq\docker-compose.yml
+		scripts\RabbitMq\README.md = scripts\RabbitMq\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.Backend.Challenge.UnitTest", "MT.Backend.Challenge\test\MT.Backend.Challenge.UnitTest\MT.Backend.Challenge.UnitTest.csproj", "{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D4E3B5D-0511-4600-803C-A62CE000D565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4E3B5D-0511-4600-803C-A62CE000D565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4E3B5D-0511-4600-803C-A62CE000D565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4E3B5D-0511-4600-803C-A62CE000D565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA20D373-F184-4205-9892-600357E8F82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA20D373-F184-4205-9892-600357E8F82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA20D373-F184-4205-9892-600357E8F82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA20D373-F184-4205-9892-600357E8F82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9D4E3B5D-0511-4600-803C-A62CE000D565} = {EA647200-5F30-4A56-BD48-366262CAA456}
+		{9B85C4E8-E637-42FE-ADA7-0A48C00D1398} = {EA647200-5F30-4A56-BD48-366262CAA456}
+		{9EA95F06-CE0C-4B2E-823E-E1AF9E8A3090} = {EA647200-5F30-4A56-BD48-366262CAA456}
+		{AA20D373-F184-4205-9892-600357E8F82D} = {EA647200-5F30-4A56-BD48-366262CAA456}
+		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2} = {EA647200-5F30-4A56-BD48-366262CAA456}
+		{3DA92325-FA26-4622-92EC-9E0600BA7191} = {97D28829-84F5-459B-854C-601E674A3F57}
+		{F023E028-B39A-4D39-B30D-EAEA95CE7026} = {97D28829-84F5-459B-854C-601E674A3F57}
+		{985DB4A8-E020-4080-A16C-49A4483C4D15} = {97D28829-84F5-459B-854C-601E674A3F57}
+		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F} = {E4F235FD-1825-49E2-808D-42DC7404B266}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1347CB1A-FF70-4CF7-8D99-72B30E8201E2}
+	EndGlobalSection
+EndGlobal
