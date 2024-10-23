@@ -36,7 +36,7 @@ Este projeto é uma API desenvolvida com .NET 8 para resolver um desafio backend.
    cd MT.Backend.Challenge
    ```
 
-2. Execute o Docker Compose para subir os serviços:
+2. Execute o Docker Compose no projeto api para subir os serviços:
    ```
    docker-compose up -d
    ```
