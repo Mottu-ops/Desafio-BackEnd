@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using MT.Backend.Challenge.Domain.Entities.configs;
 
 namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryDriver
 {
@@ -24,6 +26,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
         private readonly ImageService ImageService;
 
         public AddDeliveryDriverHandler(
+            IOptions<ImageServiceConfig> config,
             IWriteRepository<DeliveryDriver> writeRepository,
             IReadRepository<DeliveryDriver> readRepository,
             ILogger<AddDeliveryDriverHandler> logger,
@@ -35,7 +38,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
             ReadRepository = readRepository;
             Mapper = mapper;
             HandleResponseExceptionHelper = new HandleResponseExceptionHelper(logger);
-            ImageService = new ImageService();
+            ImageService = new ImageService(config.Value);
         }
 
         public async Task<AddDeliveryDriverResponse> Handle(AddDeliveryDriverRequest request, CancellationToken cancellationToken)
@@ -61,7 +64,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
 
                 var entity = Mapper.Map<DeliveryDriver>(request);
                 entity.DriversLicenseImageUrl = imageUrl;
-               
+
                 var result = await WriteRepository.Add(entity);
 
                 if (!result.Success)

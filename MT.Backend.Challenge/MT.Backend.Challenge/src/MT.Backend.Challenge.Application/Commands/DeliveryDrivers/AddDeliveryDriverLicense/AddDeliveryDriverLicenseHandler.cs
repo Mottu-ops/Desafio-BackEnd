@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MT.Backend.Challenge.Application.Helpers;
 using MT.Backend.Challenge.Domain.Constants;
 using MT.Backend.Challenge.Domain.Entities;
+using MT.Backend.Challenge.Domain.Entities.configs;
 using MT.Backend.Challenge.Domain.Repositories;
 using System;
 using System.Threading;
@@ -22,6 +24,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
 
         private readonly ImageService ImageService;
         public AddDeliveryDriverLicenseHandler(
+            IOptions<ImageServiceConfig> config,
             IWriteRepository<DeliveryDriver> writeRepository,
             IReadRepository<DeliveryDriver> readRepository,
             ILogger<AddDeliveryDriverLicenseHandler> logger,
@@ -35,7 +38,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
             Mapper = mapper;
             HandleResponseExceptionHelper = new HandleResponseExceptionHelper(logger);
 
-            ImageService = new ImageService();
+            ImageService = new ImageService(config.Value);
         }
 
         public async Task<AddDeliveryDriverLicenseResponse> Handle(AddDeliveryDriverLicenseRequest request, CancellationToken cancellationToken)
@@ -59,7 +62,7 @@ namespace MT.Backend.Challenge.Application.Commands.DeliveryDrivers.AddDeliveryD
                 }
 
                 var deliveryDriver = operationResult.Result;
-                
+
                 var imageUrl = ImageService.UploadImage(request.DriversLicenseImage);
 
                 deliveryDriver.DriversLicenseImageUrl = imageUrl;

@@ -222,58 +222,58 @@ namespace MT.Backend.Challenge.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "433a46c6-4da7-4d93-912a-d8ce496c8977",
+                            Id = "bd757831-c4c0-426b-859f-2e2b1da3390a",
                             Active = true,
-                            CreatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1083),
+                            CreatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6765),
                             Name = "7 dias",
                             PercentualFine = 0.2m,
                             Price = 30m,
                             RentalCategoryDays = 7,
-                            UpdatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1087)
+                            UpdatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6769)
                         },
                         new
                         {
-                            Id = "b81b0a3a-f90e-4e77-afe1-b214b6ac137d",
+                            Id = "61a2c438-449c-4b9a-88e8-a9e7a73fe4f1",
                             Active = true,
-                            CreatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1166),
+                            CreatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6900),
                             Name = "15 dias",
                             PercentualFine = 0.4m,
                             Price = 28m,
                             RentalCategoryDays = 15,
-                            UpdatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1166)
+                            UpdatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6901)
                         },
                         new
                         {
-                            Id = "2a281a76-84f5-4664-a8fb-2cf3629caa8d",
+                            Id = "342062ab-a6d0-4bf7-a13b-79392ece859f",
                             Active = true,
-                            CreatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1173),
+                            CreatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6908),
                             Name = "30 dias",
                             PercentualFine = 0m,
                             Price = 22m,
                             RentalCategoryDays = 30,
-                            UpdatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1173)
+                            UpdatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6908)
                         },
                         new
                         {
-                            Id = "2a11f7df-1f7f-4de7-a510-c895b69d3bad",
+                            Id = "3cef2a62-9867-4e7d-aa9c-94014375fb55",
                             Active = true,
-                            CreatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1179),
+                            CreatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6915),
                             Name = "45 dias",
                             PercentualFine = 0m,
                             Price = 20m,
                             RentalCategoryDays = 45,
-                            UpdatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1180)
+                            UpdatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6915)
                         },
                         new
                         {
-                            Id = "19346023-b90b-4d0a-b254-58fae6ff0018",
+                            Id = "836809c9-1461-443e-a3a3-8e232c9c45ba",
                             Active = true,
-                            CreatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1185),
+                            CreatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6920),
                             Name = "50 dias",
                             PercentualFine = 0m,
                             Price = 18m,
                             RentalCategoryDays = 50,
-                            UpdatedAt = new DateTime(2024, 10, 23, 8, 9, 50, 271, DateTimeKind.Utc).AddTicks(1185)
+                            UpdatedAt = new DateTime(2024, 10, 23, 15, 46, 1, 658, DateTimeKind.Utc).AddTicks(6921)
                         });
                 });
 

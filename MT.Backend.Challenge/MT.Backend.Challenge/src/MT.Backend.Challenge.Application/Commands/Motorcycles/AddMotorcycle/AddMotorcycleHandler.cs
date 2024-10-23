@@ -1,14 +1,18 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Text;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using MT.Backend.Challenge.Application.Helpers;
 using MT.Backend.Challenge.Domain.Constants;
 using MT.Backend.Challenge.Domain.Entities;
 using MT.Backend.Challenge.Domain.Entities.Response;
 using MT.Backend.Challenge.Domain.Repositories;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace MT.Backend.Challenge.Application.Commands.Motorcycles.AddMotorcycle
 {
@@ -19,13 +23,14 @@ namespace MT.Backend.Challenge.Application.Commands.Motorcycles.AddMotorcycle
         private IMapper Mapper { get; }
 
         private readonly HandleResponseExceptionHelper HandleResponseExceptionHelper;
-
+        private readonly string QueueName = "motorcycle_registered";
+        private readonly string HostName = "rabbitmq";
 
         public AddMotorcycleHandler(
             IWriteRepository<Motorcycle> repository,
             ILogger<AddMotorcycleHandler> logger,
             IMapper mapper
-            )
+        )
         {
             Logger = logger;
             Repository = repository;
@@ -48,10 +53,14 @@ namespace MT.Backend.Challenge.Application.Commands.Motorcycles.AddMotorcycle
                 entity.CreatedAt = DateTime.Now;
                 var result = await Repository.Add(entity);
 
-                if (!result.Success)
+                if (result.Success)
+                {
+                    // Enviar mensagem para fila
+                    PublishMotorcycleRegisteredEvent(entity);
+                }
+                else
                 {
                     HandleResponseExceptionHelper.HandleResponseException(response, result);
-                    // envia para as filas
                 }
 
             }
@@ -63,5 +72,37 @@ namespace MT.Backend.Challenge.Application.Commands.Motorcycles.AddMotorcycle
             Logger.LogInformation($"{ServiceConstants.MotorcycleService} Finish Handle request");
             return response;
         }
+
+        private void PublishMotorcycleRegisteredEvent(Motorcycle motorcycle)
+        {
+            // colocar no secrets
+            var factory = new ConnectionFactory() { 
+                HostName = HostName,
+                UserName = "mtuser",
+                Password = "mt2024"
+            };
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.QueueDeclare(queue: QueueName,
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                var message = JsonSerializer.Serialize(motorcycle);
+                var body = Encoding.UTF8.GetBytes(message);
+
+                channel.BasicPublish(exchange: "",
+                                     routingKey: QueueName,
+                                     basicProperties: null,
+                                     body: body);
+
+                var logMessage = $"{ServiceConstants.ItemQueueRegistred}: {motorcycle.Id}";
+                Logger.LogInformation(logMessage);
+            }
+        }
     }
+
+
 }

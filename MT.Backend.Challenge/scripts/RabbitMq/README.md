@@ -20,8 +20,8 @@ Após iniciar o container, você pode acessar a interface de gerenciamento do Rabb
 
 - **URL:** [http://localhost:15672](http://localhost:15672)
 
-- **Usuário padrão:** myuser
-- **Senha padrão:** mypassword
+- **Usuário padrão:** mtuser
+- **Senha padrão:** mt2024
 
 ### Passo 5: Parar o Container
 Para parar o container, execute o seguinte comando:

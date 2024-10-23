@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EA647200-5F30-4A56-BD48-366262CAA456}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E4F235FD-1825-49E2-808D-42DC7404B266}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Domain", "MT.Backend.Challenge\src\MT.Backend.Challenge.Domain\MT.Backend.Challenge.Domain.csproj", "{9D4E3B5D-0511-4600-803C-A62CE000D565}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.CrossCutting", "MT.Backend.Challenge\src\MT.Backend.Challenge.CrossCutting\MT.Backend.Challenge.CrossCutting.csproj", "{9B85C4E8-E637-42FE-ADA7-0A48C00D1398}"
@@ -19,7 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MT.Backend.Challenge.Infras
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{8E49072A-DDDF-4457-904C-8C90B8884B3B}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
+		README.md = README.md
+		..\README_Instrucoes.md = ..\README_Instrucoes.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{97D28829-84F5-459B-854C-601E674A3F57}"
@@ -44,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMq", "RabbitMq", "{98
 		scripts\RabbitMq\README.md = scripts\RabbitMq\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.Backend.Challenge.UnitTest", "MT.Backend.Challenge\test\MT.Backend.Challenge.UnitTest\MT.Backend.Challenge.UnitTest.csproj", "{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{42C0AADD-82C8-4327-BC28-9A83FC0EC199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +71,10 @@ Global
 		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00054108-7BE1-42D6-9D3A-7739EB1D5DD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C0AADD-82C8-4327-BC28-9A83FC0EC199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C0AADD-82C8-4327-BC28-9A83FC0EC199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C0AADD-82C8-4327-BC28-9A83FC0EC199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C0AADD-82C8-4327-BC28-9A83FC0EC199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,7 +88,6 @@ Global
 		{3DA92325-FA26-4622-92EC-9E0600BA7191} = {97D28829-84F5-459B-854C-601E674A3F57}
 		{F023E028-B39A-4D39-B30D-EAEA95CE7026} = {97D28829-84F5-459B-854C-601E674A3F57}
 		{985DB4A8-E020-4080-A16C-49A4483C4D15} = {97D28829-84F5-459B-854C-601E674A3F57}
-		{9DEF0F79-BA6B-4F18-A524-AA3971B1824F} = {E4F235FD-1825-49E2-808D-42DC7404B266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1347CB1A-FF70-4CF7-8D99-72B30E8201E2}

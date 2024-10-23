@@ -1,0 +1,6 @@
+services:
+  mt.backend.challenge.api:
+    image: ${DOCKER_REGISTRY-}mtbackendchallengeapi
+    build:
+      context: .
+      dockerfile: MT.Backend.Challenge/src/MT.Backend.Challenge.Api/Dockerfile

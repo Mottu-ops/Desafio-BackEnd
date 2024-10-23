@@ -2,6 +2,8 @@
 using MT.Backend.Challenge.CrossCutting.DependencyInjection;
 using MT.Backend.Challenge.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MT.Backend.Challenge.Domain.Entities.configs;
 
 namespace MT.Backend.Challenge.Api
 {
@@ -16,6 +18,10 @@ namespace MT.Backend.Challenge.Api
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.Configure<QueueServerConfig>(
+               configuration.GetSection(nameof(QueueServerConfig)));
+            builder.Services.Configure<ImageServiceConfig>(
+               configuration.GetSection(nameof(ImageServiceConfig)));
 
             // Add services to the container.
             builder.Services.AddAutoMapper();

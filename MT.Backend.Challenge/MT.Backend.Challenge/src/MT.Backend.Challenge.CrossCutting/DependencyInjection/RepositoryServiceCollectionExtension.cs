@@ -20,7 +20,9 @@ namespace MT.Backend.Challenge.CrossCutting.DependencyInjection
             services.AddScoped<IWriteRepository<Rental>, WriteRepository<Rental>>();
 
             services.AddScoped<IReadRepository<RentalCategory>, ReadRepository<RentalCategory>>();
-            services.AddScoped<IWriteRepository<RentalCategory>, WriteRepository<RentalCategory>>();
+            
+
+            services.AddScoped<IReadRepository<MotorcycleNotification>, ReadRepository<MotorcycleNotification>>();
 
             return services;
         }

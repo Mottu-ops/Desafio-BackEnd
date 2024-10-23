@@ -1,23 +1,24 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using System.IO;
-using System.Security.Principal;
-using System;
-using MT.Backend.Challenge.Domain.Constants;
+using Microsoft.Extensions.Options;
+using MT.Backend.Challenge.Domain.Entities.configs;
 using MT.Backend.Challenge.Domain.Exceptions;
+using System;
+using System.IO;
 
 public class ImageService
 {
-    private readonly Cloudinary _cloudinary;
+    private readonly Cloudinary Cloudinary;
 
-    public ImageService()
+    public ImageService(ImageServiceConfig config)
     {
+        var conf = config;
         var account = new Account(
-            "dqtwiabf9",
-            "337557872979834",
-            "CgIK6PnLjucH4RvrsJquMysG2oQ");
+            conf.CloudName,
+            conf.ApiKey,
+            conf.ApiSecret);
 
-        _cloudinary = new Cloudinary(account);
+        Cloudinary = new Cloudinary(account);
     }
 
     public string UploadImage(string base64)
@@ -34,11 +35,11 @@ public class ImageService
                 Overwrite = true
             };
 
-            var uploadResult = _cloudinary.Upload(uploadParams);
+            var uploadResult = Cloudinary.Upload(uploadParams);
 
             if (uploadResult.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return uploadResult.SecureUrl.ToString(); 
+                return uploadResult.SecureUrl.ToString();
             }
             return string.Empty;
         }
@@ -47,4 +48,4 @@ public class ImageService
             throw new SendImageException(ex.Message);
         }
     }
-    }
+}

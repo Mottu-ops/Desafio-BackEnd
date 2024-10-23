@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: challenge_db
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my_network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-container
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres-db;Database=challenge_db;Username=admin;Password=secret"
+      QueueServerConfig__Host: "rabbitmq"
+      QueueServerConfig__Port: "5672"
+      QueueServerConfig__Username: "guest"
+      QueueServerConfig__Password: "guest"
+      ImageServiceConfig__CloudName: "dqtwiabf9"
+      ImageServiceConfig__ApiKey: "337557872979834"
+      ImageServiceConfig__ApiSecret: "CgIK6PnLjucH4RvrsJquMysG2oQ"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - my_network
+    command: >
+      sh -c "dotnet ef database update && dotnet MT.Backend.Challenge.Api.dll"
+
+networks:
+  my_network:
+    driver: bridge
