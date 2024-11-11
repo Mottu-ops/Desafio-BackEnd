@@ -6,9 +6,7 @@ Seja muito bem-vindo ao desafio backend da Mottu, obrigado pelo interesse em faz
 - A aplicação só será avaliada se estiver rodando, se necessário crie um passo a passo para isso.
 - Faça um clone do repositório em seu git pessoal para iniciar o desenvolvimento e não cite nada relacionado a Mottu.
 - Após teste realizado, favor encaminha-lo via Link abaixo:
-[Link: 
-https://www.youtube.com/watch?v=rYyjY-A7kE0&ab_channel=homealone.
-](https://forms.office.com/r/25yMPCax5S)
+Link: https://forms.office.com/r/25yMPCax5S
 
 ## Requisitos não funcionais 
 - A aplicação deverá ser construida com .Net utilizando C#.
